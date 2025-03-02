@@ -1,0 +1,32 @@
+//import React from 'react'
+import Dashboard from './dashboard/dashboard'
+import Header from './dashboard/header'
+import Sidebar from './dashboard/sidebar'
+import Customer from './customer/customer'
+import Inventory from './inventory/inventory'
+import Addcustomer from './customer/addcustomer'
+import Communication from './communication/index'
+import { Routes, Route, Navigate } from 'react-router-dom';
+
+function App(){
+
+
+    return (<div className='h-[100vh] w-full'>
+    <Header />
+    <div className='w-full h-[100vh] flex'>
+
+    <Sidebar />
+    <Routes>
+         <Route path="/" element={<Navigate to="/dashboard" replace />} />
+      <Route exact path="/dashboard" element={<Dashboard />} />    
+      <Route exact path="/customers" element={<Customer />} />     
+      <Route exact path="/inventory" element={<Inventory />} />      
+      <Route exact path="/customers/new" element={<Addcustomer />} />      
+      <Route exact path="/communication" element={<Communication />} />      
+      {/* <Route path="*" element={<NotFound />} />       */}
+    </Routes>
+    
+    </div>
+    </div>)
+}
+export default App;
