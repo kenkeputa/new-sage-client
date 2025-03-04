@@ -1,17 +1,17 @@
 import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom';
-import ProductActivity from './productactivities.jsx'
-import RefundActivity from './refundactivities.jsx'
-import OrderActivity from './orderactivities.jsx'
+ 
+import RegularActivity from './regularactivities.jsx'
+import LoanActivity from './loanactivities.jsx'
 
-function Customer() {
+function Payment() {
     let navigate = useNavigate();
-    let [nav, setnav] = useState(['Inventory', 'Order Management', 'Refund Requests']);
+    let [nav, setnav] = useState(['Regular Transactions', 'Loan Transactions']);
     let [index,setindex] = useState(0);
     return ( <div className='w-[85%] h-full px-[2%] overflow-scroll'>
         
         <div className="mt-[2rem] flex items-center justify-between mb-4">
-                    <span className="font-[700] text-[26px] text-[#333333]">Inventory</span>
+                    <span className="font-[700] text-[26px] text-[#333333]">Payment & Transactions</span>
         
         <div className='flex gap-2 justify-center items-center h-[24px]'>
         <div  className="w-[137px] flex justify-center items-center bg-[#FFFFFF] pt-[8px] pl-[12px] relative">
@@ -25,39 +25,32 @@ function Customer() {
     :"rotate(-90deg)",transition:'0.3s all'}} xmlns="http://www.w3.org/2000/svg" width="19" className="mr-1 size-5" height="19" fill="currentColor" viewBox="0 0 16 16"> <path fillRule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/> </svg>
         </div>
     </div>
-            <button className='bg-[rgba(114,23,184,1)] text-white flex justify-center items-center gap-1 rounded-[8px] h-[37px] py-[16px] px-[12px] mt-2 cursor-pointer' onClick={()=> {
-                navigate('/customers/new')
-            }}>
-                <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M6.99935 1.66675V13.3334M1.16602 7.50008H12.8327" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg> 
-<span className='text-[16px]'>Add New Product</span>
-</button>
+            
         </div>
         </div>
         <div className="w-full flex gap-[24px]">
     <div className="flex flex-col h-[80px] w-[267.5px] bg-[#831AD31A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
                     
-                    <span className="text-[12px] mt-1 font-[600]">Total Inventory</span>
-                    <span className="text-[26px] font-[700]">654</span>
+                    <span className="text-[12px] mt-1 font-[600]">Total Revenue</span>
+                    <span className="text-[26px] font-[700]">₦1,000,000</span>
                     
                 </div>
                 <div className="flex flex-col h-[80px] w-[267.5px] bg-[#B5E45E1A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
                     
-                    <span className="text-[12px] mt-1 font-[600]">In Stock</span>
-                    <span className="text-[26px] font-[700]">412</span>
+                    <span className="text-[12px] mt-1 font-[600]">Total Transactions Today</span>
+                    <span className="text-[26px] font-[700]">₦600,000</span>
                     
                 </div>
                 <div className="flex flex-col h-[80px] w-[267.5px] bg-[#FFDB431A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
                     
-                    <span className="text-[12px] mt-1 font-[600]">Low Stock</span>
-                    <span className="text-[26px] font-[700]">220</span>
+                    <span className="text-[12px] mt-1 font-[600]">Total Refunds</span>
+                    <span className="text-[26px] font-[700]">₦400,000</span>
                     
                 </div>
                 <div className="flex flex-col h-[80px] w-[267.5px] bg-[#FB37481A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
                     
-                    <span className="text-[12px] font-[600] mt-1">Out Of Stock</span>
-                    <span className="text-[26px] font-[700]">18</span>
+                    <span className="text-[12px] font-[600] mt-1">Failed Transactions</span>
+                    <span className="text-[26px] font-[700]">₦340,520</span>
                     
                 
                 
@@ -73,11 +66,11 @@ function Customer() {
         )}
     </div>
     {index === 0 ?
-    <ProductActivity /> : index === 1? <OrderActivity /> :
-    <RefundActivity />}
+    <RegularActivity /> : index === 1? <LoanActivity /> :
+    <RegularActivity />}
     
     </div>);
 }
 
-export default Customer;
+export default Payment;
 
