@@ -19,7 +19,8 @@ function App(){
 
     <Sidebar />
     <Routes>
-         <Route path="/" element={<Navigate to="/dashboard" replace />} />
+         <Route path="/" element={<Navigate to="/dashboard" />} />
+         <Route path="/loan-application" element={<Navigate to="/loan-application/repayment"  />} />
       <Route exact path="/dashboard" element={<Dashboard />} />    
       <Route exact path="/customers" element={<Customer />} />     
       <Route exact path="/inventory" element={<Inventory />} />      
