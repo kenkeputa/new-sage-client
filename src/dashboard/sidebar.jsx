@@ -37,7 +37,7 @@ const Sidebar = () => {
           `w-full flex gap-2 py-2 px-3 rounded cursor-pointer ${
             isActive
               ? "border-l-2 border-l-[#7217B8] bg-[#EEDCFB] text-[#7217B8]"
-              : "text-black"
+              : "text-[#565656]"
           }`
         }
       >
@@ -52,28 +52,28 @@ const Sidebar = () => {
             >
               <path
                 d="M9 3H4C3.44772 3 3 3.44772 3 4V8C3 8.55228 3.44772 9 4 9H9C9.55228 9 10 8.55228 10 8V4C10 3.44772 9.55228 3 9 3Z"
-                stroke={isActive ? "#7217B8" : "black"}
+                stroke={isActive ? "#7217B8" : "#565656"}
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
                 d="M20 3H15C14.4477 3 14 3.44772 14 4V10C14 10.5523 14.4477 11 15 11H20C20.5523 11 21 10.5523 21 10V4C21 3.44772 20.5523 3 20 3Z"
-                stroke={isActive ? "#7217B8" : "black"}
+                stroke={isActive ? "#7217B8" : "#565656"}
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
                 d="M20 15H15C14.4477 15 14 15.4477 14 16V20C14 20.5523 14.4477 21 15 21H20C20.5523 21 21 20.5523 21 20V16C21 15.4477 20.5523 15 20 15Z"
-                stroke={isActive ? "#7217B8" : "black"}
+                stroke={isActive ? "#7217B8" : "#565656"}
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
                 d="M9 13H4C3.44772 13 3 13.4477 3 14V20C3 20.5523 3.44772 21 4 21H9C9.55228 21 10 20.5523 10 20V14C10 13.4477 9.55228 13 9 13Z"
-                stroke={isActive ? "#7217B8" : "black"}
+                stroke={isActive ? "#7217B8" : "#565656"}
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
