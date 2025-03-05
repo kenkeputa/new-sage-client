@@ -216,6 +216,37 @@ let Activity = ()=>{
   <div className="self-stretch justify-start items-start inline-flex">
         
         {/* Description Column */}
+        <div className="w-[220px] flex-col justify-start items-start inline-flex">
+          <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
+            <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
+              {/* <div className="w-5 h-5 relative">
+                <div className="w-5 h-5 left-0 top-0 absolute bg-white rounded-md border border-[#e4e4e4]" />
+              </div> */}
+              
+              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
+              
+              <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 19L1.5 12.5H10.5L6 19ZM6 1L1.5 7.5H10.5L6 1Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              <span className='whitespace-nowrap'>Customer ID</span>
+            </div>
+            </div>
+          </div>
+          {tableRows.map((row, idx) => (
+            <div
+              key={idx}
+              className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hiddened"
+            >
+              <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
+                
+                <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
+                  {row.customer_id}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      
         <div className="w-[360px] flex-col justify-start items-start inline-flex">
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
@@ -240,7 +271,7 @@ let Activity = ()=>{
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.customer}
+                  {row.customer_name}
                 </div>
               </div>
             </div>
@@ -268,7 +299,7 @@ let Activity = ()=>{
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.loan_id}
+                  {row.application_date}
                 </div>
               </div>
             </div>
@@ -341,7 +372,7 @@ let Activity = ()=>{
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-                <div className="px-1 flex justify-center  py-1 w-[4rem]  rounded-lg text-white text-sm font-medium leading-[21px] mr-[1rem] gap-2"><button className="text-black bg-white py-[4px] h-[29px] w-[49px] px-[8px] rounded-[8px]">View</button></div>
+                <button className="text-black bg-white py-[4px] h-[29px] w-max px-[8px] rounded-[8px] flex justify-center items-center whitespace-nowrap">{row.action}</button>
                 
               </div>
             </div>
