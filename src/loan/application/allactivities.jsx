@@ -213,7 +213,7 @@ let Activity = ()=>{
   
     </div>
   {/* Activity */}
-  <div className="self-stretch justify-start items-start inline-flex">
+  <div className="self-stretch justify-start items-start inline-flex overflow-x-scroll">
         
         {/* Description Column */}
         <div className="w-[220px] flex-col justify-start items-start inline-flex">
@@ -371,7 +371,7 @@ let Activity = ()=>{
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
             >
-              <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
+              <div className="grow shrink basis-0 h-[30px] justify-center items-center gap-3 flex">
                 <button className="text-black bg-white py-[4px] h-[29px] w-max px-[8px] rounded-[8px] flex justify-center items-center whitespace-nowrap">{row.action}</button>
                 
               </div>
