@@ -8,64 +8,70 @@ let OrderActivity = ()=>{
   
   
     const tableRows = [
-  {
-    "order_id": "CUST037",
-    "customer_name": "Adebayo Tomiwa",
-    "product_ordered": "Adebayo Tomiwa",
-    "order_date": "10/01/2025",
-    "amount": "₦30,000",
-    "order_status": "Shipped"
-  },
-  {
-    "order_id": "CUST352",
-    "customer_name": "Steven Abomasa",
-    "product_ordered": "Steven Abomasa",
-    "order_date": "08/01/2025",
-    "amount": "₦340,000",
-    "order_status": "Delivered"
-  },
-  {
-    "order_id": "CUST352",
-    "customer_name": "Patrick Erabor",
-    "product_ordered": "Patrick Erabor",
-    "order_date": "07/01/2025",
-    "amount": "₦80,000",
-    "order_status": "Pending"
-  },
-  {
-    "order_id": "CUST352",
-    "customer_name": "Sunday Alexander",
-    "product_ordered": "Sunday Alexander",
-    "order_date": "06/01/2025",
-    "amount": "₦700,000",
-    "order_status": "Delivered"
-  },
-  {
-    "order_id": "CUST352",
-    "customer_name": "Timothy Banjoko",
-    "product_ordered": "Timothy Banjoko",
-    "order_date": "05/01/2025",
-    "amount": "₦30,000",
-    "order_status": "Pending"
-  },
-  {
-    "order_id": "CUST352",
-    "customer_name": "Ashley Cole",
-    "product_ordered": "Ashley Cole",
-    "order_date": "04/01/2025",
-    "amount": "₦30,000",
-    "order_status": "Cancelled"
-  },
-  {
-    "order_id": "CUST352",
-    "customer_name": "Susan Suzy",
-    "product_ordered": "Susan Suzy",
-    "order_date": "03/01/2025",
-    "amount": "₦30,000",
-    "order_status": "Returned"
-  }
-]
-
+      {
+        "orderid": "CUST037",
+        "customer": "Adebayo Tomiwa",
+        "productorder": "iPhone 15 Pro",
+        "requestorder": "10/01/2025",
+        "requestamount": "₦300,000",
+        "status": "Pending",
+        "reasonForRefund": "Bad Product"
+      },
+      {
+        "orderid": "CUST352",
+        "customer": "Steven Abomasa",
+        "productorder": "AirPods Pro",
+        "requestorder": "08/01/2025",
+        "requestamount": "₦340,000",
+        "status": "Pending",
+        "reasonForRefund": "Bad Product"
+      },
+      {
+        "orderid": "CUST352",
+        "customer": "Patrick Erabor",
+        "productorder": "Samsung TV",
+        "requestorder": "07/01/2025",
+        "requestamount": "₦80,000",
+        "status": "Pending",
+        "reasonForRefund": "Bad Product"
+      },
+      {
+        "orderid": "CUST352",
+        "customer": "Sunday Alexander",
+        "productorder": "Nike Shoe",
+        "requestorder": "06/01/2025",
+        "requestamount": "₦700,000",
+        "status": "Pending",
+        "reasonForRefund": "Bad Product"
+      },
+      {
+        "orderid": "CUST352",
+        "customer": "Timothy Banjoko",
+        "productorder": "iPhone 12 Pro Max",
+        "requestorder": "05/01/2025",
+        "requestamount": "₦30,000",
+        "status": "Pending",
+        "reasonForRefund": "Bad Product"
+      },
+      {
+        "orderid": "CUST352",
+        "customer": "Ashley Cole",
+        "productorder": "AirPods Pro",
+        "requestorder": "04/01/2025",
+        "requestamount": "₦30,000",
+        "status": "Rejected",
+        "reasonForRefund": "Bad Product"
+      },
+      {
+        "orderid": "CUST352",
+        "customer": "Susan Suzy",
+        "productorder": "Samsung TV",
+        "requestorder": "03/01/2025",
+        "requestamount": "₦30,000",
+        "status": "Rejected",
+        "reasonForRefund": "Bad Product"
+      }
+    ]
     
     
     
