@@ -140,7 +140,7 @@ const Sidebar = () => {
 
       {/* Loan Application */}
       <NavLink
-        to="/loan-application"
+        to="/loan"
         className={({ isActive }) =>
           `w-full flex gap-2 py-2 px-3 rounded cursor-pointer ${
             isActive
@@ -165,7 +165,48 @@ const Sidebar = () => {
                 strokeLinecap="round"
               />
             </svg>
+            <span>Loan</span>
+          </>
+        )}
+      </NavLink>
+      <NavLink
+        to="/loan/application"
+        className={({ isActive }) =>
+          `w-full flex gap-2 py-2 px-3 rounded cursor-pointer ${
+            isActive
+              ? "text-[#7217B8]"
+              : "text-[#565656]"
+          }`
+        }
+      >
+        {({ isActive }) => (
+          <>
+            
+            
+            <svg width="16" className="my-auto" height="2" viewBox="0 0 16 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1H15" stroke={isActive ? "#7217B8" : "#565656"} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+
             <span>Loan Application</span>
+          </>
+        )}
+      </NavLink>
+      <NavLink
+        to="/loan/repayment"
+        className={({ isActive }) =>
+          `w-full flex gap-2 py-2 px-3 rounded cursor-pointer ${
+            isActive
+              ? "text-[#7217B8]"
+              : "text-[#565656]"
+          }`
+        }
+      >
+        {({ isActive }) => (
+          <>
+            <svg width="16" className="my-auto" height="2" viewBox="0 0 16 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1H15" stroke={isActive ? "#7217B8" : "#565656"} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Loan Repayment</span>
           </>
         )}
       </NavLink>
@@ -296,7 +337,47 @@ const Sidebar = () => {
           </>
         )}
       </NavLink>
+      <NavLink
+        to="/communication/ticketing"
+        className={({ isActive }) =>
+          `w-full flex gap-2 py-2 px-3 rounded cursor-pointer ${
+            isActive
+              ? "text-[#7217B8]"
+              : "text-[#565656]"
+          }`
+        }
+      >
+        {({ isActive }) => (
+          <>
+            
+            
+            <svg width="16" className="my-auto" height="2" viewBox="0 0 16 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1H15" stroke={isActive ? "#7217B8" : "#565656"} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
 
+            <span>Ticketing</span>
+          </>
+        )}
+      </NavLink>
+      <NavLink
+        to="/communication/sms"
+        className={({ isActive }) =>
+          `w-full flex gap-2 py-2 px-3 rounded cursor-pointer ${
+            isActive
+              ? "text-[#7217B8]"
+              : "text-[#565656]"
+          }`
+        }
+      >
+        {({ isActive }) => (
+          <>
+            <svg width="16" className="my-auto" height="2" viewBox="0 0 16 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1H15" stroke={isActive ? "#7217B8" : "#565656"} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>SMS</span>
+          </>
+        )}
+      </NavLink>
       {/* User Management */}
       <NavLink
         to="/user-management"
@@ -350,7 +431,28 @@ const Sidebar = () => {
           </>
         )}
       </NavLink>
+      <NavLink
+        to="/user-management/users"
+        className={({ isActive }) =>
+          `w-full flex gap-2 py-2 px-3 rounded cursor-pointer ${
+            isActive
+              ? "text-[#7217B8]"
+              : "text-[#565656]"
+          }`
+        }
+      >
+        {({ isActive }) => (
+          <>
+            
+            
+            <svg width="16" className="my-auto" height="2" viewBox="0 0 16 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1H15" stroke={isActive ? "#7217B8" : "#565656"} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
 
+            <span>Users</span>
+          </>
+        )}
+      </NavLink>
       {/* Reports */}
       <NavLink
         to="/reports"
