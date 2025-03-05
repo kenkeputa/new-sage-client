@@ -7,6 +7,7 @@ import Inventory from './inventory/inventory'
 import Addcustomer from './customer/addcustomer'
 import Communication from './communication/index'
 import Repayment from './loan/repayment/index'
+import Application from './loan/application/index'
 import Payment from './payment/index'
 
 import { Routes, Route, Navigate } from 'react-router-dom';
@@ -30,6 +31,7 @@ function App(){
       <Route exact path="/communication/ticketing" element={<Communication />} />      
       <Route exact path="/loan" element={<Navigate to="/loan/application" />} />      
       <Route exact path="/loan/repayment" element={<Repayment />} />      
+      <Route exact path="/loan/application" element={<Application />} />      
       <Route exact path="/payments" element={<Payment />} />      
       {/* <Route path="*" element={<NotFound />} />       */}
     </Routes>
