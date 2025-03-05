@@ -28,7 +28,7 @@ const Sidebar = () => {
       </div>
     </div>
 
-    <div className="w-[90%] flex flex-col gap-1 mt-7 rounded-md">
+    <div className="w-[100%] flex flex-col gap-1 mt-7 pl-4 rounded-md overflow-y-scroll">
       {/* Dashboard (default active when route is /dashboard) */}
       <NavLink
         to="/dashboard"
