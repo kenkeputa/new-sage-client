@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-let Activity = ()=>{
+let OrderActivity = ()=>{
     let [option, setoption] = useState(false)
     let [option1, setoption1] = useState(false)
     let [option2, setoption2] = useState(false)
@@ -8,70 +8,64 @@ let Activity = ()=>{
   
   
     const tableRows = [
-      {
-        "orderid": "CUST037",
-        "customer": "Adebayo Tomiwa",
-        "productorder": "iPhone 15 Pro",
-        "requestorder": "10/01/2025",
-        "requestamount": "₦300,000",
-        "status": "Pending",
-        "reasonForRefund": "Bad Product"
-      },
-      {
-        "orderid": "CUST352",
-        "customer": "Steven Abomasa",
-        "productorder": "AirPods Pro",
-        "requestorder": "08/01/2025",
-        "requestamount": "₦340,000",
-        "status": "Pending",
-        "reasonForRefund": "Bad Product"
-      },
-      {
-        "orderid": "CUST352",
-        "customer": "Patrick Erabor",
-        "productorder": "Samsung TV",
-        "requestorder": "07/01/2025",
-        "requestamount": "₦80,000",
-        "status": "Pending",
-        "reasonForRefund": "Bad Product"
-      },
-      {
-        "orderid": "CUST352",
-        "customer": "Sunday Alexander",
-        "productorder": "Nike Shoe",
-        "requestorder": "06/01/2025",
-        "requestamount": "₦700,000",
-        "status": "Pending",
-        "reasonForRefund": "Bad Product"
-      },
-      {
-        "orderid": "CUST352",
-        "customer": "Timothy Banjoko",
-        "productorder": "iPhone 12 Pro Max",
-        "requestorder": "05/01/2025",
-        "requestamount": "₦30,000",
-        "status": "Pending",
-        "reasonForRefund": "Bad Product"
-      },
-      {
-        "orderid": "CUST352",
-        "customer": "Ashley Cole",
-        "productorder": "AirPods Pro",
-        "requestorder": "04/01/2025",
-        "requestamount": "₦30,000",
-        "status": "Rejected",
-        "reasonForRefund": "Bad Product"
-      },
-      {
-        "orderid": "CUST352",
-        "customer": "Susan Suzy",
-        "productorder": "Samsung TV",
-        "requestorder": "03/01/2025",
-        "requestamount": "₦30,000",
-        "status": "Rejected",
-        "reasonForRefund": "Bad Product"
-      }
-    ]
+  {
+    "order_id": "CUST037",
+    "customer_name": "Adebayo Tomiwa",
+    "product_ordered": "Adebayo Tomiwa",
+    "order_date": "10/01/2025",
+    "amount": "₦30,000",
+    "order_status": "Shipped"
+  },
+  {
+    "order_id": "CUST352",
+    "customer_name": "Steven Abomasa",
+    "product_ordered": "Steven Abomasa",
+    "order_date": "08/01/2025",
+    "amount": "₦340,000",
+    "order_status": "Delivered"
+  },
+  {
+    "order_id": "CUST352",
+    "customer_name": "Patrick Erabor",
+    "product_ordered": "Patrick Erabor",
+    "order_date": "07/01/2025",
+    "amount": "₦80,000",
+    "order_status": "Pending"
+  },
+  {
+    "order_id": "CUST352",
+    "customer_name": "Sunday Alexander",
+    "product_ordered": "Sunday Alexander",
+    "order_date": "06/01/2025",
+    "amount": "₦700,000",
+    "order_status": "Delivered"
+  },
+  {
+    "order_id": "CUST352",
+    "customer_name": "Timothy Banjoko",
+    "product_ordered": "Timothy Banjoko",
+    "order_date": "05/01/2025",
+    "amount": "₦30,000",
+    "order_status": "Pending"
+  },
+  {
+    "order_id": "CUST352",
+    "customer_name": "Ashley Cole",
+    "product_ordered": "Ashley Cole",
+    "order_date": "04/01/2025",
+    "amount": "₦30,000",
+    "order_status": "Cancelled"
+  },
+  {
+    "order_id": "CUST352",
+    "customer_name": "Susan Suzy",
+    "product_ordered": "Susan Suzy",
+    "order_date": "03/01/2025",
+    "amount": "₦30,000",
+    "order_status": "Returned"
+  }
+]
+
     
     
     
@@ -273,15 +267,20 @@ let Activity = ()=>{
   <div className="self-stretch justify-start items-start inline-flex">
         
         {/* Description Column */}
-        <div className="w-[120px] flex-col justify-start items-start inline-flex">
+        <div className="w-[97px] flex-col justify-start items-start inline-flex">
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
               {/* <div className="w-5 h-5 relative">
                 <div className="w-5 h-5 left-0 top-0 absolute bg-white rounded-md border border-[#e4e4e4]" />
               </div> */}
-              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight">
-              Order ID
-              </div>
+                <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
+              
+              <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 19L1.5 12.5H10.5L6 19ZM6 1L1.5 7.5H10.5L6 1Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              <span className='whitespace-nowrap'>Order ID</span>
+            </div>
+              
             </div>
           </div>
           {tableRows.map((row, idx) => (
@@ -300,12 +299,17 @@ let Activity = ()=>{
         </div>
         
         {/* Category Column */}
-        <div className="grow shrink basis-0 flex-col justify-start items-start inline-flex">
+        <div className="grow shrink basis-15 flex-col justify-start items-start inline-flex">
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight">
-              Customer Name
-              </div>
+              
+              <div className="grow shrink basis-6 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
+              
+              <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 19L1.5 12.5H10.5L6 19ZM6 1L1.5 7.5H10.5L6 1Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              <span className='whitespace-nowrap'>Customer Name</span>
+            </div>
             </div>
           </div>
           {tableRows.map((row, idx) => (
@@ -324,9 +328,14 @@ let Activity = ()=>{
         <div className="grow shrink basis-0 flex-col justify-start items-start inline-flex">
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish']  leading-normal tracking-tight">
-              Product Ordered
-              </div>
+              
+              <div className="grow shrink basis-6 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
+              
+              <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 19L1.5 12.5H10.5L6 19ZM6 1L1.5 7.5H10.5L6 1Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              <span className='whitespace-nowrap'>Product Ordered</span>
+            </div>
             </div>
           </div>
           {tableRows.map((row, idx) => (
@@ -350,9 +359,14 @@ let Activity = ()=>{
         <div className="w-[154px] flex-col justify-start items-start inline-flex">
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight">
-              Request Date
-              </div>
+              
+              <div className="grow shrink basis-6 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
+              
+              <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 19L1.5 12.5H10.5L6 19ZM6 1L1.5 7.5H10.5L6 1Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              <span className='whitespace-nowrap'>Request Date</span>
+            </div>
             </div>
           </div>
           {tableRows.map((row, idx) => (
@@ -371,9 +385,14 @@ let Activity = ()=>{
         <div className="w-[154px] flex-col justify-start items-start inline-flex">
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight">
-              Refund Amount
-              </div>
+            
+              <div className="grow shrink basis-6 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
+              
+              <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 19L1.5 12.5H10.5L6 19ZM6 1L1.5 7.5H10.5L6 1Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              <span className='whitespace-nowrap'>Refund Amount</span>
+            </div>
             </div>
           </div>
           {tableRows.map((row, idx) => (
@@ -393,9 +412,14 @@ let Activity = ()=>{
         <div className="w-[154px] flex-col justify-start items-start inline-flex">
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight">
-              Reason For Refund
-              </div>
+              
+              <div className="grow shrink basis-6 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
+              
+              <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 19L1.5 12.5H10.5L6 19ZM6 1L1.5 7.5H10.5L6 1Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              <span className='whitespace-nowrap'>Reason For Refund</span>
+            </div>
             </div>
           </div>
           {tableRows.map((row, idx) => (
@@ -418,9 +442,14 @@ let Activity = ()=>{
         <div className="w-[154px] flex-col justify-start items-start inline-flex">
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight">
-              Order Status
-              </div>
+              
+              <div className="grow shrink basis-6 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
+              
+              <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 19L1.5 12.5H10.5L6 19ZM6 1L1.5 7.5H10.5L6 1Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              <span className='whitespace-nowrap'>Order Status</span>
+            </div>
             </div>
           </div>
           {tableRows.map((row, idx) => (
@@ -452,9 +481,14 @@ let Activity = ()=>{
         <div className="grow shrink basis-0 flex-col justify-start items-start inline-flex">
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight">
-                Actions
-              </div>
+              
+              <div className="grow shrink basis-6 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
+              
+              <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 19L1.5 12.5H10.5L6 19ZM6 1L1.5 7.5H10.5L6 1Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              <span className='whitespace-nowrap'>Actions</span>
+            </div>
             </div>
           </div>
           {tableRows.map((row, idx) => (
@@ -531,4 +565,4 @@ let Activity = ()=>{
 )
   }
 
-  export default Activity;
+  export default OrderActivity;

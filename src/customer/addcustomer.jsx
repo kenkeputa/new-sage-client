@@ -36,9 +36,9 @@ function Adduser() {
                         </div>
                         <span className='w-[10%]'>1 of 3</span>
                     </div>
-                <div className='w-full mt-4 rounded-[8px] overflow-hidden border border-[#E4E4E4]'>
+                <div className='w-full h-max mt-4 rounded-[8px] overflow-hidden border border-[#E4E4E4]'>
                         
-                    <div className="h-fit  w-full">
+                    <div className="h-max  w-full">
                         <div className="w-full h-[69px] bg-[#F6F6F6] flex justify-between px-4 items-center">
                             <div>
                                 <span className='font-[700] text-[18px]'>Customer Information</span>
@@ -46,28 +46,28 @@ function Adduser() {
                             </div>
                             <SelectChart text="Active" />
                         </div>
-                        <div className='h-[90px] w-full flex gap-3 px-4 flex-wrap mt-4'>
-                            <div className='w-[40%] min-w-[282.5px]'>
+                        <div className='h-max w-full flex gap-3 px-4 flex-wrap mt-4'>
+                            <div className='w-[40%] h-[90px] min-w-[282.5px]'>
                                 <span>First Name <span className='text-red-600'>*</span></span>
                                 <input type="text" placeholder='John' className='w-[100%] border-[#E4E4E4] border rounded-sm h-[38px] pl-2 mt-1'/>
                             </div>    
-                            <div className='w-[40%] min-w-[282.5px]'>
+                            <div className='w-[40%] h-[90px] min-w-[282.5px]'>
                                 <span>Last Name  <span className='text-red-600'>*</span></span>
                                 <input type="text" 
                                 placeholder='Doe' 
                                 className='w-[100%] border-[#E4E4E4] border rounded-sm h-[38px] pl-2 mt-1'/>
                             </div>    
                             <div className='w-[15%]'>
-                                <span>Gender <span className='text-red-600'>*</span></span>
+                                <span className="whitespace-nowrap">Gender <span className='text-red-600'>*</span></span>
                                 <Dropdown text="Male" width='117px' />
                             </div>    
                         </div>
-                        <div className='h-[90px] w-full flex gap-3 px-4 flex-wrap'>
-                            <div className='w-[50%] min-w-[282.5px]'>
+                        <div className='h-max w-full flex gap-3 px-4 flex-wrap'>
+                            <div className='w-[50%] h-[90px] min-w-[282.5px]'>
                                 <span>Email Address <span className='text-red-600'>*</span></span>
                                 <input type="text" placeholder='example@gmail.com' className='w-[100%] border-[#E4E4E4] border rounded-sm h-[38px] pl-2 mt-1'/>
                             </div>    
-                            <div className='w-[47%] min-w-[282.5px]'>
+                            <div className='w-[47%] h-[90px] min-w-[282.5px]'>
                                 <span>Phone Number <span className='text-red-600'>*</span></span>
                                 <input type="text" 
                                 placeholder='Doe' 
@@ -85,7 +85,7 @@ function Adduser() {
                             {/* <SelectChart text="Active" /> */}
                         </div>
                         <div className='h-max w-full flex gap-3 px-4 flex-wrap mt-4'>
-                            <div className='w-[100%] min-w-[282.5px]'>
+                            <div className='w-[100%] h-[90px] min-w-[282.5px]'>
                                 <span>Shipping Address<span className='text-red-600'>*</span></span>
                                 <input type="text" placeholder='Enter Address' className='w-[100%] border-[#E4E4E4] border rounded-sm h-[38px] pl-2 mt-1'/>
                             </div>    
@@ -104,12 +104,12 @@ function Adduser() {
                                 <Dropdown text="Lagos" width='100%' />
                             </div>    
                         </div>
-                        <div className='h-[90px] w-full flex gap-3 px-4 flex-wrap mt-4'>
-                            <div className='w-[50%] min-w-[282.5px]'>
+                        <div className='h-max w-full flex gap-3 px-4 flex-wrap mt-4'>
+                            <div className='w-[50%] h-[90px] min-w-[282.5px]'>
                                 <span>City <span className='text-red-600'>*</span></span>
                                 <input type="text" placeholder='Lagos' className='w-[100%] border-[#E4E4E4] border rounded-sm h-[38px] pl-2 mt-1'/>
                             </div>    
-                            <div className='w-[47%] min-w-[282.5px]'>
+                            <div className='w-[47%] h-[90px] min-w-[282.5px]'>
                                 <span>Zip Code  <span className='text-red-600'>*</span></span>
                                 <input type="text" 
                                 placeholder='Optional' 
@@ -153,12 +153,12 @@ function Adduser() {
                                 <Dropdown text="Lagos" width='100%' />
                             </div>    
                         </div>
-                        <div className='h-[90px] w-full flex gap-3 px-4 flex-wrap mt-4'>
-                            <div className='w-[50%] min-w-[282.5px]'>
+                        <div className='h-max w-full flex gap-3 px-4 flex-wrap mt-4'>
+                            <div className='w-[50%] h-[90px] min-w-[282.5px]'>
                                 <span>City <span className='text-red-600'>*</span></span>
                                 <input type="text" placeholder='Lagos' className='w-[100%] border-[#E4E4E4] border rounded-sm h-[38px] pl-2 mt-1'/>
                             </div>    
-                            <div className='w-[47%] min-w-[282.5px]'>
+                            <div className='w-[47%] h-[90px] min-w-[282.5px]'>
                                 <span>Zip Code  <span className='text-red-600'>*</span></span>
                                 <input type="text" 
                                 placeholder='Optional' 
