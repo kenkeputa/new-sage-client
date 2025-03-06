@@ -8,66 +8,73 @@ let Activity = ()=>{
   
   
     const tableRows = [
-        {
-          "customer_id": "CUST352",
-          "customer_name": "Steven Abomasa",
-          "application_date": "10/01/2025",
-          "status": "Pending",
-          "action": "Verify Identity"
-        },
-        {
-          "customer_id": "CUST352",
-          "customer_name": "Adebayo Tomiwa",
-          "application_date": "08/01/2025",
-          "status": "Pending",
-          "action": "Verify Identity"
-        },
-        {
-          "customer_id": "CUST352",
-          "customer_name": "Patrick Erabor",
-          "application_date": "07/01/2025",
-          "status": "Pending",
-          "action": "Verify Identity"
-        },
-        {
-          "customer_id": "CUST352",
-          "customer_name": "Sunday Alexander",
-          "application_date": "06/01/2025",
-          "status": "Approved",
-          "action": "View"
-        },
-        {
-          "customer_id": "CUST352",
-          "customer_name": "Timothy Banjoko",
-          "application_date": "05/01/2025",
-          "status": "Approved",
-          "action": "View"
-        },
-        {
-          "customer_id": "CUST352",
-          "customer_name": "Ashley Cole",
-          "application_date": "04/01/2025",
-          "status": "Pending",
-          "action": "Verify Identity"
-        },
-        {
-          "customer_id": "CUST352",
-          "customer_name": "Susan Suzy",
-          "application_date": "03/01/2025",
-          "status": "Pending",
-          "action": "Verify Identity"
-        },
-        {
-          "customer_id": "CUST352",
-          "customer_name": "Damilola Oluwatemilola",
-          "application_date": "01/01/2025",
-          "status": "Pending",
-          "action": "Verify Identity"
-        }
-      ]
-      
-      
-      
+      {
+        "supplier_name": "Barone LLC.",
+        "supplier_id": "SU12370",
+        "category": "Appliances",
+        "total_orders_fulfilled": 900,
+        "date_joined": "10/01/2025",
+        "status": "Active"
+      },
+      {
+        "supplier_name": "Binford Ltd.",
+        "supplier_id": "SU11009",
+        "category": "Shoes",
+        "total_orders_fulfilled": 100,
+        "date_joined": "08/01/2025",
+        "status": "Active"
+      },
+      {
+        "supplier_name": "Acme Co.",
+        "supplier_id": "SU90121",
+        "category": "Electronics",
+        "total_orders_fulfilled": 900,
+        "date_joined": "06/01/2025",
+        "status": "Active"
+      },
+      {
+        "supplier_name": "Acme Co.",
+        "supplier_id": "SU990128",
+        "category": "Phone",
+        "total_orders_fulfilled": 500,
+        "date_joined": "01/01/2025",
+        "status": "Active"
+      },
+      {
+        "supplier_name": "Acme Co.",
+        "supplier_id": "SU77101",
+        "category": "Fashion",
+        "total_orders_fulfilled": 300,
+        "date_joined": "04/01/2025",
+        "status": "Active"
+      },
+      {
+        "supplier_name": "Acme Co.",
+        "supplier_id": "SU11208",
+        "category": "Accessories",
+        "total_orders_fulfilled": 700,
+        "date_joined": "04/01/2025",
+        "status": "Active"
+      },
+      {
+        "supplier_name": "Acme Co.",
+        "supplier_id": "SU88451",
+        "category": "Jewelry",
+        "total_orders_fulfilled": 900,
+        "date_joined": "07/01/2025",
+        "status": "Active"
+      },
+      {
+        "supplier_name": "Acme Co.",
+        "supplier_id": "SU66010",
+        "category": "Fashion",
+        "total_orders_fulfilled": 800,
+        "date_joined": "01/01/2025",
+        "status": "Active"
+      }
+    ]
+    
+    
     
     
     
@@ -136,7 +143,7 @@ let Activity = ()=>{
               <div className="grow shrink basis-0 h-[21px] justify-between items-center flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
                   {item.label}
-                </div> 
+                </div>
                 {showIcon && (
                   <div data-svg-wrapper className="relative">
                     <svg
@@ -213,10 +220,10 @@ let Activity = ()=>{
   
     </div>
   {/* Activity */}
-  <div className="self-stretch justify-start items-start inline-flex overflow-x-scroll">
+  <div className="self-stretch justify-start items-start inline-flex">
         
         {/* Description Column */}
-        <div className="w-[220px] flex-col justify-start items-start inline-flex">
+        <div className="w-[120px] flex-col justify-start items-start inline-flex">
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
               {/* <div className="w-5 h-5 relative">
@@ -228,7 +235,7 @@ let Activity = ()=>{
               <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M6 19L1.5 12.5H10.5L6 19ZM6 1L1.5 7.5H10.5L6 1Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
               </svg>
-              <span className='whitespace-nowrap'>Customer ID</span>
+              <span className='whitespace-nowrap'>Suppliers</span>
             </div>
             </div>
           </div>
@@ -240,38 +247,7 @@ let Activity = ()=>{
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.customer_id}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      
-        <div className="w-[360px] flex-col justify-start items-start inline-flex">
-          <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
-            <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-              {/* <div className="w-5 h-5 relative">
-                <div className="w-5 h-5 left-0 top-0 absolute bg-white rounded-md border border-[#e4e4e4]" />
-              </div> */}
-              
-              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
-              
-              <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 19L1.5 12.5H10.5L6 19ZM6 1L1.5 7.5H10.5L6 1Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
-              </svg>
-              <span className='whitespace-nowrap'>Customer Name</span>
-            </div>
-            </div>
-          </div>
-          {tableRows.map((row, idx) => (
-            <div
-              key={idx}
-              className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hiddened"
-            >
-              <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-                
-                <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.customer_name}
+                  {row.supplier_name}
                 </div>
               </div>
             </div>
@@ -279,16 +255,16 @@ let Activity = ()=>{
         </div>
         
         {/* Category Column */}
-        <div className="grow shrink basis-5 flex-col justify-start items-start inline-flex">
+        <div className="grow shrink basis-0 flex-col justify-start items-start inline-flex">
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-
+            
               <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
               
               <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M6 19L1.5 12.5H10.5L6 19ZM6 1L1.5 7.5H10.5L6 1Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
               </svg>
-              <span className='whitespace-nowrap'>Application Date</span>
+              <span className='whitespace-nowrap'>Supplier ID</span>
             </div>
             </div>
           </div>
@@ -299,20 +275,95 @@ let Activity = ()=>{
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.application_date}
+                  {row.supplier_id}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="grow shrink basis-0 flex-col justify-start items-start inline-flex">
+          <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
+            <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
+              
+              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
+              
+              <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 19L1.5 12.5H10.5L6 19ZM6 1L1.5 7.5H10.5L6 1Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              <span className='whitespace-nowrap'>Category</span>
+            </div>
+            </div>
+          </div>
+          {tableRows.map((row, idx) => (
+            <div
+              key={idx}
+              className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
+            >
+              <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
+                <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
+                  {row.category}
                 </div>
               </div>
             </div>
           ))}
         </div>
         
-        
         {/* Status Column */}
         
         
         {/* Date Column */}
-        
-        
+        <div className="w-[154px] flex-col justify-start items-start inline-flex">
+          <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
+            <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
+              
+              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
+              
+              <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 19L1.5 12.5H10.5L6 19ZM6 1L1.5 7.5H10.5L6 1Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              <span className='whitespace-nowrap'>Total Orders Fulfilled</span>
+            </div>
+            </div>
+          </div>
+          {tableRows.map((row, idx) => (
+            <div
+              key={idx}
+              className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
+            >
+              <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
+                <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
+                  {row.total_orders_fulfilled}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="w-[154px] flex-col justify-start items-start inline-flex">
+          <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
+            <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
+              
+              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
+              
+              <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 19L1.5 12.5H10.5L6 19ZM6 1L1.5 7.5H10.5L6 1Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              <span className='whitespace-nowrap'>Date Joined</span>
+            </div>
+            </div>
+          </div>
+          {tableRows.map((row, idx) => (
+            <div
+              key={idx}
+              className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
+            >
+              <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
+                <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
+                  {row.date_joined}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
         
         
         
@@ -322,9 +373,16 @@ let Activity = ()=>{
         <div className="w-[154px] flex-col justify-start items-start inline-flex">
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight">
-            Status
-              </div>
+            <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
+              
+              <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 19L1.5 12.5H10.5L6 19ZM6 1L1.5 7.5H10.5L6 1Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              <span className='whitespace-nowrap'>Status</span>
+            </div>
+              {/* <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight">
+              Status
+              </div> */}
             </div>
           </div>
           {tableRows.map((row, idx) => (
@@ -341,7 +399,7 @@ let Activity = ()=>{
                       ? "bg-[#fb3748]/10 border-[#fdafb6] text-[#dd0417]"
                       : row.status === "green"
                       ? "bg-[#b5e45e]/10 border-[#e1f4bf] text-[#5f8717]"
-                      : row.status === "In Stock"
+                      : row.status === "Active"
                       ? "bg-[#1fc16b]/10 border-[#adf2cd] text-[#16884b]"
                       : ""
                   }`}
@@ -356,12 +414,10 @@ let Activity = ()=>{
         <div className="grow shrink basis-0 flex-col justify-start items-start inline-flex">
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-             
+              
               <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
               
-              <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 19L1.5 12.5H10.5L6 19ZM6 1L1.5 7.5H10.5L6 1Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
-              </svg>
+              
               <span className='whitespace-nowrap'>Actions</span>
             </div>
             </div>
@@ -371,8 +427,8 @@ let Activity = ()=>{
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
             >
-              <div className="grow shrink basis-0 h-[30px] justify-center items-center gap-3 flex">
-                <button className="text-black bg-white py-[4px] h-[29px] w-max px-[8px] rounded-[8px] flex justify-center items-center whitespace-nowrap">{row.action}</button>
+              <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
+                <div className="px-1 flex justify-center  py-1 w-[4rem]  rounded-lg text-white text-sm font-medium leading-[21px] mr-[1rem] gap-2"><button className="text-black bg-white py-[4px] h-[29px] w-[49px] px-[8px] rounded-[8px]">View</button></div>
                 
               </div>
             </div>
