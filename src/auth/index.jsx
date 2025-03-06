@@ -1,21 +1,22 @@
+"use client"
 
-
-import React, {useContext} from "react";
-import {Auth} from "../App.jsx";
+import { useContext } from "react"
+import { Auth } from "../App.jsx"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 import { Eye, EyeOff, Lock, Mail, AlertCircle } from "lucide-react"
-
 
 function App() {
   const [showPassword, setShowPassword] = useState(false)
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const [username, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(false)
-  let {setLogin} =  useContext(Auth);
+  const [rememberMe, setRememberMe] = useState(false) // Add state for remember me checkbox
+  const { setLogin } = useContext(Auth)
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
@@ -27,7 +28,7 @@ function App() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ username, password }),
-        credentials: "include", // For cookies if you're using them
+        //credentials: "include", // For cookies if you're using them
       })
 
       const data = await response.json()
@@ -39,8 +40,15 @@ function App() {
       // Login successful
       setSuccess(true)
       console.log("Login successful:", data)
+
+      // If remember me is checked, save user data to localStorage
+      if (rememberMe) {
+        localStorage.setItem("user", JSON.stringify(data))
+        console.log("User data saved to localStorage")
+      }
+
       setLogin(true)
-      navigate('/dashboard')
+      navigate("/dashboard")
       // Redirect or update UI based on successful login
       // For example: window.location.href = '/dashboard'
     } catch (err) {
@@ -141,6 +149,8 @@ function App() {
                 id="remember-me"
                 name="remember-me"
                 type="checkbox"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
                 className="h-4 w-4 border-gray-300 rounded text-[#8b5cf6] focus:ring-[#8b5cf6]"
               />
               <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
