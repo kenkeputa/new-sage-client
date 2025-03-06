@@ -1,13 +1,15 @@
-
+import React, {useContext} from "react";
+import {Auth} from "../App.jsx";
 
 function Header(){
 
-
+    let {isLogin, setLogin} =  useContext(Auth);
     return (<div className='h-[68px] bg-[#F6F6F6] w-full border-b-[1px] border-b-[#C1C1C1] flex items-center'>
             <div className="w-[264px] h-[90%] flex items-center gap-[10px] ml-6">
                 <div className="bg-[#B974EE] rounded-full w-[40px] h-[40px]"></div>
                 <span className="text-[22px] font-[700] text-[#333333] font-[Mulish]">Sage</span>
             </div>
+            {isLogin ? <>
             <span className="font-[700] font-[Mulish] mr-auto">Good Morning, Daniel Stephens</span>
             <div className="h-[90%] flex justify-evenly items-center  mr-6 gap-1">
                     <div className=" border-[1px] border-[#C1C1C1] w-[353px] h-[40px] rounded-full flex items-center justify-center">
@@ -38,6 +40,8 @@ function Header(){
                     </div>
 
             </div>
+            </>:""}
+
     </div>)
 }
 export default Header;

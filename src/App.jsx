@@ -10,21 +10,26 @@ import Repayment from './loan/repayment/index'
 import Application from './loan/application/index'
 import Payment from './payment/index'
 import Supplier from './supplier/index'
-
+import Login from './auth/index'
 import { Routes, Route, Navigate } from 'react-router-dom';
-
+import React, { useState } from 'react'
+export const Auth = React.createContext();
 function App(){
-
+ let [isLogin, setLogin] = useState(false);
 
     return (<div className='h-[100vh] w-full'>
+    <Auth.Provider value={{isLogin, setLogin}}>
+
     <Header />
     <div className='w-full h-[100vh] flex'>
-
+    {isLogin ? <>
     <Sidebar />
+    </> : ""}
     <Routes>
-         <Route path="/" element={<Navigate to="/dashboard" />} />
+         <Route path="/" element={isLogin ? <Navigate to="/dashboard" /> : <Navigate to="/auth" />} />
          <Route path="/loan-application" element={<Navigate to="/loan-application/repayment"  />} />
       <Route exact path="/dashboard" element={<Dashboard />} />    
+      <Route exact path="/auth" element={<Login />} />    
       <Route exact path="/customers" element={<Customer />} />     
       <Route exact path="/inventory" element={<Inventory />} />      
       <Route exact path="/customers/new" element={<Addcustomer />} />      
@@ -39,6 +44,7 @@ function App(){
     </Routes>
     
     </div>
+    </Auth.Provider>
     </div>)
 }
 export default App;
