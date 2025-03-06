@@ -96,7 +96,7 @@ function App() {
                   value={username}
                   onChange={(e) => setEmail(e.target.value)}
                   className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8b5cf6] focus:border-[#8b5cf6]"
-                  placeholder="name@company.com"
+                  placeholder="admin"
                 />
               </div>
             </div>

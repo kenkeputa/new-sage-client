@@ -27,19 +27,19 @@ function App(){
     </> : ""}
     <Routes>
          <Route path="/" element={isLogin ? <Navigate to="/dashboard" /> : <Navigate to="/auth" />} />
-         <Route path="/loan-application" element={<Navigate to="/loan-application/repayment"  />} />
-      <Route exact path="/dashboard" element={<Dashboard />} />    
+         <Route path="/loan-application" element={!isLogin ? <Navigate to="/auth" /> : <Navigate to="/loan-application/repayment"  />} />
+      <Route exact path="/dashboard" element={!isLogin ? <Navigate to="/auth" /> : <Dashboard />} />    
       <Route exact path="/auth" element={<Login />} />    
-      <Route exact path="/customers" element={<Customer />} />     
-      <Route exact path="/inventory" element={<Inventory />} />      
-      <Route exact path="/customers/new" element={<Addcustomer />} />      
-      <Route exact path="/communication" element={<Navigate to="/communication/ticketing" />} />      
-      <Route exact path="/communication/ticketing" element={<Communication />} />      
-      <Route exact path="/loan" element={<Navigate to="/loan/application" />} />      
-      <Route exact path="/loan/repayment" element={<Repayment />} />      
-      <Route exact path="/loan/application" element={<Application />} />      
-      <Route exact path="/payments" element={<Payment />} />      
-      <Route exact path="/suppliers" element={<Supplier />} />      
+      <Route exact path="/customers" element={!isLogin ? <Navigate to="/auth" /> :<Customer />} />     
+      <Route exact path="/inventory" element={!isLogin ? <Navigate to="/auth" /> :<Inventory />} />      
+      <Route exact path="/customers/new" element={!isLogin ? <Navigate to="/auth" /> :<Addcustomer />} />      
+      <Route exact path="/communication" element={!isLogin ? <Navigate to="/auth" /> : <Navigate to="/communication/ticketing" />} />      
+      <Route exact path="/communication/ticketing" element={!isLogin ? <Navigate to="/auth" /> :<Communication />} />      
+      <Route exact path="/loan" element={!isLogin ? <Navigate to="/auth" /> :<Navigate to="/loan/application" />} />      
+      <Route exact path="/loan/repayment" element={!isLogin ? <Navigate to="/auth" /> :<Repayment />} />      
+      <Route exact path="/loan/application" element={!isLogin ? <Navigate to="/auth" /> :<Application />} />      
+      <Route exact path="/payments" element={!isLogin ? <Navigate to="/auth" /> :<Payment />} />      
+      <Route exact path="/suppliers" element={!isLogin ? <Navigate to="/auth" /> :<Supplier />} />      
       {/* <Route path="*" element={<NotFound />} />       */}
     </Routes>
     
