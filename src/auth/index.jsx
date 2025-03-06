@@ -81,7 +81,7 @@ function App() {
           <div className="space-y-4">
             <div>
               <label htmlFor="text" className="block text-sm font-medium text-gray-700 mb-1">
-                Email Address
+                Username
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
