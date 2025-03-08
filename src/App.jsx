@@ -11,6 +11,7 @@ import Repayment from "./loan/repayment/index"
 import Application from "./loan/application/index"
 import Payment from "./payment/index"
 import Supplier from "./supplier/index"
+import User from "./users_management/index"
 import Login from "./auth/index"
 import { Routes, Route, Navigate } from "react-router-dom"
 import React, { useState, useEffect } from "react"
@@ -70,6 +71,8 @@ function App() {
             <Route exact path="/loan/application" element={!isLogin ? <Navigate to="/auth" /> : <Application />} />
             <Route exact path="/payments" element={!isLogin ? <Navigate to="/auth" /> : <Payment />} />
             <Route exact path="/suppliers" element={!isLogin ? <Navigate to="/auth" /> : <Supplier />} />
+            <Route exact path="/user-management" element={!isLogin ? <Navigate to="/auth" />  : <Navigate to="/user-management/users" /> } />
+            <Route exact path="/user-management/users" element={!isLogin ?<Navigate to="/auth" />  : <User /> } />
             {/* <Route path="*" element={<NotFound />} />       */}
           </Routes>
         </div>
