@@ -43,7 +43,13 @@ useEffect(()=>{
   if(selectedRole === "Super Admin"){
     setper(super_admin)
   }
-
+  if(selectedRole === "Product Manager"){
+    // alert(1)
+    setper(product_manager)
+  }
+  if(selectedRole === "Order Manager"){
+    setper(order_manager)
+  }
 },[selectedRole])
 
   return (
