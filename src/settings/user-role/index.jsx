@@ -1,23 +1,50 @@
 
 import { Check } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function UserRolesPermissions() {
   const [activeTab, setActiveTab] = useState("can-access")
   const [selectedRole, setSelectedRole] = useState("Super Admin")
 
   const roles = ["Super Admin", "Product Manager", "Order Manager", "Finance Admin", "Support Agent"]
+   
+  const [permissions, setper] = useState([])
+let super_admin = [
+  "Access all features and data",
+  "Add, edit, and remove admins/users",
+  "Modify roles and permissions",
+  "View and manage financial transactions and reports",
+  "Approve/decline refunds and chargebacks",
+  "Oversee fraud detection alerts",
+  "Manage all settings, including platform configuration",
+  "Monitor product inventory and supplier details",
+];
 
-  const permissions = [
-    "Access all features and data",
-    "Add, edit, and remove admins/users",
-    "Modify roles and permissions",
-    "View and manage financial transactions and reports",
-    "Approve/decline refunds and chargebacks",
-    "Oversee fraud detection alerts",
-    "Manage all settings, including platform configuration",
-    "Monitor product inventory and supplier details",
-  ]
+let product_manager = [
+  "Add, edit, and remove products",
+  "Manage product descriptions and categories",
+  "View and update stock levels",
+  "Monitor product performance and sales trends",
+  "View supplier stock lists and details",
+  "Set product availability (in stock, out of stock)"
+]
+
+
+let order_manager = [
+  "View and track all customer orders",
+  "Update order statuses (Processing, Out for Delivery, Delivered, Canceled)",
+  "Process order cancellations and refunds (if permitted)",
+  "Manage shipping and delivery information",
+  "Communicate order updates with customers"
+]
+
+
+useEffect(()=>{
+  if(selectedRole === "Super Admin"){
+    setper(super_admin)
+  }
+
+},[selectedRole])
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
