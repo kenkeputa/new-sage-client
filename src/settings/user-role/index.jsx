@@ -30,7 +30,7 @@ export default function UserRolesPermissions() {
 
       <div className="flex gap-6">
         {/* Roles sidebar */}
-        <div className="w-72 bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+        <div className="w-72 bg-[#F6F6F6] rounded-lg border border-[#E4E4E4] shadow-[0px_16px_30px_0px_#585C5F29] overflow-hidden">
         <div className="w-[100%] flex flex-col gap-1 mt-7 px-4 pl-4 rounded-md ">
             {roles.map((role) => (
               <button
@@ -54,15 +54,15 @@ export default function UserRolesPermissions() {
         {/* Main content */}
         <div className="flex-1 flex flex-col gap-6">
           {/* Basic Information */}
-          <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6 flex gap-[6rem]">
+          <div className="bg-[#F6F6F6] rounded-lg border border-[#E4E4E4] shadow-[0px_16px_30px_0px_#585C5F29] p-6 flex gap-[6rem]">
           <div className="whitespace-nowrap">
-            <h2 className="text-lg font-medium text-gray-800 mb-4">Basic Information</h2>
+            <h2 className="text-lg font-medium text-gray-800 mb-4"><b>Basic Information</b></h2>
               <label className="block text-sm text-gray-600 mb-1">Name of the Role</label>
               </div>
             <div className="w-[60%]">
               
               <label className="block text-sm text-gray-600 mb-1">Name of the Role</label>
-              <input type="text" value="Admin" className="w-full p-2 border border-gray-300 rounded-md" />
+              <input type="text" value="Admin" className="w-full shadow-[0px_1px_2px_0px_#121A2B0D] p-2 border border-[#E4E4E4] bg-[#FFFFFF] rounded-md" />
             </div>
           </div>
 
@@ -93,17 +93,17 @@ export default function UserRolesPermissions() {
           </div>
 
           {/* Features and Permissions */}
-          <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+          <div className="bg-[#F6F6F6] rounded-lg border border-[#E4E4E4] shadow-[0px_16px_30px_0px_#585C5F29] p-6">
             <div className="grid grid-cols-2 gap-8">
               {/* Features */}
               <div>
-                <h2 className="text-lg font-medium text-gray-800 mb-2">Features</h2>
+                <h2 className="text-lg font-medium text-gray-800 mb-2"><b>Features</b></h2>
                 <p className="text-sm text-gray-500 mb-4">What they can do...</p>
               </div>
 
               {/* Permissions */}
               <div>
-                <h2 className="text-lg font-medium text-gray-800 mb-6">Permissions</h2>
+                <h2 className="text-lg font-medium text-gray-800 mb-6"><b>Permissions</b></h2> 
                 <div className="space-y-4">
                   {permissions.map((permission, index) => (
                     <div key={index} className="flex items-start gap-3">
