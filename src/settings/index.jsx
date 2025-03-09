@@ -2,10 +2,10 @@ import { useNavigate } from "react-router-dom"
 
 
 
-const DashboardCard = ({ icon, title, description }) => {
+const DashboardCard = ({ icon, title, description, route }) => {
   let navigate = useNavigate()
     return (
-      <div className="bg-[#F6F6F6] cursor-pointer p-6 rounded-lg shadow-sm" onClick={()=> navigate('/settings/role')}>
+      <div className="bg-[#F6F6F6] cursor-pointer p-6 rounded-lg shadow-sm" onClick={()=> navigate(route)}>
         {icon}
         <h3 className="mt-4 text-lg font-medium text-[#333333]">{title}</h3>
         <p className="mt-1 text-sm text-[#686868]">{description}</p>
@@ -71,12 +71,14 @@ function Settings() {
               icon={<MoneyBagIcon />}
               title="Loan Options Configuration"
               description="Manage who has access to what within the system"
+              route="/settings/loan"
             />
 
             <DashboardCard
               icon={<SecurityIcon />}
               title="Platform Configuration"
               description="Enhance platform security"
+              route="/settings/role"
             />
 
             <DashboardCard

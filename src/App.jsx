@@ -13,6 +13,8 @@ import Payment from "./payment/index"
 import Supplier from "./supplier/index"
 import User from "./users_management/index"
 import Settings from "./settings/index"
+import SettingLoan from "./settings/loan/index"
+import SettingAddLoan from "./settings/loan/addloan"
 import SettingRole from "./settings/user-role/index"
 import Login from "./auth/index"
 import { Routes, Route, Navigate } from "react-router-dom"
@@ -76,7 +78,9 @@ function App() {
             <Route exact path="/user-management" element={!isLogin ? <Navigate to="/auth" />  : <Navigate to="/user-management/users" /> } />
             <Route exact path="/user-management/users" element={!isLogin ?<Navigate to="/auth" />  : <User /> } />
             <Route exact path="/settings" element={!isLogin ?<Navigate to="/auth" />  : <Settings /> } />
+            <Route exact path="/settings/loan" element={!isLogin ?<Navigate to="/auth" />  : <SettingLoan /> } />
             <Route exact path="/settings/role" element={!isLogin ?<Navigate to="/auth" />  : <SettingRole /> } />
+            <Route exact path="/settings/loan/add" element={!isLogin ?<Navigate to="/auth" />  : <SettingAddLoan /> } />
             {/* <Route path="*" element={<NotFound />} />       */}
           </Routes>
         </div>
