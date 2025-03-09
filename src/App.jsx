@@ -15,6 +15,7 @@ import User from "./users_management/index"
 import Settings from "./settings/index"
 import SettingLoan from "./settings/loan/index"
 import SettingAddLoan from "./settings/loan/addloan"
+import SettingEditLoan from "./settings/loan/editloan"
 import SettingRole from "./settings/user-role/index"
 import Login from "./auth/index"
 import { Routes, Route, Navigate } from "react-router-dom"
@@ -22,7 +23,7 @@ import React, { useState, useEffect } from "react"
 export const Auth = React.createContext()
 
 function App() {
-  const [isLogin, setLogin] = useState(false)
+  const [isLogin, setLogin] = useState(true)
 
   // Check localStorage when the component mounts
   useEffect(() => {
@@ -52,7 +53,7 @@ function App() {
               element={!isLogin ? <Navigate to="/auth" /> : <Navigate to="/loan-application/repayment" />}
             />
             <Route exact path="/dashboard" element={!isLogin ? <Navigate to="/auth" /> : <Dashboard />} />
-            <Route exact path="/auth" element={isLogin ? <Navigate to="/dashboard" /> : <Login />} />
+            <Route exact path="/auth" element={<Login />} />
             <Route exact path="/customers" element={!isLogin ? <Navigate to="/auth" /> : <Customer />} />
             <Route exact path="/inventory" element={!isLogin ? <Navigate to="/auth" /> : <Inventory />} />
             <Route exact path="/customers/new" element={!isLogin ? <Navigate to="/auth" /> : <Addcustomer />} />
@@ -81,6 +82,7 @@ function App() {
             <Route exact path="/settings/loan" element={!isLogin ?<Navigate to="/auth" />  : <SettingLoan /> } />
             <Route exact path="/settings/role" element={!isLogin ?<Navigate to="/auth" />  : <SettingRole /> } />
             <Route exact path="/settings/loan/add" element={!isLogin ?<Navigate to="/auth" />  : <SettingAddLoan /> } />
+            <Route exact path="/settings/loan/edit" element={!isLogin ?<Navigate to="/auth" />  : <SettingEditLoan /> } />
             {/* <Route path="*" element={<NotFound />} />       */}
           </Routes>
         </div>

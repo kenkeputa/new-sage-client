@@ -55,7 +55,7 @@ export default function LoanOptionsPage() {
               <div className="bg-[#F6F6F6] px-6 py-3 flex items-center justify-between mt-4 pl-8">
                 <h3 className="font-medium text-gray-700">{option.name}</h3>
                 <div className="flex items-center gap-2">
-                  <button className="p-1.5 hover:bg-gray-200 rounded transition-colors">
+                  <button onClick={()=> navigate('/settings/loan/edit')} className="p-1.5 hover:bg-gray-200 rounded transition-colors">
                     
 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M11.6667 2.99935H3.66667C2.19391 2.99935 1 4.19326 1 5.66602V24.3327C1 25.8054 2.19391 26.9993 3.66667 26.9993H22.3333C23.8061 26.9993 25 25.8054 25 24.3327V16.3327M20.8588 2.6053C21.1566 2.30751 21.5101 2.07129 21.8992 1.91013C22.2883 1.74896 22.7053 1.66602 23.1264 1.66602C23.5475 1.66602 23.9646 1.74896 24.3536 1.91013C24.7427 2.07129 25.0963 2.30751 25.394 2.6053C25.6918 2.90308 25.9281 3.25661 26.0892 3.64569C26.2504 4.03477 26.3333 4.45178 26.3333 4.87292C26.3333 5.29405 26.2504 5.71107 26.0892 6.10015C25.9281 6.48923 25.6918 6.84275 25.394 7.14054L14.8832 17.6662H10.3333V13.1163L20.8588 2.6053Z" stroke="#565656" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
