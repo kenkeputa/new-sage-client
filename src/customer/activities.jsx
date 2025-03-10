@@ -66,7 +66,7 @@ let Activity = ()=>{
       if(task === tobecomplete){
         setLoader(false)
       }else{
-        setLoader(false)
+        setLoader(true)
 
       }
     },[task, tobecomplete])
