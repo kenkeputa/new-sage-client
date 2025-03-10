@@ -271,7 +271,7 @@ let Activity = ()=>{
               <div className="w-5 h-5 relative">
                 <div className="w-5 h-5 left-0 top-0 absolute bg-white rounded-md border border-[#e4e4e4]" />
               </div>
-              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight">
+              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight whitespace-nowrap">
                 Customer ID
               </div>
             </div>
@@ -297,7 +297,7 @@ let Activity = ()=>{
         <div className="grow shrink basis-0 flex-col justify-start items-start inline-flex">
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight">
+              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight whitespace-nowrap">
                 Customer Name
               </div>
             </div>
@@ -318,7 +318,7 @@ let Activity = ()=>{
         <div className="grow shrink basis-0 flex-col justify-start items-start inline-flex">
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight">
+              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight whitespace-nowrap">
                 Email
               </div>
             </div>
@@ -344,7 +344,7 @@ let Activity = ()=>{
         <div className="w-[154px] flex-col justify-start items-start inline-flex">
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight">
+              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight whitespace-nowrap">
                 Phone Number
               </div>
             </div>
@@ -365,7 +365,7 @@ let Activity = ()=>{
         <div className="w-[154px] flex-col justify-start items-start inline-flex">
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight">
+              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight whitespace-nowrap">
               Registration Date
               </div>
             </div>
