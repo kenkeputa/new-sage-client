@@ -65,6 +65,9 @@ let Activity = ()=>{
     useEffect(()=>{
       if(task === tobecomplete){
         setLoader(false)
+      }else{
+        setLoader(false)
+
       }
     },[task, tobecomplete])
 
