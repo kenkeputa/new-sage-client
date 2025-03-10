@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { Auth } from "../App.jsx"
 
 let Activity = ()=>{
     let [option, setoption] = useState(false)
     let [option1, setoption1] = useState(false)
     let [option2, setoption2] = useState(false)
     let [menu, setmenu] = useState(null)
-  
-  
-    const tableRows = [
+    let [tobecomplete, setcomplete] = useState(1)
+    let [task, settask] = useState(0)
+    const { isLoading, setLoader } = useContext(Auth)
+
+    const [tableRows, setrow] = useState([
       {
         description: "Identity Verification For CUST001",
         category: "Customer",
@@ -43,8 +46,26 @@ let Activity = ()=>{
         date: "16/12/2024",
         action: "Approve Loan"
       }
-    ];
-    
+    ]);
+  
+
+    useEffect(()=>{
+      fetch('https://sage-admin-backend.vercel.app/api/customer')
+      .then(e=>{
+        return e.json()
+      })
+      .then(e=>{
+        setrow(e[0].record)
+        settask(1)
+
+      })
+    },[])
+    useEffect(()=>{
+      if(task === tobecomplete){
+        setLoader(false)
+      }
+    },[task, tobecomplete])
+
     const filteroptions = [
       { label: "All" },
       { label: "Communications" },
@@ -263,7 +284,7 @@ let Activity = ()=>{
                   <div className="w-5 h-5 left-0 top-0 absolute bg-white rounded-md border border-[#e4e4e4]" />
                 </div>
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.description}
+                  {row.id}
                 </div>
               </div>
             </div>
@@ -286,7 +307,7 @@ let Activity = ()=>{
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.category}
+                  {row.first_name} {row.last_name}
                 </div>
               </div>
             </div>
@@ -307,7 +328,7 @@ let Activity = ()=>{
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.category}
+                  {row.email}
                 </div>
               </div>
             </div>
@@ -333,7 +354,7 @@ let Activity = ()=>{
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.date}
+                  {row.phone_number}
                 </div>
               </div>
             </div>
@@ -343,7 +364,7 @@ let Activity = ()=>{
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
               <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight">
-                Phone Number
+              Registration Date
               </div>
             </div>
           </div>
@@ -368,7 +389,7 @@ let Activity = ()=>{
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
               <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight">
-                Email
+              Status
               </div>
             </div>
           </div>
@@ -391,7 +412,7 @@ let Activity = ()=>{
                       : ""
                   }`}
                 >
-                  {row.status}
+                  {row.registration_date}
                 </div>
               </div>
             </div>
@@ -401,7 +422,7 @@ let Activity = ()=>{
         <div className="grow shrink basis-0 flex-col justify-start items-start inline-flex">
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight">
+              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight ml-[3.5rem]">
                 Actions
               </div>
             </div>
@@ -412,16 +433,56 @@ let Activity = ()=>{
               className="self-stretch h-[54px] p-3 bg-[#f6f6f6] border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-                <div className="px-1 flex justify-center  py-1 w-[4rem]  rounded-lg text-white text-sm font-medium leading-[21px] mr-[1rem] gap-2">
-<svg width="22" className="cursor-pointer" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M9.85742 2H3.85742C2.75285 2 1.85742 2.89543 1.85742 4V18C1.85742 19.1046 2.75285 20 3.85742 20H17.8574C18.962 20 19.8574 19.1046 19.8574 18V12M16.7515 1.70446C16.9748 1.48112 17.24 1.30395 17.5318 1.18308C17.8236 1.06221 18.1364 1 18.4522 1C18.7681 1 19.0808 1.06221 19.3727 1.18308C19.6645 1.30395 19.9296 1.48112 20.153 1.70446C20.3763 1.9278 20.5535 2.19295 20.6743 2.48476C20.7952 2.77656 20.8574 3.08932 20.8574 3.40518C20.8574 3.72103 20.7952 4.03379 20.6743 4.3256C20.5535 4.61741 20.3763 4.88255 20.153 5.10589L12.2698 13.0001H8.85742V9.5877L16.7515 1.70446Z" stroke="#565656" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg> 
-<svg className="cursor-pointer" width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M1.85742 5H3.85742M3.85742 5H19.8574M3.85742 5L4.85742 19C4.85742 19.5304 5.06814 20.0391 5.44321 20.4142C5.81828 20.7893 6.32699 21 6.85742 21H14.8574C15.3879 21 15.8966 20.7893 16.2716 20.4142C16.6467 20.0391 16.8574 19.5304 16.8574 19L17.8574 5M6.85742 5V3C6.85742 2.46957 7.06814 1.96086 7.44321 1.58579C7.81828 1.21071 8.32699 1 8.85742 1H12.8574C13.3879 1 13.8966 1.21071 14.2716 1.58579C14.6467 1.96086 14.8574 2.46957 14.8574 3V5" stroke="#565656" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-
-
+                {/* <div className="px-1 flex justify-center  py-1 w-[4rem]  rounded-lg text-white text-sm font-medium leading-[21px] mr-[1rem] gap-2"></div> */}
+                <div data-svg-wrapper className=" relative cursor-pointer w-[50px] ml-[4rem]">
+                <svg onClick={()=>{
+                    console.log(menu)
+                  if(menu === null){
+                    setmenu(idx)
+                  }else if(menu !== idx){
+                    setmenu(idx)
+                  }
+                  else{
+                    setmenu(null)
+                  }
+                }}
+                  width="25"
+                  height="24"
+                  viewBox="0 0 25 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12.5 13C13.0523 13 13.5 12.5523 13.5 12C13.5 11.4477 13.0523 11 12.5 11C11.9477 11 11.5 11.4477 11.5 12C11.5 12.5523 11.9477 13 12.5 13Z"
+                    stroke="#565656"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M19.5 13C20.0523 13 20.5 12.5523 20.5 12C20.5 11.4477 20.0523 11 19.5 11C18.9477 11 18.5 11.4477 18.5 12C18.5 12.5523 18.9477 13 19.5 13Z"
+                    stroke="#565656"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M5.5 13C6.05228 13 6.5 12.5523 6.5 12C6.5 11.4477 6.05228 11 5.5 11C4.94772 11 4.5 11.4477 4.5 12C4.5 12.5523 4.94772 13 5.5 13Z"
+                    stroke="#565656"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                {/* manage */}
+                <div className="w-[249px] h-[37px] absolute right-[90%] top-[-23%] z-[9999]  bg-white rounded-[4px] overflow-hidden pl-[8.2rem] mr-[5px]" style={{display: menu === idx ? 'block' : 'none'}}>
+                  <div className="w-full h-full px-3 py-2 bg-[#333333]/10 justify-start items-center gap-2 inline-flex">
+                    <div className="text-[#565656] pl-8 text-sm font-medium font-['Mulish'] leading-[21px]">
+                      Manage
+                    </div>
+                  </div>
                 </div>
+              </div>
                 
               </div>
             </div>

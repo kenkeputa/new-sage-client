@@ -18,12 +18,14 @@ import SettingAddLoan from "./settings/loan/addloan"
 import SettingEditLoan from "./settings/loan/editloan"
 import SettingRole from "./settings/user-role/index"
 import Login from "./auth/index"
+import Loader from "./Loader" 
 import { Routes, Route, Navigate } from "react-router-dom"
 import React, { useState, useEffect } from "react"
 export const Auth = React.createContext()
 
 function App() {
   const [isLogin, setLogin] = useState(true)
+  const [isLoading, setLoader] = useState(true)
 
   // Check localStorage when the component mounts
   useEffect(() => {
@@ -42,7 +44,7 @@ function App() {
 
   return (
     <div className="h-[100vh] w-full">
-      <Auth.Provider value={{ isLogin, setLogin }}>
+      <Auth.Provider value={{ isLogin, setLogin, isLoading, setLoader  }}>
         <Header />
         <div className="w-full h-[100vh] flex">
           {isLogin ? <Sidebar /> : ""}
@@ -86,6 +88,10 @@ function App() {
             {/* <Route path="*" element={<NotFound />} />       */}
           </Routes>
         </div>
+        {isLoading ?
+        <Loader />: ""
+        
+      }
       </Auth.Provider>
     </div>
   )

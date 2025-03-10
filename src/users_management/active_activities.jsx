@@ -401,6 +401,7 @@ const Activity = () => {
                 
                 </div> */}
               </div>
+              
                 <div data-svg-wrapper className=" relative cursor-pointer ml-[4rem]">
                 <svg onClick={()=>{
                     console.log(menu)
