@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect  } from 'react';
 import { Auth } from "../App.jsx"
 
 let Activity = ()=>{
@@ -55,7 +55,9 @@ let Activity = ()=>{
         return e.json()
       })
       .then(e=>{
-        setrow(e[0].record)
+        console.log(e[0])
+
+        setrow(e.record)
         settask(1)
 
       })
@@ -89,7 +91,7 @@ let Activity = ()=>{
   
   
     return (
-      <div className="w-[100%] h-[447px] bg-[#f6f6f6] rounded-xl mt-8 shadow-[0px_16px_30px_0px_rgba(88,92,95,0.16)] border border-[#e4e4e4] flex-col justify-start items-start inline-flex overflow-hidden  mt-6 relative">
+      <div className="w-[100%] h-max bg-[#f6f6f6] rounded-xl mt-8 shadow-[0px_16px_30px_0px_rgba(88,92,95,0.16)] border border-[#e4e4e4] flex-col justify-start items-start inline-flex overflow-hidden  mt-6 relative">
     <div className="self-stretch h-[72px] px-6 py-[3px] bg-[#f6f6f6] border-b border-[#d3d3d3] justify-start items-center gap-4 inline-flex overflow-hidden">
       <div className="grow shrink basis-0 h-6 justify-start items-center gap-3 flex">
       <div className=" border-[1px] border-[#C1C1C1] w-[423px] h-[40px] rounded-[7px] flex items-center justify-center">
@@ -375,7 +377,7 @@ let Activity = ()=>{
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.date}
+                  {row.registration_date}
                 </div>
               </div>
             </div>
@@ -401,18 +403,14 @@ let Activity = ()=>{
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div
                   className={`px-2 rounded-md border text-sm font-medium leading-[21px] ${
-                    row.status === "Pending"
+                    row.is_verified === false || row.is_verified === null
                       ? "bg-[#ffdb43]/10 border-[#ffeda1] text-[#ae8c00]"
-                      : row.status === "Overdue"
-                      ? "bg-[#fb3748]/10 border-[#fdafb6] text-[#dd0417]"
-                      : row.status === "In Progress"
-                      ? "bg-[#b5e45e]/10 border-[#e1f4bf] text-[#5f8717]"
-                      : row.status === "Successful"
-                      ? "bg-[#1fc16b]/10 border-[#adf2cd] text-[#16884b]"
-                      : ""
+                      : 
+                    "bg-[#1fc16b]/10 border-[#adf2cd] text-[#16884b]"
+                  
                   }`}
                 >
-                  {row.registration_date}
+                  {row.is_verified === false || row.is_verified === null ? "inactive": "Active" }
                 </div>
               </div>
             </div>
