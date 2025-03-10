@@ -24,9 +24,9 @@ import React, { useState, useEffect } from "react"
 export const Auth = React.createContext()
 
 function App() {
-  const [isLogin, setLogin] = useState(false)
-  const [isLoading, setLoader] = useState(true)
- 
+  const [isLogin, setLogin] = useState(true)
+  const [isLoading, setLoader] = useState(false)
+
   // Check localStorage when the component mounts
   useEffect(() => {
     // Check if user data exists in localStorage
