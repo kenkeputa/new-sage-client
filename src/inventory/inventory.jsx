@@ -92,25 +92,25 @@ function Customer() {
     <div className="flex flex-col h-[80px] w-[267.5px] bg-[#831AD31A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
                     
                     <span className="text-[12px] mt-1 font-[600]">Total Inventory</span>
-                    <span className="text-[26px] font-[700]">{main.inventory}</span>
+                    <span className="text-[26px] font-[700]">{main?.inventory}</span>
                     
                 </div>
                 <div className="flex flex-col h-[80px] w-[267.5px] bg-[#B5E45E1A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
                     
                     <span className="text-[12px] mt-1 font-[600]">In Stock</span>
-                    <span className="text-[26px] font-[700]">{main.in_stocks}</span>
+                    <span className="text-[26px] font-[700]">{main?.in_stocks}</span>
                     
                 </div>
                 <div className="flex flex-col h-[80px] w-[267.5px] bg-[#FFDB431A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
                     
                     <span className="text-[12px] mt-1 font-[600]">Low Stock</span>
-                    <span className="text-[26px] font-[700]">{main.low_stock}</span>
+                    <span className="text-[26px] font-[700]">{main?.low_stock}</span>
                     
                 </div>
                 <div className="flex flex-col h-[80px] w-[267.5px] bg-[#FB37481A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
                     
                     <span className="text-[12px] font-[600] mt-1">Out Of Stock</span>
-                    <span className="text-[26px] font-[700]">{main.out_of_stock}</span>
+                    <span className="text-[26px] font-[700]">{main?.out_of_stock}</span>
                     
                 
                 
@@ -126,7 +126,7 @@ function Customer() {
         )}
     </div>
     {index === 0 ?
-    <ProductActivity datatable={main.record} /> : index === 1? <OrderActivity /> :
+    <ProductActivity datatable={main?.record} /> : index === 1? <OrderActivity /> :
     <RefundActivity />}
     
     </div>);
