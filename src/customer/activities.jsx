@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect  } from 'react';
 import { Auth } from "../App.jsx"
 
-let Activity = ()=>{
+let Activity = ({datatable})=>{
     let [option, setoption] = useState(false)
     let [option1, setoption1] = useState(false)
     let [option2, setoption2] = useState(false)
@@ -10,66 +10,30 @@ let Activity = ()=>{
     let [task, settask] = useState(0)
     const { isLoading, setLoader } = useContext(Auth)
 
-    const [tableRows, setrow] = useState([
-      {
-        description: "Identity Verification For CUST001",
-        category: "Customer",
-        status: "Pending",
-        date: "27/12/2024",
-        action: "Verify Customer"
-      },
-      {
-        description: "Overdue Payment of ₦400,000 For CUST037",
-        category: "Payment",
-        status: "Overdue",
-        date: "26/12/2024",
-        action: "Alert Customer"
-      },
-      {
-        description: "10 Items Pending Delivery",
-        category: "Orders",
-        status: "In Progress",
-        date: "22/12/2024",
-        action: "Track Shipment"
-      },
-      {
-        description: "Automated Payment Reminder Sent to CUST568",
-        category: "Communication",
-        status: "Successful",
-        date: "22/12/2024",
-        action: "Monitor Response"
-      },
-      {
-        description: "₦400,000 Loan Application pending for CUST137",
-        category: "Loan",
-        status: "Pending",
-        date: "16/12/2024",
-        action: "Approve Loan"
-      }
-    ]);
+    const [tableRows, setrow] = useState(datatable);
   
 
-    useEffect(()=>{
-      fetch('https://sage-admin-backend.vercel.app/api/customer')
-      .then(e=>{
-        return e.json()
-      })
-      .then(e=>{
-        console.log(e[0])
+    // useEffect(()=>{
+    //   fetch('https://sage-admin-backend.vercel.app/api/customer')
+    //   .then(e=>{
+    //     return e.json()
+    //   })
+    //   .then(e=>{
+    //     console.log(e[0])
 
-        setrow(e.record)
-        settask(1)
+    //     setrow(e.record)
+    //     settask(1)
 
-      })
-    },[])
-    useEffect(()=>{
-      if(task === tobecomplete){
-        setLoader(false)
-      }else{
-        setLoader(true)
+    //   })
+    // },[])
+    // useEffect(()=>{
+    //   if(task === tobecomplete){
+    //     setLoader(false)
+    //   }else{
+    //     setLoader(true)
 
-      }
-    },[task, tobecomplete])
+    //   }
+    // },[task, tobecomplete])
 
     const filteroptions = [
       { label: "All" },

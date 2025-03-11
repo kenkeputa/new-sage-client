@@ -1,11 +1,42 @@
-import React,{useState} from 'react'
+import { useState, useContext, useEffect  } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import Activity from './activities.jsx'
+import { Auth } from "../App.jsx"
 
 function Customer() {
     let navigate = useNavigate();
     let [nav, setnav] = useState(['Customer']);
     let [index,setindex] = useState(0);
+    const { isLoading, setLoader } = useContext(Auth)
+    let [task, settask] = useState(0)
+    let [tobecomplete, setcomplete] = useState(1)
+
+    const [tableRows, setrow] = useState([]);
+
+    useEffect(()=>{
+        fetch('https://sage-admin-backend.vercel.app/api/customer')
+        .then(e=>{
+          return e.json()
+        })
+        .then(e=>{
+          console.log(e[0])
+  
+          setrow(e)
+          settask(1)
+  
+        })
+      },[])
+      useEffect(()=>{
+        if(task === tobecomplete){
+          setLoader(false)
+        }else{
+          setLoader(true)
+  
+        }
+      },[task, tobecomplete])
+
+
 
     return ( <div className='w-[85%] h-full px-[2%] overflow-scroll'>
         <div className='bg-[rgba(255,251,235,1)] w-[100%] h-[82px] mt-8 flex gap-4 relative'>
@@ -59,14 +90,8 @@ function Customer() {
                         <span className="text-[16px] font-[500]"></span>
                     </div>
                     <span className="text-[12px] mt-1 font-[600]">Total Customers</span>
-                    <span className="text-[26px] font-[700]">654</span>
-                    {/* <div className="h-[24px] w-[83px] bg-[#1FC16B1A] border-[#ADF2CD] border px-[8px] gap-[4px] flex items-center rounded-md">
-                        
-                        <svg width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M13 1H19M19 1V7M19 1L10 10L6 6L1 11" stroke="#16884B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <span>+12%</span>
-                    </div> */}
+                    <span className="text-[26px] font-[700]">{tableRows.customer}</span>
+                    
                 </div>
                 <div className="flex flex-col h-[120px] w-[267.5px] bg-[#B5E45E1A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
                     <div className="flex items-center gap-1.5 ">
@@ -80,7 +105,7 @@ function Customer() {
                         <span className="text-[16px] mt-1 font-[500]"></span>
                     </div>
                     <span className="text-[12px] mt-1 font-[600]">Total Applicants</span>
-                    <span className="text-[26px] font-[700]">120</span>
+                    <span className="text-[26px] font-[700]">{tableRows.total_applicant}</span>
                     
                 </div>
                 <div className="flex flex-col h-[120px] w-[267.5px] bg-[#FFDB431A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
@@ -95,7 +120,7 @@ function Customer() {
                         <span className="text-[16px] font-[500]"></span>
                     </div>
                     <span className="text-[12px] mt-1 font-[600]">Awaiting Verification</span>
-                    <span className="text-[26px] font-[700]">60</span>
+                    <span className="text-[26px] font-[700]">{tableRows.await_verification}</span>
                     
                 </div>
                 <div className="flex flex-col h-[120px] w-[267.5px] bg-[#FB37481A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
@@ -116,7 +141,7 @@ function Customer() {
                         <span className="text-[16px] font-[500]"></span>
                     </div>
                     <span className="text-[12px] font-[600] mt-1">Pending Applications</span>
-                    <span className="text-[26px] font-[700]">25</span>
+                    <span className="text-[26px] font-[700]">{tableRows.pending_application}</span>
                     
                 
                 
@@ -131,7 +156,7 @@ function Customer() {
         }
         )}
     </div>
-    <Activity />
+    <Activity datatable={tableRows.record} />
     
     </div>);
 }

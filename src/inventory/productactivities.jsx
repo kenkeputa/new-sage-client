@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-let Activity = ()=>{
+let Activity = ({datatable})=>{
     let [option, setoption] = useState(false)
     let [option1, setoption1] = useState(false)
     let [option2, setoption2] = useState(false)
@@ -8,73 +8,7 @@ let Activity = ()=>{
     let [menu, setmenu] = useState(null)
   
   
-    const tableRows = [
-      {
-        description: "Abx Multipurpose Grinder",
-        suppliers: "Barone LLC.",
-        category: "Appliances",
-        status: "In Stock",
-        sku: "SG0034",
-        stock: "325"
-      },
-      {
-        description: "Nike Airforce 3",
-        suppliers: "Binford Ltd.",
-        category: "Shoes",
-        status: "Low Stock",
-        sku: "SG0167",
-        stock: "20"
-      },
-      {
-        description: "Apple iPhone 12 Pro",
-        category: "Phones",
-        suppliers: "Acme Co.",
-        status: "Out of Stock",
-        sku: "SG0148",
-        stock: "0"
-      },
-      {
-        description: "Sweat Shirt",
-        category: "Fashion",
-        suppliers: "Biffco Entertainment",
-        status: "In Stock",
-        sku: "SG0569",
-        stock: "75"
-      },
-      {
-        description: "Sony Headphones",
-        category: "Accessory",
-        suppliers: "Dentalku",
-        status: "In Stock",
-        sku: "SG0321",
-        stock: "157"
-      },
-      {
-        description: "Apple Airpods Pro",
-        suppliers: "Abstergo Ltd.",
-        category: "Accessory",
-        status: "Low Stock",
-        sku: "SG0649",
-        stock: "12"
-      },
-      {
-        description: "Redme 360 Jt",
-        suppliers: "Acme Co.",
-        category: "Phones",
-        status: "Out of Stock",
-        sku: "SG0493",
-        stock: "0"
-      },
-      {
-        description: "2 piece hand bracelet",
-        suppliers: "Barone LLC.",
-        category: "Jewelry",
-        status: "Low Stock",
-        sku: "SG0256",
-        stock: "18"
-      },
-      
-    ];
+    const tableRows = datatable
     
     const filteroptions = [
       { label: "All" },
@@ -363,7 +297,7 @@ let Activity = ()=>{
                   <img src="product.png" />
                 </div>
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.description}
+                  {row.name}
                 </div>
               </div>
             </div>
@@ -389,7 +323,7 @@ let Activity = ()=>{
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.suppliers}
+                  {row.dealer}
                 </div>
               </div>
             </div>
@@ -466,7 +400,7 @@ let Activity = ()=>{
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.stock}
+                  {row.quantity_in_stock}
                 </div>
               </div>
             </div>
@@ -495,18 +429,18 @@ let Activity = ()=>{
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div
                   className={`px-2 rounded-md border text-sm font-medium leading-[21px] ${
-                    row.status === "Low Stock"
+                    row.payment_status === "Low Stock"
                       ? "bg-[#ffdb43]/10 border-[#ffeda1] text-[#ae8c00]"
-                      : row.status === "Out of Stock"
+                      : row.payment_status === "Out of Stock"
                       ? "bg-[#fb3748]/10 border-[#fdafb6] text-[#dd0417]"
-                      : row.status === "In Progress"
+                      : row.payment_status === "In Progress"
                       ? "bg-[#b5e45e]/10 border-[#e1f4bf] text-[#5f8717]"
-                      : row.status === "In Stock"
+                      : row.payment_status === "In Stock"
                       ? "bg-[#1fc16b]/10 border-[#adf2cd] text-[#16884b]"
                       : ""
                   }`}
                 >
-                  {row.status}
+                  {row.payment_status}
                 </div>
               </div>
             </div>

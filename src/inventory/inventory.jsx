@@ -1,13 +1,66 @@
-import React,{useState} from 'react'
+import { useState, useContext, useEffect  } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import ProductActivity from './productactivities.jsx'
 import RefundActivity from './refundactivities.jsx'
 import OrderActivity from './orderactivities.jsx'
-
+import { Auth } from "../App.jsx"
 function Customer() {
     let navigate = useNavigate();
     let [nav, setnav] = useState(['Inventory', 'Order Management', 'Refund Requests']);
     let [index,setindex] = useState(0);
+    const { isLoading, setLoader } = useContext(Auth)
+    let [task, settask] = useState(0)
+    let [tobecomplete, setcomplete] = useState(3)
+    let [main, setmain] = useState([])
+
+
+    useEffect(()=>{
+        fetch('https://sage-admin-backend.vercel.app/api/inventory/product')
+        .then(e=>{
+          return e.json()
+        })
+        .then(e=>{
+          console.log(e[0])
+  
+          setmain((p)=> p.push(e))
+          settask(1)
+  
+        })
+        fetch('https://sage-admin-backend.vercel.app/api/inventory/product')
+        .then(e=>{
+          return e.json()
+        })
+        .then(e=>{
+          console.log(e[0])
+  
+          setmain((p)=> p.push(e))
+          settask(2)
+  
+        })
+        fetch('https://sage-admin-backend.vercel.app/api/inventory/product')
+        .then(e=>{
+          return e.json()
+        })
+        .then(e=>{
+          console.log(e[0])
+  
+          setmain((p)=> p.push(e))
+          settask(3)
+  
+        })
+      },[])
+      useEffect(()=>{
+        if(task === tobecomplete){
+          setLoader(false)
+        }else{
+          setLoader(true)
+  
+        }
+      },[task, tobecomplete])
+
+
+
     return ( <div className='w-[85%] h-full px-[2%] overflow-scroll'>
         
         <div className="mt-[2rem] flex items-center justify-between mb-4">
@@ -39,25 +92,25 @@ function Customer() {
     <div className="flex flex-col h-[80px] w-[267.5px] bg-[#831AD31A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
                     
                     <span className="text-[12px] mt-1 font-[600]">Total Inventory</span>
-                    <span className="text-[26px] font-[700]">654</span>
+                    <span className="text-[26px] font-[700]">{main.inventory}</span>
                     
                 </div>
                 <div className="flex flex-col h-[80px] w-[267.5px] bg-[#B5E45E1A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
                     
                     <span className="text-[12px] mt-1 font-[600]">In Stock</span>
-                    <span className="text-[26px] font-[700]">412</span>
+                    <span className="text-[26px] font-[700]">{main.in_stocks}</span>
                     
                 </div>
                 <div className="flex flex-col h-[80px] w-[267.5px] bg-[#FFDB431A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
                     
                     <span className="text-[12px] mt-1 font-[600]">Low Stock</span>
-                    <span className="text-[26px] font-[700]">220</span>
+                    <span className="text-[26px] font-[700]">{main.low_stock}</span>
                     
                 </div>
                 <div className="flex flex-col h-[80px] w-[267.5px] bg-[#FB37481A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
                     
                     <span className="text-[12px] font-[600] mt-1">Out Of Stock</span>
-                    <span className="text-[26px] font-[700]">18</span>
+                    <span className="text-[26px] font-[700]">{main.out_of_stock}</span>
                     
                 
                 
@@ -73,7 +126,7 @@ function Customer() {
         )}
     </div>
     {index === 0 ?
-    <ProductActivity /> : index === 1? <OrderActivity /> :
+    <ProductActivity datatable={main.record} /> : index === 1? <OrderActivity /> :
     <RefundActivity />}
     
     </div>);
