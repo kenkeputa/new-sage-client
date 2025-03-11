@@ -12,7 +12,7 @@ function Customer() {
     let [task, settask] = useState(0)
     let [tobecomplete, setcomplete] = useState(1)
 
-    const [tableRows, setrow] = useState([]);
+    const [tableRows, setrow] = useState({});
 
     useEffect(()=>{
         fetch('https://sage-admin-backend.vercel.app/api/customer')
@@ -90,7 +90,7 @@ function Customer() {
                         <span className="text-[16px] font-[500]"></span>
                     </div>
                     <span className="text-[12px] mt-1 font-[600]">Total Customers</span>
-                    <span className="text-[26px] font-[700]">{tableRows.customer}</span>
+                    <span className="text-[26px] font-[700]">{tableRows?.customer}</span>
                     
                 </div>
                 <div className="flex flex-col h-[120px] w-[267.5px] bg-[#B5E45E1A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
@@ -105,7 +105,7 @@ function Customer() {
                         <span className="text-[16px] mt-1 font-[500]"></span>
                     </div>
                     <span className="text-[12px] mt-1 font-[600]">Total Applicants</span>
-                    <span className="text-[26px] font-[700]">{tableRows.total_applicant}</span>
+                    <span className="text-[26px] font-[700]">{tableRows?.total_applicant}</span>
                     
                 </div>
                 <div className="flex flex-col h-[120px] w-[267.5px] bg-[#FFDB431A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
@@ -120,7 +120,7 @@ function Customer() {
                         <span className="text-[16px] font-[500]"></span>
                     </div>
                     <span className="text-[12px] mt-1 font-[600]">Awaiting Verification</span>
-                    <span className="text-[26px] font-[700]">{tableRows.await_verification}</span>
+                    <span className="text-[26px] font-[700]">{tableRows?.await_verification}</span>
                     
                 </div>
                 <div className="flex flex-col h-[120px] w-[267.5px] bg-[#FB37481A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
@@ -141,7 +141,7 @@ function Customer() {
                         <span className="text-[16px] font-[500]"></span>
                     </div>
                     <span className="text-[12px] font-[600] mt-1">Pending Applications</span>
-                    <span className="text-[26px] font-[700]">{tableRows.pending_application}</span>
+                    <span className="text-[26px] font-[700]">{tableRows?.pending_application}</span>
                     
                 
                 
@@ -156,7 +156,7 @@ function Customer() {
         }
         )}
     </div>
-    <Activity datatable={tableRows.record} />
+    <Activity datatable={tableRows?.record} />
     
     </div>);
 }
