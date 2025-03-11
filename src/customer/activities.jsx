@@ -10,7 +10,7 @@ let Activity = ({datatable})=>{
     let [task, settask] = useState(0)
     const { isLoading, setLoader } = useContext(Auth)
 console.log(datatable)
-    const [tableRows, setrow] = useState(datatable);
+    const tableRows = datatable;
   
 
     // useEffect(()=>{
