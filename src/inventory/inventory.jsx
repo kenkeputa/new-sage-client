@@ -12,7 +12,7 @@ function Customer() {
     const { isLoading, setLoader } = useContext(Auth)
     let [task, settask] = useState(0)
     let [tobecomplete, setcomplete] = useState(3)
-    let [main, setmain] = useState({})
+    let [main, setmain] = useState([])
 
 
     useEffect(()=>{
@@ -125,8 +125,8 @@ function Customer() {
         }
         )}
     </div>
-    {index === 0 ?
-    <ProductActivity datatable={main?.record} /> : index === 1? <OrderActivity /> :
+    { index === 0 ?
+    <ProductActivity datatable={main[0]?.record} /> : index === 1? <OrderActivity /> :
     <RefundActivity />}
     
     </div>);
