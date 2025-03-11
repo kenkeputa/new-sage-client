@@ -23,7 +23,7 @@ function Customer() {
         .then(e=>{
           console.log(e[0])
   
-          setmain((p)=> p.push(e))
+          setmain((p)=> [...p,e])
           settask(1)
   
         })
@@ -34,7 +34,7 @@ function Customer() {
         .then(e=>{
           console.log(e[0])
   
-          setmain((p)=> p.push(e))
+          setmain((p)=> [...p,e])
           settask(2)
   
         })
@@ -45,7 +45,7 @@ function Customer() {
         .then(e=>{
           console.log(e[0])
   
-          setmain((p)=> p.push(e))
+          setmain((p)=> [...p,e])
           settask(3)
   
         })
