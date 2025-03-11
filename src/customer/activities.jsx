@@ -9,7 +9,7 @@ let Activity = ({datatable})=>{
     let [tobecomplete, setcomplete] = useState(1)
     let [task, settask] = useState(0)
     const { isLoading, setLoader } = useContext(Auth)
-
+console.log(datatable)
     const [tableRows, setrow] = useState(datatable);
   
 
