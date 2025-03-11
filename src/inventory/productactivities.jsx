@@ -7,6 +7,7 @@ let Activity = ({datatable})=>{
     let [option3, setoption3] = useState(false)
     let [menu, setmenu] = useState(null)
   
+    console.log(datatable)
   
     const tableRows = datatable
     
