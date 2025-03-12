@@ -5,9 +5,7 @@ import AllActivity from './allactivities.jsx';
 import Identity from './identityactivities.jsx'
 import Employment from './employment_activities.jsx'
 import Loan_Activity from './loan_activities.jsx'
-// import OngoingActivity from './ongoingactivities.jsx';
-// import PaidActivity from './paidactivities.jsx';
-// import ReminderActivity from './reminderactivities.jsx';
+
 import { Auth } from "../../App.jsx"
 
 
@@ -17,7 +15,7 @@ function Repayment() {
     let [index,setindex] = useState(0);
     const { isLoading, setLoader } = useContext(Auth)
     let [task, settask] = useState(0)
-    let [tobecomplete, setcomplete] = useState(1)
+    let [tobecomplete, setcomplete] = useState(2)
     let [main, setmain] = useState([])
 
     useEffect(()=>{
@@ -32,17 +30,17 @@ function Repayment() {
           settask(1)
   
         })
-        // fetch('https://sage-admin-backend.vercel.app/api/loan/repayment/overdue')
-        // .then(e=>{
-        //   return e.json()
-        // })
-        // .then(e=>{
-        //   console.log(e[0])
+        fetch('https://sage-admin-backend.vercel.app/api/loan/app/employment')
+        .then(e=>{
+          return e.json()
+        })
+        .then(e=>{
+          console.log(e[0])
   
-        //   setmain((p)=> [...p,e])
-        //   settask(2)
+          setmain((p)=> [...p,e])
+          settask(2)
   
-        // })
+        })
         // fetch('https://sage-admin-backend.vercel.app/api/loan/repayment/overdue')
         // .then(e=>{
         //   return e.json()
@@ -167,7 +165,7 @@ function Repayment() {
     <OngoingActivity /> : 
     index === 2 ? <PaidActivity /> : <ReminderActivity />} */}
     {index === 0 ? <AllActivity datatable={main[0]?.record}/> 
-    : index === 1 ? <Identity datatable={main[0]?.record}/>
+    : index === 1 ? <Identity datatable={main[1]?.record}/>
     : index === 2 ? <Employment datatable={main[0]?.record}/>
     : <Loan_Activity datatable={main[0]?.record}/>
     }
