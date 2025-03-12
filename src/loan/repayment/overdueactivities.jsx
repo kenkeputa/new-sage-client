@@ -5,11 +5,12 @@ let Activity = ({datatable})=>{
     let [option1, setoption1] = useState(false)
     let [option2, setoption2] = useState(false)
     let [menu, setmenu] = useState(null)
-    console.log(datatable)
   
     const tableRows = datatable
-    
-    
+  ?.filter(record => new Date(record.expected_payment_date) < new Date())
+  ?.map((e) => e)
+      console.log(tableRows)
+
     
     
     const filteroptions = [
