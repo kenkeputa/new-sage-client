@@ -1,7 +1,9 @@
 import React,{ useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import AllActivity from './allactivities.jsx';
-
+import Identity from './identityactivities.jsx'
+import Employment from './employment_activities.jsx'
+import Loan_Activity from './loan_activities.jsx'
 // import OngoingActivity from './ongoingactivities.jsx';
 // import PaidActivity from './paidactivities.jsx';
 // import ReminderActivity from './reminderactivities.jsx';
@@ -113,7 +115,11 @@ function Repayment() {
     index === 1 ?
     <OngoingActivity /> : 
     index === 2 ? <PaidActivity /> : <ReminderActivity />} */}
-    {index === 0 ? <AllActivity /> : ""}
+    {index === 0 ? <AllActivity /> 
+    : index === 1 ? <Identity />
+    : index === 2 ? <Employment />
+    : <Loan_Activity />
+    }
     </div>);
 }
 
