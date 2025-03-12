@@ -8,6 +8,7 @@ import Loan_Activity from './loan_activities.jsx'
 // import OngoingActivity from './ongoingactivities.jsx';
 // import PaidActivity from './paidactivities.jsx';
 // import ReminderActivity from './reminderactivities.jsx';
+import { Auth } from "../../App.jsx"
 
 
 function Repayment() {
