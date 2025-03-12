@@ -1,62 +1,16 @@
 import { useState } from 'react';
 
-let Activity = ()=>{
+let Activity = ({datatable})=>{
     let [option, setoption] = useState(false)
     let [option1, setoption1] = useState(false)
     let [option2, setoption2] = useState(false)
     let [menu, setmenu] = useState(null)
   
   
-    const tableRows = [
-        {
-          "customer": "Steven Abomasa",
-          "loan_id": "BNPL-123",
-          "loan_amount": "₦150,000",
-          "due_date": "10/01/2025"
-        },
-        {
-          "customer": "Adebayo Tomiwa",
-          "loan_id": "BNPL-123",
-          "loan_amount": "₦150,000",
-          "due_date": "08/01/2025"
-        },
-        {
-          "customer": "Patrick Erabor",
-          "loan_id": "BNPL-123",
-          "loan_amount": "₦150,000",
-          "due_date": "07/01/2025"
-        },
-        {
-          "customer": "Sunday Alexander",
-          "loan_id": "BNPL-123",
-          "loan_amount": "₦150,000",
-          "due_date": "06/01/2025"
-        },
-        {
-          "customer": "Timothy Banjoko",
-          "loan_id": "BNPL-123",
-          "loan_amount": "₦150,000",
-          "due_date": "05/01/2025"
-        },
-        {
-          "customer": "Ashley Cole",
-          "loan_id": "BNPL-123",
-          "loan_amount": "₦150,000",
-          "due_date": "04/01/2025"
-        },
-        {
-          "customer": "Susan Suzy",
-          "loan_id": "BNPL-123",
-          "loan_amount": "₦150,000",
-          "due_date": "03/01/2025"
-        },
-        {
-          "customer": "Damilola Oluwatemilola",
-          "loan_id": "BNPL-123",
-          "loan_amount": "₦150,000",
-          "due_date": "01/01/2025"
-        }
-      ]
+    const tableRows = datatable
+    ?.filter(record => record.offset_amount !== 0)
+  ?.map((e) => e)
+      console.log(tableRows)
       
       
     
@@ -231,7 +185,7 @@ let Activity = ()=>{
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.customer}
+                {row.first_name + " " + row.last_name}
                 </div>
               </div>
             </div>
@@ -259,7 +213,7 @@ let Activity = ()=>{
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.loan_id}
+                  {row.id}
                 </div>
               </div>
             </div>
@@ -286,7 +240,7 @@ let Activity = ()=>{
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.loan_amount}
+                  {row.amount}
                 </div>
               </div>
             </div>
@@ -320,7 +274,7 @@ let Activity = ()=>{
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.due_date}
+                {new Date(row.expected_payment_date).toISOString().split('T')[0].split('-').reverse().join('/')}
                 </div>
               </div>
             </div>

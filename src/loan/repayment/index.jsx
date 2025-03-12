@@ -162,10 +162,10 @@ function Repayment() {
         )}
     </div>
     {index === 0 ?
-    <OverDueActivity datatable={main[0]?.record}/> : 
+    <OverDueActivity datatable={main[0]?.record} /> : 
     index === 1 ?
-    <OngoingActivity /> : 
-    index === 2 ? <PaidActivity /> : <ReminderActivity />}
+    <OngoingActivity datatable={main[0]?.record} /> : 
+    index === 2 ? <PaidActivity datatable={main[0]?.record} /> : <ReminderActivity />}
 
     </div>);
 }
