@@ -341,7 +341,7 @@ const Activity = ({datatable}) => {
                       row.status === "Verified" ? "w-[49px]" : "w-auto"
                     }`}
                   >
-                    {row.action}
+                    view
                   </button>
                 </div>
               </div>
