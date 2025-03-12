@@ -1,4 +1,5 @@
-import React,{ useState } from 'react'
+import { useState, useContext, useEffect  } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import AllActivity from './allactivities.jsx';
 import Identity from './identityactivities.jsx'
@@ -13,6 +14,55 @@ function Repayment() {
     let navigate = useNavigate();
     let [nav, setnav] = useState(['All', 'Identity Verification', 'Employment Verification', 'Loan Approval']);
     let [index,setindex] = useState(0);
+    const { isLoading, setLoader } = useContext(Auth)
+    let [task, settask] = useState(0)
+    let [tobecomplete, setcomplete] = useState(1)
+    let [main, setmain] = useState([])
+
+    useEffect(()=>{
+        fetch('https://sage-admin-backend.vercel.app/api/loan/app/all')
+        .then(e=>{
+          return e.json()
+        })
+        .then(e=>{
+          console.log(e)
+  
+          setmain((p)=> [...p,e])
+          settask(1)
+  
+        })
+        // fetch('https://sage-admin-backend.vercel.app/api/loan/repayment/overdue')
+        // .then(e=>{
+        //   return e.json()
+        // })
+        // .then(e=>{
+        //   console.log(e[0])
+  
+        //   setmain((p)=> [...p,e])
+        //   settask(2)
+  
+        // })
+        // fetch('https://sage-admin-backend.vercel.app/api/loan/repayment/overdue')
+        // .then(e=>{
+        //   return e.json()
+        // })
+        // .then(e=>{
+        //   console.log(e[0])
+  
+        //   setmain((p)=> [...p,e])
+        //   settask(3)
+  
+        // })
+      },[])
+      useEffect(()=>{
+        if(task === tobecomplete){
+          setLoader(false)
+        }else{
+          setLoader(true)
+  
+        }
+      },[task, tobecomplete])
+
     return ( <div className='w-[85%] h-full px-[2%] overflow-scroll'>
         
         <div className="mt-[2rem] flex items-center justify-between mb-4">
@@ -115,10 +165,10 @@ function Repayment() {
     index === 1 ?
     <OngoingActivity /> : 
     index === 2 ? <PaidActivity /> : <ReminderActivity />} */}
-    {index === 0 ? <AllActivity /> 
-    : index === 1 ? <Identity />
-    : index === 2 ? <Employment />
-    : <Loan_Activity />
+    {index === 0 ? <AllActivity datatable={main?.record}/> 
+    : index === 1 ? <Identity datatable={main?.record}/>
+    : index === 2 ? <Employment datatable={main?.record}/>
+    : <Loan_Activity datatable={main?.record}/>
     }
     </div>);
 }

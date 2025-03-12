@@ -2,71 +2,14 @@
 
 import { useState } from "react"
 
-const Activity = () => {
+const Activity = ({datatable}) => {
   const [option, setoption] = useState(false)
   const [option1, setoption1] = useState(false)
   const [option2, setoption2] = useState(false)
   const [menu, setmenu] = useState(null)
 
   // Update the tableRows array to match the new data
-  const tableRows = [
-    {
-      customer_name: "Steven Abomasa",
-      salary_claimed: "₦350,000",
-      verified_salary: "N/A",
-      status: "Pending",
-      action: "View",
-    },
-    {
-      customer_name: "Adebayo Tomiwa",
-      salary_claimed: "₦500,000",
-      verified_salary: "₦500,000",
-      status: "Pending",
-      action: "View",
-    },
-    {
-      customer_name: "Patrick Erabor",
-      salary_claimed: "₦640,000",
-      verified_salary: "₦450,000",
-      status: "Pending",
-      action: "View",
-    },
-    {
-      customer_name: "Sunday Alexander",
-      salary_claimed: "₦392,000",
-      verified_salary: "₦392,000",
-      status: "Pending",
-      action: "View",
-    },
-    {
-      customer_name: "Timothy Banjoko",
-      salary_claimed: "₦760,000",
-      verified_salary: "₦250,000",
-      status: "Pending",
-      action: "View",
-    },
-    {
-      customer_name: "Ashley Cole",
-      salary_claimed: "₦565,000",
-      verified_salary: "N/A",
-      status: "Pending",
-      action: "View",
-    },
-    {
-      customer_name: "Susan Suzy",
-      salary_claimed: "₦200,000",
-      verified_salary: "₦200,000",
-      status: "Verified",
-      action: "View",
-    },
-    {
-      customer_name: "Damilola Oluwatemilola",
-      salary_claimed: "₦120,000",
-      verified_salary: "₦85,000",
-      status: "Verified",
-      action: "View",
-    },
-  ]
+  const tableRows = datatable
 
   const filteroptions = [
     { label: "All" },

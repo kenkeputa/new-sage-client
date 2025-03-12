@@ -2,71 +2,14 @@
 
 import { useState } from "react"
 
-const Activity = () => {
+const Activity = ({datatable}) => {
   const [option, setoption] = useState(false)
   const [option1, setoption1] = useState(false)
   const [option2, setoption2] = useState(false)
   const [menu, setmenu] = useState(null)
 
   // Update the tableRows array to match the new data
-  const tableRows = [
-    {
-      customer_id: "CUST352",
-      customer_name: "Steven Abomasa",
-      application_date: "10/01/2025",
-      status: "Pending",
-      action: "Verify Identity",
-    },
-    {
-      customer_id: "CUST352",
-      customer_name: "Adebayo Tomiwa",
-      application_date: "08/01/2025",
-      status: "Pending",
-      action: "Verify Identity",
-    },
-    {
-      customer_id: "CUST352",
-      customer_name: "Patrick Erabor",
-      application_date: "07/01/2025",
-      status: "Pending",
-      action: "Verify Identity",
-    },
-    {
-      customer_id: "CUST352",
-      customer_name: "Sunday Alexander",
-      application_date: "06/01/2025",
-      status: "Verified",
-      action: "View",
-    },
-    {
-      customer_id: "CUST352",
-      customer_name: "Timothy Banjoko",
-      application_date: "05/01/2025",
-      status: "Verified",
-      action: "View",
-    },
-    {
-      customer_id: "CUST352",
-      customer_name: "Ashley Cole",
-      application_date: "04/01/2025",
-      status: "Pending",
-      action: "Verify Identity",
-    },
-    {
-      customer_id: "CUST352",
-      customer_name: "Susan Suzy",
-      application_date: "03/01/2025",
-      status: "Pending",
-      action: "Verify Identity",
-    },
-    {
-      customer_id: "CUST352",
-      customer_name: "Damilola Oluwatemilola",
-      application_date: "01/01/2025",
-      status: "Pending",
-      action: "Verify Identity",
-    },
-  ]
+  const tableRows = datatable
 
   const filteroptions = [
     { label: "All" },
