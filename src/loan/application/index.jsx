@@ -52,7 +52,7 @@ function Repayment() {
         //   settask(3)
   
         // })
-      },[])
+      },[main])
       useEffect(()=>{
         if(task === tobecomplete){
           setLoader(false)
