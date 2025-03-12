@@ -1,13 +1,69 @@
-import React,{ useState } from 'react'
+import { useState, useContext, useEffect  } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import OverDueActivity from './overdueactivities.jsx';
 import OngoingActivity from './ongoingactivities.jsx';
 import PaidActivity from './paidactivities.jsx';
 import ReminderActivity from './reminderactivities.jsx';
+import { Auth } from "../App.jsx"
+
+
 function Repayment() {
     let navigate = useNavigate();
     let [nav, setnav] = useState(['Overdue Loans', 'Ongoing Loans', 'Paid Loans', 'Reminder Notification']);
     let [index,setindex] = useState(0);
+    const { isLoading, setLoader } = useContext(Auth)
+    let [task, settask] = useState(0)
+    let [tobecomplete, setcomplete] = useState(1)
+    let [main, setmain] = useState([])
+
+
+
+    useEffect(()=>{
+        fetch('https://sage-admin-backend.vercel.app/api/loan/repayment/overdue')
+        .then(e=>{
+          return e.json()
+        })
+        .then(e=>{
+          console.log(e[0])
+  
+          setmain((p)=> [...p,e])
+          settask(1)
+  
+        })
+        // fetch('https://sage-admin-backend.vercel.app/api/loan/repayment/overdue')
+        // .then(e=>{
+        //   return e.json()
+        // })
+        // .then(e=>{
+        //   console.log(e[0])
+  
+        //   setmain((p)=> [...p,e])
+        //   settask(2)
+  
+        // })
+        // fetch('https://sage-admin-backend.vercel.app/api/loan/repayment/overdue')
+        // .then(e=>{
+        //   return e.json()
+        // })
+        // .then(e=>{
+        //   console.log(e[0])
+  
+        //   setmain((p)=> [...p,e])
+        //   settask(3)
+  
+        // })
+      },[])
+      useEffect(()=>{
+        if(task === tobecomplete){
+          setLoader(false)
+        }else{
+          setLoader(true)
+  
+        }
+      },[task, tobecomplete])
+
+    
     return ( <div className='w-[85%] h-full px-[2%] overflow-scroll'>
         
         <div className="mt-[2rem] flex items-center justify-between mb-4">
@@ -40,7 +96,7 @@ function Repayment() {
                         <span className="text-[16px] font-[500]"></span>
                     </div>
                     <span className="text-[12px] mt-1 font-[600]">Total Active Loans</span>
-                    <span className="text-[26px] font-[700]">2,350</span>
+                    <span className="text-[26px] font-[700]">0</span>
                     {/* <div className="h-[24px] w-[83px] bg-[#1FC16B1A] border-[#ADF2CD] border px-[8px] gap-[4px] flex items-center rounded-md">
                         
                         <svg width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -60,7 +116,7 @@ function Repayment() {
                         <span className="text-[16px] mt-1 font-[500]"></span>
                     </div>
                     <span className="text-[12px] mt-1 font-[600]">Total Amount Repaid</span>
-                    <span className="text-[26px] font-[700]">N40,800,000</span>
+                    <span className="text-[26px] font-[700]">0</span>
                     
                 </div>
                 <div className="flex flex-col h-[120px] w-[267.5px] bg-[#FFDB431A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
@@ -75,7 +131,7 @@ function Repayment() {
                         <span className="text-[16px] font-[500]"></span>
                     </div>
                     <span className="text-[12px] mt-1 font-[600]">Total Overdue Loans</span>
-                    <span className="text-[26px] font-[700]">N10,000</span>
+                    <span className="text-[26px] font-[700]">0</span>
                     
                 </div>
                 <div className="flex flex-col h-[120px] w-[267.5px] bg-[#FB37481A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
@@ -90,7 +146,7 @@ function Repayment() {
                         <span className="text-[16px] font-[500]"></span>
                     </div>
                     <span className="text-[12px] font-[600] mt-1">Defaulters Count</span>
-                    <span className="text-[26px] font-[700]">90</span>
+                    <span className="text-[26px] font-[700]">0</span>
                     
                 
                 
@@ -106,7 +162,7 @@ function Repayment() {
         )}
     </div>
     {index === 0 ?
-    <OverDueActivity /> : 
+    <OverDueActivity datatable={main?.record}/> : 
     index === 1 ?
     <OngoingActivity /> : 
     index === 2 ? <PaidActivity /> : <ReminderActivity />}

@@ -1,86 +1,13 @@
 import { useState } from 'react';
 
-let Activity = ()=>{
+let Activity = ({datatable})=>{
     let [option, setoption] = useState(false)
     let [option1, setoption1] = useState(false)
     let [option2, setoption2] = useState(false)
     let [menu, setmenu] = useState(null)
   
   
-    const tableRows = [
-      {
-        "customer": "Steven Abomasa",
-        "loan_id": "BNPL-123",
-        "loan_amount": "₦1,200,000",
-        "amount_paid": "₦1,200,000",
-        "amount_due": "₦1,200,000",
-        "due_date": "10/01/2025"
-      },
-      {
-        "customer": "Adebayo Tomiwa",
-        "loan_id": "BNPL-123",
-        "loan_amount": "₦300,000",
-        "amount_paid": "₦300,000",
-        "amount_due": "₦300,000",
-        "due_date": "08/01/2025"
-      },
-      {
-        "customer": "Patrick Erabor",
-        "loan_id": "BNPL-123",
-        "loan_amount": "₦2,500,000",
-        "amount_paid": "₦2,500,000",
-        "amount_due": "₦2,500,000",
-        "due_date": "07/01/2025"
-      },
-      {
-        "customer": "Sunday Alexander",
-        "loan_id": "BNPL-123",
-        "loan_amount": "₦1,200,000",
-        "amount_paid": "₦1,200,000",
-        "amount_due": "₦1,200,000",
-        "due_date": "06/01/2025"
-      },
-      {
-        "customer": "Timothy Banjoko",
-        "loan_id": "BNPL-123",
-        "loan_amount": "₦1,200,000",
-        "amount_paid": "₦1,200,000",
-        "amount_due": "₦1,200,000",
-        "due_date": "05/01/2025"
-      },
-      {
-        "customer": "Ashley Cole",
-        "loan_id": "BNPL-123",
-        "loan_amount": "₦1,200,000",
-        "amount_paid": "₦1,200,000",
-        "amount_due": "₦1,200,000",
-        "due_date": "04/01/2025"
-      },
-      {
-        "customer": "Susan Suzy",
-        "loan_id": "BNPL-123",
-        "loan_amount": "₦1,200,000",
-        "amount_paid": "₦1,200,000",
-        "amount_due": "₦1,200,000",
-        "due_date": "03/01/2025"
-      },
-      {
-        "customer": "Damilola Oluwatemilola",
-        "loan_id": "BNPL-123",
-        "loan_amount": "₦1,200,000",
-        "amount_paid": "₦1,200,000",
-        "amount_due": "₦1,200,000",
-        "due_date": "01/01/2025"
-      },
-      {
-        "customer": "Hidden",
-        "loan_id": "BNPL-123",
-        "loan_amount": "₦50,000",
-        "amount_paid": "₦100,000",
-        "amount_due": "Hidden",
-        "due_date": "Hidden"
-      }
-    ]
+    const tableRows = datatable
     
     
     
@@ -246,7 +173,7 @@ let Activity = ()=>{
             </div>
             </div>
           </div>
-          {tableRows.map((row, idx) => (
+          {tableRows?.map((row, idx) => (
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hiddened"
@@ -275,7 +202,7 @@ let Activity = ()=>{
             </div>
             </div>
           </div>
-          {tableRows.map((row, idx) => (
+          {tableRows?.map((row, idx) => (
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
@@ -301,7 +228,7 @@ let Activity = ()=>{
             </div>
             </div>
           </div>
-          {tableRows.map((row, idx) => (
+          {tableRows?.map((row, idx) => (
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
@@ -332,7 +259,7 @@ let Activity = ()=>{
             </div>
             </div>
           </div>
-          {tableRows.map((row, idx) => (
+          {tableRows?.map((row, idx) => (
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
@@ -358,7 +285,7 @@ let Activity = ()=>{
             </div>
             </div>
           </div>
-          {tableRows.map((row, idx) => (
+          {tableRows?.map((row, idx) => (
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
@@ -385,7 +312,7 @@ let Activity = ()=>{
             </div>
             </div>
           </div>
-          {tableRows.map((row, idx) => (
+          {tableRows?.map((row, idx) => (
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
@@ -449,7 +376,7 @@ let Activity = ()=>{
             </div>
             </div>
           </div>
-          {tableRows.map((row, idx) => (
+          {tableRows?.map((row, idx) => (
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
