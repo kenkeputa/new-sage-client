@@ -181,7 +181,7 @@ let Activity = ({datatable})=>{
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.customer}
+                  {row.first_name + " " + row.last_name}
                 </div>
               </div>
             </div>
@@ -235,7 +235,7 @@ let Activity = ({datatable})=>{
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.loan_amount}
+                  {row.amount}
                 </div>
               </div>
             </div>
@@ -266,7 +266,7 @@ let Activity = ({datatable})=>{
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.amount_paid}
+                  {row.offset_amount}
                 </div>
               </div>
             </div>
@@ -292,7 +292,7 @@ let Activity = ({datatable})=>{
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.amount_due}
+                  {row.credit_per_period}
                 </div>
               </div>
             </div>
@@ -319,7 +319,7 @@ let Activity = ({datatable})=>{
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.due_date}
+                  {row.expected_payment_date}
                 </div>
               </div>
             </div>
