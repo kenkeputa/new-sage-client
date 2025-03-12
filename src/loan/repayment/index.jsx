@@ -5,7 +5,7 @@ import OverDueActivity from './overdueactivities.jsx';
 import OngoingActivity from './ongoingactivities.jsx';
 import PaidActivity from './paidactivities.jsx';
 import ReminderActivity from './reminderactivities.jsx';
-import { Auth } from "../App.jsx"
+import { Auth } from "../../App.jsx"
 
 
 function Repayment() {
