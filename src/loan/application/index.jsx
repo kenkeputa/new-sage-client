@@ -17,7 +17,7 @@ function Repayment() {
     let [task, settask] = useState(0)
     let [tobecomplete, setcomplete] = useState(2)
     let [main, setmain] = useState([])
-
+    console.log(main)
     useEffect(()=>{
         fetch('https://sage-admin-backend.vercel.app/api/loan/app/all')
         .then(e=>{
