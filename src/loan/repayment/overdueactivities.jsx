@@ -5,7 +5,7 @@ let Activity = ({datatable})=>{
     let [option1, setoption1] = useState(false)
     let [option2, setoption2] = useState(false)
     let [menu, setmenu] = useState(null)
-  
+    console.log(datatable)
   
     const tableRows = datatable
     
@@ -209,7 +209,7 @@ let Activity = ({datatable})=>{
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.loan_id}
+                  {row.id}
                 </div>
               </div>
             </div>

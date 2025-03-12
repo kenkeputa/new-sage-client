@@ -25,7 +25,7 @@ function Repayment() {
           return e.json()
         })
         .then(e=>{
-          console.log(e[0])
+          console.log(e)
   
           setmain((p)=> [...p,e])
           settask(1)
@@ -162,7 +162,7 @@ function Repayment() {
         )}
     </div>
     {index === 0 ?
-    <OverDueActivity datatable={main?.record}/> : 
+    <OverDueActivity datatable={main[0]?.record}/> : 
     index === 1 ?
     <OngoingActivity /> : 
     index === 2 ? <PaidActivity /> : <ReminderActivity />}
