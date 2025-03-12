@@ -168,7 +168,7 @@ const Activity = ({datatable}) => {
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.customer_name}
+                {row.first_name + " " + row.last_name}
                 </div>
               </div>
             </div>
@@ -200,43 +200,8 @@ const Activity = ({datatable}) => {
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.salary_claimed}
+                  {row.monthly_income}
                 </div>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
               </div>
             </div>
@@ -270,7 +235,7 @@ const Activity = ({datatable}) => {
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.verified_salary}
+                  {row.monthly_income}
                 </div>
               </div>
             </div>
@@ -306,14 +271,14 @@ const Activity = ({datatable}) => {
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div
                   className={`px-2 rounded-md border text-sm font-medium leading-[21px] ${
-                    row.status === "Pending"
+                    row.employment_status === "Pending"
                       ? "bg-[#ffdb43]/10 border-[#ffeda1] text-[#ae8c00]"
-                      : row.status === "Verified"
+                      : row.employment_status === "Verified"
                         ? "bg-[#1fc16b]/10 border-[#adf2cd] text-[#16884b]"
                         : ""
                   }`}
                 >
-                  {row.status}
+                  {row.employment_status}
                 </div>
               </div>
             </div>
