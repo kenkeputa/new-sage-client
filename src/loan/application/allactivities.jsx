@@ -7,8 +7,9 @@ let Activity = ({datatable})=>{
     let [menu, setmenu] = useState(null)
   
   
-    const tableRows = datatable
-      
+    const tableRows = datatable;
+
+      console.log(tableRows)
     const filteroptions = [
       { label: "All" },
       { label: "Communications" },
