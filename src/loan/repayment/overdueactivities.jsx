@@ -319,7 +319,7 @@ let Activity = ({datatable})=>{
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.expected_payment_date}
+                  {new Date(row.expected_payment_date).toISOString().split('T')[0].split('-').reverse().join('/')}
                 </div>
               </div>
             </div>
