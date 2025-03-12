@@ -1,3 +1,4 @@
+"use client"
 
 import { useState } from "react"
 
@@ -156,7 +157,7 @@ const Activity = ({datatable}) => {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span className="whitespace-nowrap">Customer Name</span>
+                <span className="whitespace-nowrap">Customer ID</span>
               </div>
             </div>
           </div>
@@ -167,7 +168,7 @@ const Activity = ({datatable}) => {
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.customer_name}
+                  {row.customer_id}
                 </div>
               </div>
             </div>
@@ -188,7 +189,7 @@ const Activity = ({datatable}) => {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span className="whitespace-nowrap">Verified Salary</span>
+                <span className="whitespace-nowrap">Customer Name</span>
               </div>
             </div>
           </div>
@@ -199,7 +200,7 @@ const Activity = ({datatable}) => {
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.verified_salary}
+                  {row.customer_name}
                 </div>
               </div>
             </div>
@@ -220,7 +221,7 @@ const Activity = ({datatable}) => {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span className="whitespace-nowrap">Salary Claimed</span>
+                <span className="whitespace-nowrap">Application Date</span>
               </div>
             </div>
           </div>
@@ -231,7 +232,7 @@ const Activity = ({datatable}) => {
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.salary_claimed}
+                  {row.application_date}
                 </div>
               </div>
             </div>
