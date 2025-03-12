@@ -27,7 +27,7 @@ function Repayment() {
         .then(e=>{
           console.log(e)
   
-          setmain((p)=> [...p,e])
+          setmain([...main,e])
           settask(1)
   
         })
