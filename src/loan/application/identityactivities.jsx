@@ -168,7 +168,7 @@ const Activity = ({datatable}) => {
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.customer_id}
+                {row.id}
                 </div>
               </div>
             </div>
@@ -200,7 +200,7 @@ const Activity = ({datatable}) => {
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.customer_name}
+                {row.first_name + " " + row.last_name}
                 </div>
               </div>
             </div>
@@ -232,7 +232,7 @@ const Activity = ({datatable}) => {
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.application_date}
+                {new Date(row?.created_at).toISOString().split('T')[0].split('-').reverse().join('/')}
                 </div>
               </div>
             </div>
@@ -265,9 +265,9 @@ const Activity = ({datatable}) => {
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div
                   className={`px-2 rounded-md border text-sm font-medium leading-[21px] ${
-                    row.status === "Pending"
+                    row.status === "pending"
                       ? "bg-[#ffdb43]/10 border-[#ffeda1] text-[#ae8c00]"
-                      : row.status === "Verified"
+                      : row.status === "approved"
                         ? "bg-[#1fc16b]/10 border-[#adf2cd] text-[#16884b]"
                         : ""
                   }`}
@@ -300,7 +300,7 @@ const Activity = ({datatable}) => {
                       row.status === "Verified" ? "w-[49px]" : "w-auto"
                     }`}
                   >
-                    view
+                    View Identity
                   </button>
                 </div>
               </div>

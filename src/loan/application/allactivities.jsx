@@ -281,9 +281,9 @@ let Activity = ({datatable})=>{
                       ? "bg-[#ffdb43]/10 border-[#ffeda1] text-[#ae8c00]"
                       : row.status === "rejected"
                       ? "bg-[#fb3748]/10 border-[#fdafb6] text-[#dd0417]"
-                      : row.status === "approved"
+                      : row.status === "approvedd"
                       ? "bg-[#b5e45e]/10 border-[#e1f4bf] text-[#5f8717]"
-                      : row.status === "In Stock"
+                      : row.status === "approved"
                       ? "bg-[#1fc16b]/10 border-[#adf2cd] text-[#16884b]"
                       : ""
                   }`}

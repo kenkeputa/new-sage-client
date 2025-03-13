@@ -16,7 +16,7 @@ function Repayment() {
   const [task, settask] = useState(0)
   const [tobecomplete, setcomplete] = useState(2)
   const [main, setmain] = useState([])
-
+// console.log(main)
   useEffect(() => {
     // Reset main state to avoid duplication
     setmain([])
