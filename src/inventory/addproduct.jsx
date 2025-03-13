@@ -58,7 +58,7 @@ export default function AddProductForm() {
       </div>
 
       <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-sm border border-gray-100">
-        <div className="bg-gray-50 p-4 rounded-t-lg border-b border-gray-200">
+        <div className="bg-[#F6F6F6] p-4 rounded-t-lg border-b border-gray-200">
           <h2 className="text-lg font-medium text-gray-700">Supplier Information</h2>
         </div>
 
@@ -110,7 +110,7 @@ export default function AddProductForm() {
                 className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white"
                 required
               >
-                <option value="">Select</option>
+                <option value="">Select </option>
                 <option value="electronics">Electronics</option>
                 <option value="clothing">Clothing</option>
                 <option value="food">Food</option>
