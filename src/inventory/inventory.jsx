@@ -79,7 +79,7 @@ function Customer() {
         </div>
     </div>
             <button className='bg-[rgba(114,23,184,1)] text-white flex justify-center items-center gap-1 rounded-[8px] h-[37px] py-[16px] px-[12px] mt-2 cursor-pointer' onClick={()=> {
-                navigate('/customers/new')
+                navigate('/inventory/add')
             }}>
                 <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M6.99935 1.66675V13.3334M1.16602 7.50008H12.8327" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
