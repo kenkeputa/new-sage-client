@@ -1,79 +1,13 @@
 import { useState } from 'react';
 
-let Activity = ()=>{
+let Activity = ({datatable})=>{
     let [option, setoption] = useState(false)
     let [option1, setoption1] = useState(false)
     let [option2, setoption2] = useState(false)
     let [menu, setmenu] = useState(null)
   
   
-    const tableRows = [
-      {
-        "supplier_name": "Barone LLC.",
-        "supplier_id": "SU12370",
-        "category": "Appliances",
-        "total_orders_fulfilled": 900,
-        "date_joined": "10/01/2025",
-        "status": "Active"
-      },
-      {
-        "supplier_name": "Binford Ltd.",
-        "supplier_id": "SU11009",
-        "category": "Shoes",
-        "total_orders_fulfilled": 100,
-        "date_joined": "08/01/2025",
-        "status": "Active"
-      },
-      {
-        "supplier_name": "Acme Co.",
-        "supplier_id": "SU90121",
-        "category": "Electronics",
-        "total_orders_fulfilled": 900,
-        "date_joined": "06/01/2025",
-        "status": "Active"
-      },
-      {
-        "supplier_name": "Acme Co.",
-        "supplier_id": "SU990128",
-        "category": "Phone",
-        "total_orders_fulfilled": 500,
-        "date_joined": "01/01/2025",
-        "status": "Active"
-      },
-      {
-        "supplier_name": "Acme Co.",
-        "supplier_id": "SU77101",
-        "category": "Fashion",
-        "total_orders_fulfilled": 300,
-        "date_joined": "04/01/2025",
-        "status": "Active"
-      },
-      {
-        "supplier_name": "Acme Co.",
-        "supplier_id": "SU11208",
-        "category": "Accessories",
-        "total_orders_fulfilled": 700,
-        "date_joined": "04/01/2025",
-        "status": "Active"
-      },
-      {
-        "supplier_name": "Acme Co.",
-        "supplier_id": "SU88451",
-        "category": "Jewelry",
-        "total_orders_fulfilled": 900,
-        "date_joined": "07/01/2025",
-        "status": "Active"
-      },
-      {
-        "supplier_name": "Acme Co.",
-        "supplier_id": "SU66010",
-        "category": "Fashion",
-        "total_orders_fulfilled": 800,
-        "date_joined": "01/01/2025",
-        "status": "Active"
-      }
-    ]
-    
+    const tableRows = datatable;
     
     
     
@@ -247,7 +181,7 @@ let Activity = ()=>{
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.supplier_name}
+                  {row.name}
                 </div>
               </div>
             </div>
@@ -275,7 +209,7 @@ let Activity = ()=>{
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.supplier_id}
+                  {row.id}
                 </div>
               </div>
             </div>

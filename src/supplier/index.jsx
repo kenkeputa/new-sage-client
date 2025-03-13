@@ -4,10 +4,43 @@ import BasicActivity from './basicactivities.jsx';
 import ProductSPActivity from './productsupplieractivities.jsx';
 import Paymenthistory from './paymenthistory.jsx';
 import ReminderActivity from './reminderactivities.jsx';
+import { Auth } from "../App.jsx"
+
+
 function Supplier() {
     let navigate = useNavigate();
     let [nav, setnav] = useState(['Basic Information', 'Product Supplied', 'Payment History', 'Document & Contracts ']);
     let [index,setindex] = useState(0);
+    const { isLoading, setLoader } = useContext(Auth)
+    let [task, settask] = useState(0)
+    let [tobecomplete, setcomplete] = useState(1)
+
+    const [tableRows, setrow] = useState({});
+
+    useEffect(()=>{
+        fetch('https://sage-admin-backend.vercel.app/api/supplier')
+        .then(e=>{
+          return e.json()
+        })
+        .then(e=>{
+          console.log(e[0])
+  
+          setrow(e)
+          settask(1)
+  
+        })
+      },[])
+      useEffect(()=>{
+        if(task === tobecomplete){
+          setLoader(false)
+        }else{
+          setLoader(true)
+  
+        }
+      },[task, tobecomplete])
+
+
+    
     return ( <div className='w-[85%] h-full px-[2%] overflow-scroll'>
         
         <div className="mt-[2rem] flex items-center justify-between mb-4">
@@ -109,7 +142,7 @@ function Supplier() {
         )} */}
     {/* </div> */}
     {index === 0 ?
-    <BasicActivity /> : 
+    <BasicActivity  datatable={tableRows?.record}/> : 
     index === 1 ?
     <ProductSPActivity /> : 
     index === 2 ? <Paymenthistory /> : <ReminderActivity />}
