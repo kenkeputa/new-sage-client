@@ -58,7 +58,7 @@ export default function AddProductForm() {
       </div>
 
       <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-sm border border-gray-100">
-        <div className="bg-[#F6F6F6] p-4 rounded-t-lg border-b border-gray-200">
+        <div className="bg-gray-50 p-4 rounded-t-lg border-b border-gray-200">
           <h2 className="text-lg font-medium text-gray-700">Supplier Information</h2>
         </div>
 
@@ -102,20 +102,38 @@ export default function AddProductForm() {
               <label htmlFor="productCategory" className="block text-sm font-medium text-gray-700 mb-1">
                 Product Category <span className="text-red-500">*</span>
               </label>
-              <select
-                id="productCategory"
-                name="productCategory"
-                value={formData.productCategory}
-                onChange={handleInputChange}
-                className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white"
-                required
-              >
-                <option value="">Select </option>
-                <option value="electronics">Electronics</option>
-                <option value="clothing">Clothing</option>
-                <option value="food">Food</option>
-                <option value="furniture">Furniture</option>
-              </select>
+              <div className="relative">
+                <select
+                  id="productCategory"
+                  name="productCategory"
+                  value={formData.productCategory}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-full focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white pr-10 text-gray-500"
+                  required
+                >
+                  <option value="">Select</option>
+                  <option value="electronics">Electronics</option>
+                  <option value="clothing">Clothing</option>
+                  <option value="food">Food</option>
+                  <option value="furniture">Furniture</option>
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4">
+                  <svg
+                    style={{ transform: "rotate(-90deg)", transition: "0.3s all" }}
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="19"
+                    height="19"
+                    className="size-5 text-[#8C8C8C]"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+                    />
+                  </svg>
+                </div>
+              </div>
             </div>
 
             {/* Brand Name */}
@@ -174,19 +192,37 @@ export default function AddProductForm() {
               <label htmlFor="supplierName" className="block text-sm font-medium text-gray-700 mb-1">
                 Supplier Name <span className="text-red-500">*</span>
               </label>
-              <select
-                id="supplierName"
-                name="supplierName"
-                value={formData.supplierName}
-                onChange={handleInputChange}
-                className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white"
-                required
-              >
-                <option value="">Select supplier name</option>
-                <option value="supplier1">Supplier 1</option>
-                <option value="supplier2">Supplier 2</option>
-                <option value="supplier3">Supplier 3</option>
-              </select>
+              <div className="relative">
+                <select
+                  id="supplierName"
+                  name="supplierName"
+                  value={formData.supplierName}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-full focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white pr-10 text-gray-500"
+                  required
+                >
+                  <option value="">Select supplier name</option>
+                  <option value="supplier1">Supplier 1</option>
+                  <option value="supplier2">Supplier 2</option>
+                  <option value="supplier3">Supplier 3</option>
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4">
+                  <svg
+                    style={{ transform: "rotate(-90deg)", transition: "0.3s all" }}
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="19"
+                    height="19"
+                    className="size-5 text-[#8C8C8C]"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+                    />
+                  </svg>
+                </div>
+              </div>
             </div>
           </div>
 
