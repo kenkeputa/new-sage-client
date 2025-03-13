@@ -153,7 +153,7 @@ export default function AddProductForm() {
       }
 
       // Send the data to the API
-      const response = await fetch("http://localhost:5000/api/product/add", {
+      const response = await fetch("https://sage-admin-backend.vercel.app/api/product/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
