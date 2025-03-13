@@ -1,26 +1,62 @@
-"use client"
 
-import { useState } from "react"
-import { ArrowLeft, Upload } from "lucide-react"
+import { useState, useEffect } from "react"
+import { ArrowLeft, Upload, CheckCircle, AlertCircle, Loader2 } from "lucide-react"
 
 export default function AddProductForm() {
   const [formData, setFormData] = useState({
-    productName: "",
+    name: "",
     productSKU: "",
-    productCategory: "",
+    category: "",
     brandName: "",
-    sellingPrice: "",
-    stockQuantity: "",
-    supplierName: "",
-    productDescription: "",
+    price: "",
+    quantityInStock: "",
+    dealerID: "",
+    description: "",
+    isTCPO: false,
   })
 
   const [productImages, setProductImages] = useState([null, null, null, null])
   const [imagePreviewUrls, setImagePreviewUrls] = useState(["", "", "", ""])
+  const [cloudinaryUrls, setCloudinaryUrls] = useState(["", "", "", ""])
+  const [suppliers, setSuppliers] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const [success, setSuccess] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [uploadingImages, setUploadingImages] = useState(false)
+
+  // Cloudinary configuration
+  const CLOUDINARY_UPLOAD_PRESET = "upload" // Your actual upload preset from Cloudinary
+  const CLOUDINARY_CLOUD_NAME = "dxjsljyas" // Your actual cloud name from Cloudinary
+  const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`
+
+  // Fetch suppliers on component mount
+  useEffect(() => {
+    const fetchSuppliers = async () => {
+      try {
+        const response = await fetch("https://sage-admin-backend.vercel.app/api/supplier/get")
+        if (!response.ok) {
+          throw new Error("Failed to fetch suppliers")
+        }
+        const data = await response.json()
+        if (data.record && Array.isArray(data.record)) {
+          setSuppliers(data.record)
+        }
+      } catch (error) {
+        console.error("Error fetching suppliers:", error)
+        setError("Failed to load suppliers. Please try again later.")
+      }
+    }
+
+    fetchSuppliers()
+  }, [])
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+    const { name, value, type, checked } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }))
   }
 
   const handleImageChange = (index, e) => {
@@ -33,14 +69,133 @@ export default function AddProductForm() {
 
       setProductImages(newImages)
       setImagePreviewUrls(newImageUrls)
+
+      // Reset the Cloudinary URL for this index since the image has changed
+      const newCloudinaryUrls = [...cloudinaryUrls]
+      newCloudinaryUrls[index] = ""
+      setCloudinaryUrls(newCloudinaryUrls)
     }
   }
 
-  const handleSubmit = (e) => {
+  // Upload a single image to Cloudinary
+  const uploadImageToCloudinary = async (file) => {
+    if (!file) return null
+
+    const formData = new FormData()
+    formData.append("file", file)
+    formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET)
+
+    try {
+      const response = await fetch(CLOUDINARY_UPLOAD_URL, {
+        method: "POST",
+        body: formData,
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to upload image to Cloudinary")
+      }
+
+      const data = await response.json()
+      return data.secure_url
+    } catch (error) {
+      console.error("Error uploading to Cloudinary:", error)
+      throw error
+    }
+  }
+
+  // Upload all images to Cloudinary
+  const uploadAllImagesToCloudinary = async () => {
+    setUploadingImages(true)
+    try {
+      const uploadPromises = productImages.map((image, index) => {
+        if (image && !cloudinaryUrls[index]) {
+          return uploadImageToCloudinary(image)
+        }
+        return cloudinaryUrls[index] || null
+      })
+
+      const urls = await Promise.all(uploadPromises)
+      setCloudinaryUrls(urls)
+      return urls.filter(Boolean) // Remove null values
+    } catch (error) {
+      console.error("Error uploading images:", error)
+      setError("Failed to upload images. Please try again.")
+      throw error
+    } finally {
+      setUploadingImages(false)
+    }
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log("Form Data:", formData)
-    console.log("Product Images:", productImages)
-    // Here you would typically send the data to your API
+    setIsSubmitting(true)
+    setError(null)
+    setSuccess(false)
+
+    try {
+      // First upload images to Cloudinary
+      const imageUrls = await uploadAllImagesToCloudinary()
+
+      if (!imageUrls || imageUrls.length === 0) {
+        throw new Error("At least one image is required")
+      }
+
+      // Create data object to send to backend
+      const productData = {
+        name: formData.name,
+        description: formData.description,
+        quantityInStock: formData.quantityInStock,
+        price: formData.price,
+        category: formData.category,
+        isTCPO: formData.isTCPO,
+        dealerID: formData.dealerID,
+        displayPhotos: imageUrls, // Send array of Cloudinary URLs
+      }
+
+      // Send the data to the API
+      const response = await fetch("https://sage-admin-backend.vercel.app/api/product/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(productData),
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.message || "Failed to add product")
+      }
+
+      const data = await response.json()
+      console.log("Product added successfully:", data)
+
+      // Reset form on success
+      setFormData({
+        name: "",
+        productSKU: "",
+        category: "",
+        brandName: "",
+        price: "",
+        quantityInStock: "",
+        dealerID: "",
+        description: "",
+        isTCPO: false,
+      })
+      setProductImages([null, null, null, null])
+      setImagePreviewUrls(["", "", "", ""])
+      setCloudinaryUrls(["", "", "", ""])
+      setSuccess(true)
+
+      // Clear success message after 5 seconds
+      setTimeout(() => {
+        setSuccess(false)
+      }, 5000)
+    } catch (error) {
+      console.error("Error adding product:", error)
+      setError(error.message || "Failed to add product. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleCancel = () => {
@@ -57,6 +212,20 @@ export default function AddProductForm() {
         <h1 className="text-2xl font-medium ml-2 text-gray-800">Add Product</h1>
       </div>
 
+      {error && (
+        <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-md flex items-center text-red-700">
+          <AlertCircle className="w-5 h-5 mr-2 flex-shrink-0" />
+          <span>{error}</span>
+        </div>
+      )}
+
+      {success && (
+        <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-md flex items-center text-green-700">
+          <CheckCircle className="w-5 h-5 mr-2 flex-shrink-0" />
+          <span>Product added successfully!</span>
+        </div>
+      )}
+
       <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-sm border border-gray-100">
         <div className="bg-gray-50 p-4 rounded-t-lg border-b border-gray-200">
           <h2 className="text-lg font-medium text-gray-700">Supplier Information</h2>
@@ -66,17 +235,17 @@ export default function AddProductForm() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Product Name */}
             <div>
-              <label htmlFor="productName" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                 Product Name <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
-                id="productName"
-                name="productName"
-                value={formData.productName}
+                id="name"
+                name="name"
+                value={formData.name}
                 onChange={handleInputChange}
                 placeholder="Acme"
-                className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                className="w-full p-2.5 border-[#E4E4E4] border rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
                 required
               />
             </div>
@@ -93,22 +262,22 @@ export default function AddProductForm() {
                 value={formData.productSKU}
                 onChange={handleInputChange}
                 placeholder="www.example.com"
-                className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                className="w-full p-2.5 border-[#E4E4E4] border rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
               />
             </div>
 
             {/* Product Category */}
             <div>
-              <label htmlFor="productCategory" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">
                 Product Category <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <select
-                  id="productCategory"
-                  name="productCategory"
-                  value={formData.productCategory}
+                  id="category"
+                  name="category"
+                  value={formData.category}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-full focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white pr-10 text-gray-500"
+                  className="w-full px-4 py-3 border-[#E4E4E4] border rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white pr-10 text-gray-500"
                   required
                 >
                   <option value="">Select</option>
@@ -148,63 +317,65 @@ export default function AddProductForm() {
                 value={formData.brandName}
                 onChange={handleInputChange}
                 placeholder="Enter brand name"
-                className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                className="w-full p-2.5 border-[#E4E4E4] border rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
                 required
               />
             </div>
 
             {/* Selling Price */}
             <div>
-              <label htmlFor="sellingPrice" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-1">
                 Selling Price <span className="text-red-500">*</span>
               </label>
               <input
-                type="text"
-                id="sellingPrice"
-                name="sellingPrice"
-                value={formData.sellingPrice}
+                type="number"
+                id="price"
+                name="price"
+                value={formData.price}
                 onChange={handleInputChange}
                 placeholder="Enter selling price"
-                className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                className="w-full p-2.5 border-[#E4E4E4] border rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
                 required
               />
             </div>
 
             {/* Stock Quantity */}
             <div>
-              <label htmlFor="stockQuantity" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="quantityInStock" className="block text-sm font-medium text-gray-700 mb-1">
                 Stock Quantity <span className="text-red-500">*</span>
               </label>
               <input
-                type="text"
-                id="stockQuantity"
-                name="stockQuantity"
-                value={formData.stockQuantity}
+                type="number"
+                id="quantityInStock"
+                name="quantityInStock"
+                value={formData.quantityInStock}
                 onChange={handleInputChange}
                 placeholder="Enter quantity of product"
-                className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                className="w-full p-2.5 border-[#E4E4E4] border rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
                 required
               />
             </div>
 
             {/* Supplier Name */}
             <div>
-              <label htmlFor="supplierName" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="dealerID" className="block text-sm font-medium text-gray-700 mb-1">
                 Supplier Name <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <select
-                  id="supplierName"
-                  name="supplierName"
-                  value={formData.supplierName}
+                  id="dealerID"
+                  name="dealerID"
+                  value={formData.dealerID}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-full focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white pr-10 text-gray-500"
+                  className="w-full px-4 py-3 border-[#E4E4E4] border rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white pr-10 text-gray-500"
                   required
                 >
                   <option value="">Select supplier name</option>
-                  <option value="supplier1">Supplier 1</option>
-                  <option value="supplier2">Supplier 2</option>
-                  <option value="supplier3">Supplier 3</option>
+                  {suppliers.map((supplier) => (
+                    <option key={supplier.id} value={supplier.id}>
+                      {supplier.name}
+                    </option>
+                  ))}
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4">
                   <svg
@@ -224,21 +395,36 @@ export default function AddProductForm() {
                 </div>
               </div>
             </div>
+
+            {/* TCPO Checkbox */}
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                id="isTCPO"
+                name="isTCPO"
+                checked={formData.isTCPO}
+                onChange={handleInputChange}
+                className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+              />
+              <label htmlFor="isTCPO" className="ml-2 block text-sm text-gray-700">
+                Is TCPO
+              </label>
+            </div>
           </div>
 
           {/* Product Description */}
           <div className="mt-6">
-            <label htmlFor="productDescription" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
               Product Description <span className="text-red-500">*</span>
             </label>
             <textarea
-              id="productDescription"
-              name="productDescription"
-              value={formData.productDescription}
+              id="description"
+              name="description"
+              value={formData.description}
               onChange={handleInputChange}
               placeholder="Enter product description"
               rows={4}
-              className="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+              className="w-full p-2.5 border-[#E4E4E4] border rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
               required
             />
           </div>
@@ -248,7 +434,7 @@ export default function AddProductForm() {
             {[0, 1, 2, 3].map((index) => (
               <div key={index}>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Upload Product Image {index + 1} <span className="text-red-500">*</span>
+                  Upload Product Image {index + 1} {index === 0 && <span className="text-red-500">*</span>}
                 </label>
                 <div className="border-2 border-dashed border-gray-300 rounded-md p-6 flex flex-col items-center justify-center h-40 relative">
                   {imagePreviewUrls[index] ? (
@@ -258,15 +444,23 @@ export default function AddProductForm() {
                         alt={`Product image ${index + 1}`}
                         className="w-full h-full object-contain"
                       />
+                      {cloudinaryUrls[index] && (
+                        <div className="absolute top-0 left-0 bg-green-500 text-white text-xs px-1 py-0.5 rounded">
+                          Uploaded
+                        </div>
+                      )}
                       <button
                         type="button"
                         onClick={() => {
                           const newImages = [...productImages]
                           const newImageUrls = [...imagePreviewUrls]
+                          const newCloudinaryUrls = [...cloudinaryUrls]
                           newImages[index] = null
                           newImageUrls[index] = ""
+                          newCloudinaryUrls[index] = ""
                           setProductImages(newImages)
                           setImagePreviewUrls(newImageUrls)
+                          setCloudinaryUrls(newCloudinaryUrls)
                         }}
                         className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1 text-xs"
                       >
@@ -287,7 +481,7 @@ export default function AddProductForm() {
                         onChange={(e) => handleImageChange(index, e)}
                         className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                         accept=".png,.jpg,.jpeg,.pdf"
-                        required={!productImages[index]}
+                        required={index === 0 && !productImages[index]}
                       />
                     </>
                   )}
@@ -302,14 +496,17 @@ export default function AddProductForm() {
               type="button"
               onClick={handleCancel}
               className="px-6 py-2.5 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+              disabled={isSubmitting || uploadingImages}
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-6 py-2.5 bg-purple-600 text-white rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+              className="px-6 py-2.5 bg-[#7217B8] text-white rounded-md hover:bg-[#6215a0] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-70 flex items-center justify-center"
+              disabled={isSubmitting || uploadingImages}
             >
-              Add Product
+              {(isSubmitting || uploadingImages) && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+              {uploadingImages ? "Uploading Images..." : isSubmitting ? "Adding Product..." : "Add Product"}
             </button>
           </div>
         </div>
