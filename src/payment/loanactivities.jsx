@@ -1,96 +1,14 @@
 import { useState } from 'react';
 
-let OrderActivity = ()=>{
+let OrderActivity = ({datatable})=>{
     let [option, setoption] = useState(false)
     let [option1, setoption1] = useState(false)
     let [option2, setoption2] = useState(false)
     let [menu, setmenu] = useState(null)
   
   
-    const tableRows = [
-      {
-        "transaction_id": "12345AB",
-        "customer_name": "Steven Abomasa",
-        "product_name": "Iphone 15pro max",
-        "loan_amount": "₦1,200,000",
-        "amount_paid": "₦200,000",
-        "balance": "₦100,000",
-        "next_payment_date": "01-01-2025",
-        "status": "Ongoing"
-      },
-      {
-        "transaction_id": "12345AB",
-        "customer_name": "Adebayo Tomiwa",
-        "product_name": "JBL Headset",
-        "loan_amount": "₦300,000",
-        "amount_paid": "₦800,000",
-        "balance": "₦300,000",
-        "next_payment_date": "01-01-2025",
-        "status": "Completed"
-      },
-      {
-        "transaction_id": "12345AB",
-        "customer_name": "Patrick Erabor",
-        "product_name": "Macbook Pro",
-        "loan_amount": "₦2,500,000",
-        "amount_paid": "₦100,000",
-        "balance": "₦2,500,000",
-        "next_payment_date": "01-01-2025",
-        "status": "Completed"
-      },
-      {
-        "transaction_id": "12345AB",
-        "customer_name": "Sunday Alexander",
-        "product_name": "Apple IPad",
-        "loan_amount": "₦1,200,000",
-        "amount_paid": "₦1,100,000",
-        "balance": "₦1,200,000",
-        "next_payment_date": "01-01-2025",
-        "status": "Overdue"
-      },
-      {
-        "transaction_id": "12345AB",
-        "customer_name": "Timothy Banjoko",
-        "product_name": "Infinix Note 10",
-        "loan_amount": "₦1,200,000",
-        "amount_paid": "₦1,200,000",
-        "balance": "₦1,200,000",
-        "next_payment_date": "01-01-2025",
-        "status": "Ongoing"
-      },
-      {
-        "transaction_id": "12345AB",
-        "customer_name": "Ashley Cole",
-        "product_name": "Redmi Note 8",
-        "loan_amount": "₦1,200,000",
-        "amount_paid": "₦1,200,000",
-        "balance": "₦1,200,000",
-        "next_payment_date": "01-01-2025",
-        "status": "Ongoing"
-      },
-      {
-        "transaction_id": "12345AB",
-        "customer_name": "Susan Suzy",
-        "product_name": "Oraimo Chord",
-        "loan_amount": "₦1,200,000",
-        "amount_paid": "₦1,200,000",
-        "balance": "₦1,200,000",
-        "next_payment_date": "01-01-2025",
-        "status": "Ongoing"
-      },
-      {
-        "transaction_id": "12345AB",
-        "customer_name": "Damilola Oluwatemilola",
-        "product_name": "JBL Headset",
-        "loan_amount": "₦1,200,000",
-        "amount_paid": "₦1,200,000",
-        "balance": "₦1,200,000",
-        "next_payment_date": "01-01-2025",
-        "status": "Ongoing"
-      }
-    ]
-    
-    
+    const tableRows = datatable
+  
     
     
     
@@ -308,7 +226,7 @@ let OrderActivity = ()=>{
               
             </div>
           </div>
-          {tableRows.map((row, idx) => (
+          {tableRows?.map((row, idx) => (
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hiddened"
@@ -316,7 +234,7 @@ let OrderActivity = ()=>{
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.transaction_id}
+                  {row.id}
                 </div>
               </div>
             </div>
@@ -337,14 +255,14 @@ let OrderActivity = ()=>{
             </div>
             </div>
           </div>
-          {tableRows.map((row, idx) => (
+          {tableRows?.map((row, idx) => (
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.customer_name}
+                  {row.first_name + " " + row.last_name}
                 </div>
               </div>
             </div>
@@ -363,14 +281,14 @@ let OrderActivity = ()=>{
             </div>
             </div>
           </div>
-          {tableRows.map((row, idx) => (
+          {tableRows?.map((row, idx) => (
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.product_name}
+                  {row.name}
                 </div>
               </div>
             </div>
@@ -394,14 +312,14 @@ let OrderActivity = ()=>{
             </div>
             </div>
           </div>
-          {tableRows.map((row, idx) => (
+          {tableRows?.map((row, idx) => (
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.loan_amount}
+                  {row.amount}
                 </div>
               </div>
             </div>
@@ -420,14 +338,14 @@ let OrderActivity = ()=>{
             </div>
             </div>
           </div>
-          {tableRows.map((row, idx) => (
+          {tableRows?.map((row, idx) => (
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.amount_paid}
+                  {row.paid_amount}
                 </div>
               </div>
             </div>
@@ -446,7 +364,7 @@ let OrderActivity = ()=>{
             </div>
             </div>
           </div>
-          {tableRows.map((row, idx) => (
+          {tableRows?.map((row, idx) => (
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
@@ -472,14 +390,14 @@ let OrderActivity = ()=>{
             </div>
             </div>
           </div>
-          {tableRows.map((row, idx) => (
+          {tableRows?.map((row, idx) => (
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.next_payment_date}
+                  {row.next_payment}
                 </div>
               </div>
             </div>
@@ -504,7 +422,7 @@ let OrderActivity = ()=>{
             </div>
             </div>
           </div>
-          {tableRows.map((row, idx) => (
+          {tableRows?.map((row, idx) => (
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
@@ -544,7 +462,7 @@ let OrderActivity = ()=>{
             </div>
             </div>
           </div>
-          {tableRows.map((row, idx) => (
+          {tableRows?.map((row, idx) => (
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"

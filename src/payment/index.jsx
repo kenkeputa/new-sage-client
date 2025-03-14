@@ -1,13 +1,45 @@
-import React,{useState} from 'react'
+import { useState, useContext, useEffect  } from 'react';
 import { useNavigate } from 'react-router-dom';
  
 import RegularActivity from './regularactivities.jsx'
 import LoanActivity from './loanactivities.jsx'
+import { Auth } from "../App.jsx"
 
 function Payment() {
     let navigate = useNavigate();
     let [nav, setnav] = useState(['Regular Transactions', 'Loan Transactions']);
     let [index,setindex] = useState(0);
+    const { isLoading, setLoader } = useContext(Auth)
+    let [task, settask] = useState(0)
+    let [tobecomplete, setcomplete] = useState(1)
+    let [main, setmain] = useState([])
+
+    useEffect(()=>{
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/api/payment/rg_transaction`)
+        .then(e=>{
+          return e.json()
+        })
+        .then(e=>{
+          console.log(e)
+  
+          setmain([e])
+          settask(1)
+  
+        })
+    
+      },[])
+      useEffect(()=>{
+        if(task === tobecomplete){
+          setLoader(false)
+        }else{
+          setLoader(true)
+  
+        }
+      },[task, tobecomplete])
+
+
+
+
     return ( <div className='w-[85%] h-full px-[2%] overflow-scroll'>
         
         <div className="mt-[2rem] flex items-center justify-between mb-4">
@@ -66,7 +98,7 @@ function Payment() {
         )}
     </div>
     {index === 0 ?
-    <RegularActivity /> : index === 1? <LoanActivity /> :
+    <RegularActivity datatable={main[0]?.record}/> : index === 1? <LoanActivity  datatable={main[0]?.record}/> :
     <RegularActivity />}
     
     </div>);
