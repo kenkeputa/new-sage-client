@@ -1,70 +1,72 @@
 import { useState } from 'react';
 
-let Activity = ()=>{
+let Activity = ({datatable})=>{
     let [option, setoption] = useState(false)
     let [option1, setoption1] = useState(false)
     let [option2, setoption2] = useState(false)
     let [menu, setmenu] = useState(null)
   
   
-    const tableRows = [
-      {
-        "order_id": "CUST037",
-        "customer_name": "Adebayo Tomiwa",
-        "product_ordered": "Adebayo Tomiwa",
-        "date": "10/01/2025",
-        "amount": "₦30,000",
-        "status": "Shipped"
-      },
-      {
-        "order_id": "CUST352",
-        "customer_name": "Steven Abomasa",
-        "product_ordered": "Steven Abomasa",
-        "date": "08/01/2025",
-        "amount": "₦340,000",
-        "status": "Delivered"
-      },
-      {
-        "order_id": "CUST352",
-        "customer_name": "Patrick Erabor",
-        "product_ordered": "Patrick Erabor",
-        "date": "07/01/2025",
-        "amount": "₦80,000",
-        "status": "Pending"
-      },
-      {
-        "order_id": "CUST352",
-        "customer_name": "Sunday Alexander",
-        "product_ordered": "Sunday Alexander",
-        "date": "06/01/2025",
-        "amount": "₦700,000",
-        "status": "Delivered"
-      },
-      {
-        "order_id": "CUST352",
-        "customer_name": "Timothy Banjoko",
-        "product_ordered": "Timothy Banjoko",
-        "date": "05/01/2025",
-        "amount": "₦30,000",
-        "status": "Pending"
-      },
-      {
-        "order_id": "CUST352",
-        "customer_name": "Ashley Cole",
-        "product_ordered": "Ashley Cole",
-        "date": "04/01/2025",
-        "amount": "₦30,000",
-        "status": "Cancelled"
-      },
-      {
-        "order_id": "CUST352",
-        "customer_name": "Susan Suzy",
-        "product_ordered": "Susan Suzy",
-        "date": "03/01/2025",
-        "amount": "₦30,000",
-        "status": "Returned"
-      }
-    ]
+    const tableRows = datatable;
+
+    //  [
+    //   {
+    //     "order_id": "CUST037",
+    //     "customer_name": "Adebayo Tomiwa",
+    //     "product_ordered": "Adebayo Tomiwa",
+    //     "date": "10/01/2025",
+    //     "amount": "₦30,000",
+    //     "status": "Shipped"
+    //   },
+    //   {
+    //     "order_id": "CUST352",
+    //     "customer_name": "Steven Abomasa",
+    //     "product_ordered": "Steven Abomasa",
+    //     "date": "08/01/2025",
+    //     "amount": "₦340,000",
+    //     "status": "Delivered"
+    //   },
+    //   {
+    //     "order_id": "CUST352",
+    //     "customer_name": "Patrick Erabor",
+    //     "product_ordered": "Patrick Erabor",
+    //     "date": "07/01/2025",
+    //     "amount": "₦80,000",
+    //     "status": "Pending"
+    //   },
+    //   {
+    //     "order_id": "CUST352",
+    //     "customer_name": "Sunday Alexander",
+    //     "product_ordered": "Sunday Alexander",
+    //     "date": "06/01/2025",
+    //     "amount": "₦700,000",
+    //     "status": "Delivered"
+    //   },
+    //   {
+    //     "order_id": "CUST352",
+    //     "customer_name": "Timothy Banjoko",
+    //     "product_ordered": "Timothy Banjoko",
+    //     "date": "05/01/2025",
+    //     "amount": "₦30,000",
+    //     "status": "Pending"
+    //   },
+    //   {
+    //     "order_id": "CUST352",
+    //     "customer_name": "Ashley Cole",
+    //     "product_ordered": "Ashley Cole",
+    //     "date": "04/01/2025",
+    //     "amount": "₦30,000",
+    //     "status": "Cancelled"
+    //   },
+    //   {
+    //     "order_id": "CUST352",
+    //     "customer_name": "Susan Suzy",
+    //     "product_ordered": "Susan Suzy",
+    //     "date": "03/01/2025",
+    //     "amount": "₦30,000",
+    //     "status": "Returned"
+    //   }
+    // ]
     
     
     
@@ -278,7 +280,7 @@ let Activity = ()=>{
               </div>
             </div>
           </div>
-          {tableRows.map((row, idx) => (
+          {tableRows?.map((row, idx) => (
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hiddened"
@@ -286,7 +288,7 @@ let Activity = ()=>{
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.order_id}
+                  {row.id}
                 </div>
               </div>
             </div>
@@ -302,14 +304,14 @@ let Activity = ()=>{
               </div>
             </div>
           </div>
-          {tableRows.map((row, idx) => (
+          {tableRows?.map((row, idx) => (
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.customer_name}
+                  {row?.first_name +" "+ row?.last_name}
                 </div>
               </div>
             </div>
@@ -323,14 +325,14 @@ let Activity = ()=>{
               </div>
             </div>
           </div>
-          {tableRows.map((row, idx) => (
+          {tableRows?.map((row, idx) => (
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.product_ordered}
+                  {row.name}
                 </div>
               </div>
             </div>
@@ -349,14 +351,14 @@ let Activity = ()=>{
               </div>
             </div>
           </div>
-          {tableRows.map((row, idx) => (
+          {tableRows?.map((row, idx) => (
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.date}
+                  {row.created_at}
                 </div>
               </div>
             </div>
@@ -370,14 +372,14 @@ let Activity = ()=>{
               </div>
             </div>
           </div>
-          {tableRows.map((row, idx) => (
+          {tableRows?.map((row, idx) => (
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.amount}
+                  {row.total}
                 </div>
               </div>
             </div>
@@ -397,7 +399,7 @@ let Activity = ()=>{
               </div>
             </div>
           </div>
-          {tableRows.map((row, idx) => (
+          {tableRows?.map((row, idx) => (
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
@@ -405,19 +407,19 @@ let Activity = ()=>{
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div
                   className={`px-2 rounded-md border text-sm font-medium leading-[21px] ${
-                    row.status === "Pending"
+                    row.status === "pending"
                       ? "bg-[#ffdb43]/10 border-[#ffeda1] text-[#ae8c00]"
-                      : row.status === "Cancelled"
+                      : row.payment_status === "Cancelled"
                       ? "bg-[#fb3748]/10 border-[#fdafb6] text-[#dd0417]"
-                      : row.status === "green"
+                      : row.payment_status === "green"
                       ? "bg-[#b5e45e]/10 border-[#e1f4bf] text-[#5f8717]"
-                      : row.status === "Delivered"
+                      : row.payment_status === "Delivered"
                       ? "bg-[#1fc16b]/10 border-[#adf2cd] text-[#16884b]"
-                      : row.status === "Shipped"
+                      : row.payment_status === "Shipped"
                       ? "bg-[#B3DAFF] border-[#0072DE] text-[#0072DE]" : ""
                   }`}
                 >
-                  {row.status}
+                  {row.payment_status}
                 </div>
               </div>
             </div>
@@ -432,7 +434,7 @@ let Activity = ()=>{
               </div>
             </div>
           </div>
-          {tableRows.map((row, idx) => (
+          {tableRows?.map((row, idx) => (
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"

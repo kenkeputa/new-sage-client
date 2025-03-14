@@ -13,9 +13,9 @@ function Customer() {
     let [tobecomplete, setcomplete] = useState(1)
 
     const [tableRows, setrow] = useState({});
-
+    console.log(import.meta.env.VITE_BACKEND_URL, "ggg")
     useEffect(()=>{
-        fetch('https://sage-admin-backend.vercel.app/api/customer')
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/api/customer`)
         .then(e=>{
           return e.json()
         })

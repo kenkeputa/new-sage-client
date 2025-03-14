@@ -34,7 +34,7 @@ export default function AddProductForm() {
   useEffect(() => {
     const fetchSuppliers = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/supplier/get")
+        const response = await fetch(`${import.meta.env.backend_url}/api/supplier/get`)
         if (!response.ok) {
           throw new Error("Failed to fetch suppliers")
         }
@@ -152,7 +152,7 @@ export default function AddProductForm() {
       }
 
       // Send the data to the API
-      const response = await fetch("http://localhost:5000/api/product/add", {
+      const response = await fetch(`${import.meta.env.backend_url}/api/product/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

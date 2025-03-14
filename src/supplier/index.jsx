@@ -21,7 +21,7 @@ function Supplier() {
     const [tableRows, setrow] = useState({});
 
     useEffect(()=>{
-        fetch('https://sage-admin-backend.vercel.app/api/supplier')
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/api/supplier`)
         .then(e=>{
           return e.json()
         })

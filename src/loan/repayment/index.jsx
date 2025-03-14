@@ -20,7 +20,7 @@ function Repayment() {
 
 
     useEffect(()=>{
-        fetch('https://sage-admin-backend.vercel.app/api/loan/repayment/overdue')
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/api/loan/repayment/overdue`)
         .then(e=>{
           return e.json()
         })

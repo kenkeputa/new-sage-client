@@ -11,44 +11,50 @@ function Customer() {
     let [index,setindex] = useState(0);
     const { isLoading, setLoader } = useContext(Auth)
     let [task, settask] = useState(0)
-    let [tobecomplete, setcomplete] = useState(3)
+    let [tobecomplete, setcomplete] = useState(2)
     let [main, setmain] = useState([])
 
 
     useEffect(()=>{
-        fetch('https://sage-admin-backend.vercel.app/api/inventory/product')
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/api/inventory/product`)
         .then(e=>{
           return e.json()
         })
         .then(e=>{
-          // console.log(e[0])
+          console.log(e[0])
   
-          setmain((p)=> [...p,e])
+          setmain((prevMain) => {
+            // Store the data as the first element in the main array
+            return [[e]]
+          })
           settask(1)
   
         })
-        fetch('https://sage-admin-backend.vercel.app/api/inventory/product')
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/api/inventory/order`)
         .then(e=>{
           return e.json()
         })
         .then(e=>{
           console.log(e[0])
   
-          setmain((p)=> [...p,e])
+          setmain((prevMain) => {
+            // Add the new data as the second element in the main array
+            return [...prevMain, [e]]
+          })
           settask(2)
   
         })
-        fetch('https://sage-admin-backend.vercel.app/api/inventory/product')
-        .then(e=>{
-          return e.json()
-        })
-        .then(e=>{
-          console.log(e[0])
+        // fetch('https://sage-admin-backend.vercel.app/api/inventory/product')
+        // .then(e=>{
+        //   return e.json()
+        // })
+        // .then(e=>{
+        //   console.log(e[0])
   
-          setmain((p)=> [...p,e])
-          settask(3)
+        //   setmain((p)=> [...p,e])
+        //   settask(3)
   
-        })
+        // })
       },[])
       useEffect(()=>{
         if(task === tobecomplete){
@@ -92,25 +98,25 @@ function Customer() {
     <div className="flex flex-col h-[80px] w-[267.5px] bg-[#831AD31A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
                     
                     <span className="text-[12px] mt-1 font-[600]">Total Inventory</span>
-                    <span className="text-[26px] font-[700]">{main[0]?.inventory}</span>
+                    <span className="text-[26px] font-[700]">{main[0]?.[0]?.inventory}</span>
                     
                 </div>
                 <div className="flex flex-col h-[80px] w-[267.5px] bg-[#B5E45E1A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
                     
                     <span className="text-[12px] mt-1 font-[600]">In Stock</span>
-                    <span className="text-[26px] font-[700]">{main[0]?.in_stocks}</span>
+                    <span className="text-[26px] font-[700]">{main[0]?.[0]?.in_stocks}</span>
                     
                 </div>
                 <div className="flex flex-col h-[80px] w-[267.5px] bg-[#FFDB431A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
                     
                     <span className="text-[12px] mt-1 font-[600]">Low Stock</span>
-                    <span className="text-[26px] font-[700]">{main[0]?.low_stock}</span>
+                    <span className="text-[26px] font-[700]">{main[0]?.[0]?.low_stock}</span>
                     
                 </div>
                 <div className="flex flex-col h-[80px] w-[267.5px] bg-[#FB37481A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
                     
                     <span className="text-[12px] font-[600] mt-1">Out Of Stock</span>
-                    <span className="text-[26px] font-[700]">{main[0]?.out_of_stock}</span>
+                    <span className="text-[26px] font-[700]">{main[0]?.[0]?.out_of_stock}</span>
                     
                 
                 
@@ -126,8 +132,8 @@ function Customer() {
         )}
     </div>
     { index === 0 ?
-    <ProductActivity datatable={main[0]?.record} /> 
-    : index === 1? <OrderActivity /> 
+    <ProductActivity datatable={main[0]?.[0]?.record} /> 
+    : index === 1? <OrderActivity datatable={main[1]?.[0]?.record}/> 
     :  <RefundActivity />}
     
     </div>);

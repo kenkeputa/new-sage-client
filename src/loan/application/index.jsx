@@ -22,7 +22,7 @@ function Repayment() {
     setmain([])
 
     // First fetch request
-    fetch("https://sage-admin-backend.vercel.app/api/loan/app/all")
+    fetch(`${import.meta.env.backend_url}/api/loan/app/all`)
       .then((e) => e.json())
       .then((e) => {
         console.log("All loans data:", e)
@@ -38,7 +38,7 @@ function Repayment() {
       })
 
     // Second fetch request
-    fetch("https://sage-admin-backend.vercel.app/api/loan/app/employment")
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/loan/app/employment`)
       .then((e) => e.json())
       .then((e) => {
         console.log("Employment data:", e)
