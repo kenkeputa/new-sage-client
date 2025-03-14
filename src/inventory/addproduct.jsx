@@ -205,10 +205,14 @@ export default function AddProductForm() {
   return (
     <div className="max-w-4xl mx-auto p-4 bg-white">
       <div className="flex items-center mb-6">
-        <button className="p-2 rounded-full hover:bg-gray-100">
-          <ArrowLeft className="w-5 h-5 text-gray-700" />
+        <button className="p-2 rounded-full">
+<svg onClick={()=>{
+navigate('/customers')
+}} className='mr-7 cursor-pointer' width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.66667 13H18.3333M7.66667 13L13 18.3333M7.66667 13L13 7.66667M6.33333 25H19.6667C22.6122 25 25 22.6122 25 19.6667V6.33333C25 3.38781 22.6122 1 19.6667 1H6.33333C3.38781 1 1 3.38781 1 6.33333V19.6667C1 22.6122 3.38781 25 6.33333 25Z" stroke="#565656" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
         </button>
-        <h1 className="text-2xl font-medium ml-2 text-gray-800">Add Product</h1>
+        <h1>Add Product</h1>
       </div>
 
       {error && (
@@ -226,8 +230,8 @@ export default function AddProductForm() {
       )}
 
       <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-sm border border-gray-100">
-        <div className="bg-gray-50 p-4 rounded-t-lg border-b border-gray-200">
-          <h2 className="text-lg font-medium text-gray-700">Supplier Information</h2>
+        <div className="bg-[#F6F6F6] p-4 rounded-t-lg border-b border-gray-200">
+          <h2 className="font-[700] text-[18px]">Supplier Information</h2>
         </div>
 
         <div className="p-6">
