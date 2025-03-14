@@ -21,7 +21,7 @@ function Customer() {
           return e.json()
         })
         .then(e=>{
-          console.log(e[0])
+          // console.log(e[0])
   
           setmain((p)=> [...p,e])
           settask(1)
@@ -126,8 +126,9 @@ function Customer() {
         )}
     </div>
     { index === 0 ?
-    <ProductActivity datatable={main[0]?.record} /> : index === 1? <OrderActivity /> :
-    <RefundActivity />}
+    <ProductActivity datatable={main[0]?.record} /> 
+    : index === 1? <OrderActivity /> 
+    :  <RefundActivity />}
     
     </div>);
 }
