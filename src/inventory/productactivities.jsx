@@ -295,7 +295,7 @@ let Activity = ({datatable})=>{
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="size-[30px] relative">
-                  <img src="product.png" />
+                  <img src={row.display_photos[0]} />
                 </div>
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
                   {row.name}
