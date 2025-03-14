@@ -1,6 +1,8 @@
 
 import { useState, useEffect } from "react"
 import { ArrowLeft, Upload, CheckCircle, AlertCircle, Loader2 } from "lucide-react"
+import  {useNavigate} from "react-router-dom"
+
 
 export default function AddProductForm() {
   const [formData, setFormData] = useState({
@@ -14,6 +16,8 @@ export default function AddProductForm() {
     description: "",
     isTCPO: false,
   })
+
+  let navigate = useNavigate();
 
   const [productImages, setProductImages] = useState([null, null, null, null])
   const [imagePreviewUrls, setImagePreviewUrls] = useState(["", "", "", ""])
@@ -207,7 +211,7 @@ export default function AddProductForm() {
       <div className="flex items-center mb-6">
         <button className="p-2 rounded-full">
 <svg onClick={()=>{
-navigate('/customers')
+navigate('/inventory')
 }} className='mr-7 cursor-pointer' width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.66667 13H18.3333M7.66667 13L13 18.3333M7.66667 13L13 7.66667M6.33333 25H19.6667C22.6122 25 25 22.6122 25 19.6667V6.33333C25 3.38781 22.6122 1 19.6667 1H6.33333C3.38781 1 1 3.38781 1 6.33333V19.6667C1 22.6122 3.38781 25 6.33333 25Z" stroke="#565656" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
