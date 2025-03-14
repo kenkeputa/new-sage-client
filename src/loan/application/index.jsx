@@ -22,7 +22,7 @@ function Repayment() {
     setmain([])
 
     // First fetch request
-    fetch(`${import.meta.env.backend_url}/api/loan/app/all`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/loan/app/all`)
       .then((e) => e.json())
       .then((e) => {
         console.log("All loans data:", e)

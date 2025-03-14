@@ -44,17 +44,7 @@ function Customer() {
           settask(2)
   
         })
-        // fetch('https://sage-admin-backend.vercel.app/api/inventory/product')
-        // .then(e=>{
-        //   return e.json()
-        // })
-        // .then(e=>{
-        //   console.log(e[0])
-  
-        //   setmain((p)=> [...p,e])
-        //   settask(3)
-  
-        // })
+      
       },[])
       useEffect(()=>{
         if(task === tobecomplete){
