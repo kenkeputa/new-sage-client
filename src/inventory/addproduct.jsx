@@ -47,7 +47,6 @@ export default function AddProductForm() {
         setError("Failed to load suppliers. Please try again later.")
       }
     }
-
     fetchSuppliers()
   }, [])
 
@@ -149,7 +148,7 @@ export default function AddProductForm() {
         category: formData.category,
         isTCPO: formData.isTCPO,
         dealerID: formData.dealerID,
-        displayPhotos: cloudinaryUrls, // Send array of Cloudinary URLs
+        displayPhotos: imageUrls, // Send array of Cloudinary URLs
       }
 
       // Send the data to the API
