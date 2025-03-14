@@ -436,7 +436,7 @@ let OrderActivity = ({datatable})=>{
                       ? "bg-[#fb3748]/10 border-[#fdafb6] text-[#dd0417]"
                       : row.status === "Completeds"
                       ? "bg-[#b5e45e]/10 border-[#e1f4bf] text-[#5f8717]"
-                      : row.status === "Completed"
+                      : row.status === "successful"
                       ? "bg-[#1fc16b]/10 border-[#adf2cd] text-[#16884b]"
                       :  row.status === "Ongoing"
                       ? "bg-[#B3DAFF] border-[#0072DE] text-[#0072DE]" : ""
