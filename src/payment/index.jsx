@@ -26,7 +26,7 @@ function Payment() {
             // Store the data as the first element in the main array
             return [[e]]
           })
-          settask(1)
+          settask((prevTask) => prevTask + 1)
   
         })
         fetch(`${import.meta.env.VITE_BACKEND_URL}/api/payment/loan_transaction`)
@@ -114,7 +114,7 @@ function Payment() {
         )}
     </div>
     {index === 0 ?
-    <RegularActivity datatable={main[0]?.record}/> : index === 1? <LoanActivity  datatable={main[0]?.record}/> :
+    <RegularActivity datatable={main[0]?.[0]?.record}/> : index === 1? <LoanActivity  datatable={main[0]?.[0]?.record}/> :
     <RegularActivity />}
     
     </div>);
