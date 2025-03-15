@@ -1,7 +1,7 @@
 
 
 import { useState } from "react"
-
+import PropTypes from 'prop-types';
 const Activity = ({datatable}) => {
   const [option, setoption] = useState(false)
   const [option1, setoption1] = useState(false)
@@ -9,7 +9,10 @@ const Activity = ({datatable}) => {
   const [menu, setmenu] = useState(null)
 
   // Update the tableRows array to match the new data
-  const tableRows = datatable
+ useEffect(() => {
+        console.log('RegularActivity datatable:', datatable);
+    }, [datatable]);
+  const tableRows = datatable || [];
 
   const filteroptions = [
     { label: "All" },
