@@ -11,7 +11,7 @@ function Payment() {
     let [index,setindex] = useState(0);
     const { isLoading, setLoader } = useContext(Auth)
     let [task, settask] = useState(0)
-    let [tobecomplete, setcomplete] = useState(1)
+    let [tobecomplete, setcomplete] = useState(2)
     let [main, setmain] = useState([])
 
     useEffect(()=>{
@@ -114,7 +114,7 @@ function Payment() {
         )}
     </div>
     {index === 0 ?
-    <RegularActivity datatable={main[0]?.[0]?.record}/> : index === 1? <LoanActivity  datatable={main[0]?.[0]?.record}/> :
+    <RegularActivity datatable={main[0]?.[0]?.record}/> : index === 1? <LoanActivity  datatable={main[1]?.[0]?.record}/> :
     <RegularActivity />}
     
     </div>);
