@@ -208,11 +208,11 @@ function Repayment() {
       </div>
 
       {/* Content based on selected tab */}
-      {index === 0 ? (
+      {index === 0 && main[0]?.[0]?.record ? (
         <AllActivity datatable={main[0]?.[0]?.record} />
-      ) : index === 1 ? (
+      ) : index === 1 && main[0]?.[0]?.record ? (
         <Identity datatable={main[0]?.[0]?.record} />
-      ) : index === 2 ? (
+      ) : index === 2 && main[1]?.[0]?.record? (
         <Employment datatable={main[1]?.[0]?.record} />
       ) : (
         <Loan_Activity datatable={main[0]?.[0]?.record} />
