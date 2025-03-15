@@ -1,17 +1,20 @@
-"use client"
+
 
 import { useState } from "react"
+import PropTypes from 'prop-types';
 
 const Activity = ({datatable}) => {
   const [option, setoption] = useState(false)
   const [option1, setoption1] = useState(false)
   const [option2, setoption2] = useState(false)
   const [menu, setmenu] = useState(null)
-
+useEffect(() => {
+        console.log('RegularActivity datatable:', datatable);
+    }, [datatable]);
   // Update the tableRows array to match the new data
   const tableRows = datatable
   ?.filter(record => record.status === 'approved')
-  ?.map((e) => e);
+  ?.map((e) => e) || [];
 
   const filteroptions = [
     { label: "All" },
@@ -381,6 +384,9 @@ const Activity = ({datatable}) => {
     </div>
   )
 }
+Activity.propTypes = {
+    datatable: PropTypes.arrayOf(PropTypes.object),
+};
 
-export default Activity
+export default Activity;
 
