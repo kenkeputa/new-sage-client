@@ -54,7 +54,7 @@ function Payment() {
         }
       },[task, tobecomplete])*/
 
-     useEffect(() => {
+         useEffect(() => {
         const fetchData = async () => {
             try {
                 const rgTransactionResponse = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/payment/rg_transaction`);
@@ -161,7 +161,6 @@ const normalizeData = (data) => {
     console.error("Invalid data format:", data);
     return [];
 };
-
      
 export default Payment;
 
