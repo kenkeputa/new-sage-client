@@ -86,7 +86,7 @@ function Payment() {
         setLoader(task !== tobecomplete);
     }, [task, tobecomplete]);
 
-
+console.log(main, "Naim")
 
 
     return ( <div className='w-[85%] h-full px-[2%] overflow-scroll'>
@@ -146,12 +146,10 @@ function Payment() {
         }
         )}
     </div>
-  {index === 0 && main[0]?.length > 0 ? (
+  {index === 0 && main[1]?.length > 0 ? (
                 <RegularActivity datatable={main[0]} />
             ) : index === 1 && main[1]?.length > 0 ? (
                 <LoanActivity datatable={main[1]} />
-            ) : index === 2 ? (
-                <div>No data available.</div>
             ) : ""}
     </div>);
 }
