@@ -150,9 +150,9 @@ function Payment() {
                 <RegularActivity datatable={main[0]} />
             ) : index === 1 && main[1]?.length > 0 ? (
                 <LoanActivity datatable={main[1]} />
-            ) : (
+            ) : index === 2 ? (
                 <div>No data available.</div>
-            )}
+            ) : ""}
     </div>);
 }
 
