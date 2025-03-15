@@ -115,9 +115,9 @@ function Payment() {
         }
         )}
     </div>
-    {index === 0 && main[1]?.[0]?.record ?
-    <RegularActivity datatable={main[0]?.[0]?.record}/> : index === 1 && main[1]?.[0]?.record ? <LoanActivity  datatable={main[1]?.[0]?.record}/> :
-    <RegularActivity datatable={main[0]?.[0]?.record}/>}
+    {index === 0 && main[1].[0].record ?
+    <RegularActivity datatable={main[0].[0].record}/> : index === 1 && main[1].[0].record ? <LoanActivity  datatable={main[1].[0].record}/> :
+    <RegularActivity datatable={main[0].[0].record}/>}
     
     </div>);
 }
