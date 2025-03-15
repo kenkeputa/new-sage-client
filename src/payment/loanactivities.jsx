@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 let OrderActivity = ({datatable})=>{
     let [option, setoption] = useState(false)
@@ -6,11 +7,12 @@ let OrderActivity = ({datatable})=>{
     let [option2, setoption2] = useState(false)
     let [menu, setmenu] = useState(null)
   
-  
+useEffect(() => {
+        console.log('RegularActivity datatable:', datatable);
+    }, [datatable]);
+
+    
     const tableRows = datatable
-  
-    
-    
     
     const filteroptions = [
       { label: "All" },
@@ -536,4 +538,8 @@ let OrderActivity = ({datatable})=>{
 )
   }
 
-  export default OrderActivity;
+  RegularActivity.propTypes = {
+    datatable: PropTypes.arrayOf(PropTypes.object),
+};
+
+export default RegularActivity;
