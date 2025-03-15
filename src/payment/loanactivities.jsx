@@ -12,7 +12,7 @@ useEffect(() => {
     }, [datatable]);
 
     
-    const tableRows = datatable
+    const tableRows = datatable || [];
     
     const filteroptions = [
       { label: "All" },
