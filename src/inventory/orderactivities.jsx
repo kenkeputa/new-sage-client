@@ -407,7 +407,7 @@ let Activity = ({datatable})=>{
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div
                   className={`px-2 rounded-md border text-sm font-medium leading-[21px] ${
-                    row.status === "pending"
+                    row.payment_status === "pending"
                       ? "bg-[#ffdb43]/10 border-[#ffeda1] text-[#ae8c00]"
                       : row.payment_status === "Cancelled"
                       ? "bg-[#fb3748]/10 border-[#fdafb6] text-[#dd0417]"
