@@ -538,8 +538,8 @@ useEffect(() => {
 )
   }
 
-  RegularActivity.propTypes = {
+  OrderActivity.propTypes = {
     datatable: PropTypes.arrayOf(PropTypes.object),
 };
 
-export default RegularActivity;
+export default OrderActivity;
