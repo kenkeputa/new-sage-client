@@ -14,6 +14,8 @@ function Payment() {
     let [tobecomplete, setcomplete] = useState(2)
     let [main, setmain] = useState([])
 
+
+    console.log(main, 'main')
     useEffect(()=>{
         fetch(`${import.meta.env.VITE_BACKEND_URL}/api/payment/rg_transaction`)
         .then(e=>{
@@ -115,7 +117,7 @@ function Payment() {
     </div>
     {index === 0 ?
     <RegularActivity datatable={main[0]?.[0]?.record}/> : index === 1? <LoanActivity  datatable={main[1]?.[0]?.record}/> :
-    <RegularActivity />}
+    <RegularActivity datatable={main[0]?.[0]?.record}/>}
     
     </div>);
 }
