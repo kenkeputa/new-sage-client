@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 let Activity = ({datatable})=>{
     let [option, setoption] = useState(false)
@@ -6,7 +7,10 @@ let Activity = ({datatable})=>{
     let [option2, setoption2] = useState(false)
     let [menu, setmenu] = useState(null)
   
-  
+  useEffect(() => {
+        console.log('RegularActivity datatable:', datatable);
+    }, [datatable]);
+    
     const tableRows = datatable;
 
       console.log(tableRows)
@@ -383,3 +387,8 @@ let Activity = ({datatable})=>{
   }
 
   export default Activity;
+Activity.propTypes = {
+    datatable: PropTypes.arrayOf(PropTypes.object),
+};
+
+export default Activity;
