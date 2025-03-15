@@ -295,7 +295,7 @@ let Activity = ({datatable})=>{
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="size-[30px] relative">
-                  <img src={row?.display_photo === null ? " " : row?.display_photo[0] } />
+                  <img src={row?.display_photos === null ? " " : row?.display_photos[0] } />
                 </div>
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
                   {row.name}
@@ -377,7 +377,7 @@ let Activity = ({datatable})=>{
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.sku}
+                  {row?.sku}
                 </div>
               </div>
             </div>
