@@ -389,5 +389,8 @@ const Activity = ({datatable}) => {
   )
 }
 
-export default Activity
+Activity.propTypes = {
+    datatable: PropTypes.arrayOf(PropTypes.object),
+};
 
+export default Activity;
