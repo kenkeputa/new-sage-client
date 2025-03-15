@@ -22,11 +22,27 @@ function Payment() {
         .then(e=>{
           console.log(e)
   
-          setmain([e])
+          setmain((prevMain) => {
+            // Store the data as the first element in the main array
+            return [[e]]
+          })
           settask(1)
   
         })
-    
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/api/payment/loan_transaction`)
+        .then((e) => e.json())
+        .then((e) => {
+          console.log("Employment data:", e)
+          // Use functional update to avoid dependency on main
+          setmain((prevMain) => {
+            // Add the new data as the second element in the main array
+            return [...prevMain, [e]]
+          })
+          settask((prevTask) => prevTask + 1)
+        })
+        .catch((error) => {
+          console.error("Error fetching employment data:", error)
+        })
       },[])
       useEffect(()=>{
         if(task === tobecomplete){
