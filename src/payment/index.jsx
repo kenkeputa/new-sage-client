@@ -12,11 +12,10 @@ function Payment() {
     const { isLoading, setLoader } = useContext(Auth)
     let [task, settask] = useState(0)
     let [tobecomplete, setcomplete] = useState(2)
-    let [main, setmain] = useState([])
-
+      let [main, setmain] = useState([[], []]);  // Ensure main is always an array of arrays
 
     console.log(main, 'main')
-    useEffect(()=>{
+    /*useEffect(()=>{
         fetch(`${import.meta.env.VITE_BACKEND_URL}/api/payment/rg_transaction`)
         .then(e=>{
           return e.json()
@@ -53,7 +52,39 @@ function Payment() {
           setLoader(true)
   
         }
-      },[task, tobecomplete])
+      },[task, tobecomplete])*/
+
+     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const rgTransactionResponse = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/payment/rg_transaction`);
+                const rgTransactionData = await rgTransactionResponse.json();
+                console.log('Regular transaction data:', rgTransactionData);
+                setmain((prevMain) => {
+                    const normalizedData = normalizeData([rgTransactionData]);
+                    return [normalizedData[0], prevMain[1]];
+                });
+                settask((prevTask) => prevTask + 1);
+
+                const loanTransactionResponse = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/payment/loan_transaction`);
+                const loanTransactionData = await loanTransactionResponse.json();
+                console.log('Loan data:', loanTransactionData);
+                setmain((prevMain) => {
+                    const normalizedData = normalizeData([loanTransactionData]);
+                    return [prevMain[0], normalizedData[0]];
+                });
+                settask((prevTask) => prevTask + 1);
+            } catch (error) {
+                console.error('Error fetching transaction data:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        setLoader(task !== tobecomplete);
+    }, [task, tobecomplete]);
 
 
 
@@ -115,12 +146,24 @@ function Payment() {
         }
         )}
     </div>
-    {index === 0 && main[1]?.[0].record ?
-    <RegularActivity datatable={main[0]?.[0].record}/> : index === 1 && main[1]?.[0].record ? <LoanActivity  datatable={main[1]?.[0].record}/> :
-   index === 3 && main[1]?.[0].record ? <RegularActivity datatable={main[1]?.[0].record}/> : ""}
-    
+  {index === 0 && main[0]?.length > 0 ? (
+                <RegularActivity datatable={main[0]} />
+            ) : index === 1 && main[1]?.length > 0 ? (
+                <LoanActivity datatable={main[1]} />
+            ) : (
+                <div>No data available.</div>
+            )}
     </div>);
 }
 
+const normalizeData = (data) => {
+    if (Array.isArray(data) && data.every(item => item.record && Array.isArray(item.record))) {
+        return data.map(item => item.record);
+    }
+    console.error("Invalid data format:", data);
+    return [];
+};
+
+     
 export default Payment;
 
