@@ -11,7 +11,7 @@ let Activity = ({datatable})=>{
         console.log('RegularActivity datatable:', datatable);
     }, [datatable]);
     
-    const tableRows = datatable;
+    const tableRows = datatable || [];
 
       console.log(tableRows)
     const filteroptions = [
@@ -386,7 +386,6 @@ let Activity = ({datatable})=>{
 )
   }
 
-  export default Activity;
 Activity.propTypes = {
     datatable: PropTypes.arrayOf(PropTypes.object),
 };
