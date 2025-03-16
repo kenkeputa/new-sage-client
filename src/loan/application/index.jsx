@@ -203,11 +203,27 @@ function Repayment() {
             onClick={() => setindex(i)}
           >
             {e}
+        {/* Navigation tabs */}
+      <div className="w-full h-8 flex gap-2 mt-8 border-b border-b-[#E4E4E4]">
+        {nav.map((e, i) => (
+          <div
+            key={i}
+            className="cursor-pointer"
+            style={{ borderBottom: index === i ? "2px solid rgba(114,23,184,1)" : "none" }}
+            onClick={() => setindex(i)}
+          >
+            {e}
+          </div>
+        ))}
+      </div>
+
+      {/* Content based on selected tab */}
+      {index === 0 && main[1] ? (
         <AllActivity datatable={main[0]} />
-      ) : index === 1 && main[1]?.length > 0 ? (
-        <Identity datatable={main[1]} />
-      ) : index === 2 && main[1]?.length > 0? (
-        <Employment datatable={main[0]} />
+      ) : index === 1 && main[1] ? (
+        <Identity datatable={main[0]} />
+      ) : index === 2 && main[1] ? (
+        <Employment datatable={main[1]} />
       ) : (
         <Loan_Activity datatable={main[0]} />
       )}
