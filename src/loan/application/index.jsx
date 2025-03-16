@@ -29,7 +29,7 @@ function Repayment() {
         // Use functional update to avoid dependency on main
         setmain((prevMain) => {
           // Store the data as the first element in the main array
-          return [[e.record], prevMain[1], prevMain[2], prevMain[3]]
+          return [e.record, prevMain[1], prevMain[2], prevMain[3]]
         })
         settask((prevTask) => prevTask + 1)
       })
@@ -45,7 +45,8 @@ function Repayment() {
         // Use functional update to avoid dependency on main
         setmain((prevMain) => {
           // Add the new data as the second element in the main array
-          return [ prevMain[0], [e.record], prevMain[2], prevMain[3]]
+          prevMain[1] = e.record;
+          return prevMain;
     
         })
         settask((prevTask) => prevTask + 1)
@@ -74,6 +75,9 @@ function Repayment() {
       setLoader(true)
     }
   }, [task, tobecomplete, setLoader])
+
+  console.log(main, "Naim")
+
 
   return (
     <div className="w-[85%] h-full px-[2%] overflow-scroll">
