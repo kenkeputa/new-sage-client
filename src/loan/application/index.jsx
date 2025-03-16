@@ -203,19 +203,13 @@ function Repayment() {
             onClick={() => setindex(i)}
           >
             {e}
-          </div>
-        ))}
-      </div>
-
-      {/* Content based on selected tab */}
-      {index === 0 && main[0]?.[0]?.record ? (
-        <AllActivity datatable={main[0]?.[0]?.record} />
-      ) : index === 1 && main[0]?.[0]?.record ? (
-        <Identity datatable={main[0]?.[0]?.record} />
-      ) : index === 2 && main[1]?.[0]?.record? (
-        <Employment datatable={main[1]?.[0]?.record} />
+        <AllActivity datatable={main[0]} />
+      ) : index === 1 && main[1]?.length > 0 ? (
+        <Identity datatable={main[1]} />
+      ) : index === 2 && main[1]?.length > 0? (
+        <Employment datatable={main[0]} />
       ) : (
-        <Loan_Activity datatable={main[0]?.[0]?.record} />
+        <Loan_Activity datatable={main[0]} />
       )}
     </div>
   )
