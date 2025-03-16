@@ -71,7 +71,9 @@ function Payment() {
                 console.log('Loan data:', loanTransactionData);
                 setmain((prevMain) => {
                     const normalizedData = normalizeData([loanTransactionData]);
-                    return [prevMain[0], normalizedData[0]];
+                    
+                 console.log(normalizedData,"nort")
+                 return [prevMain[0], normalizedData[0]];
                 });
                 settask((prevTask) => prevTask + 1);
             } catch (error) {
