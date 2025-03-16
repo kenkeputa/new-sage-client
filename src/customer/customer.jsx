@@ -72,8 +72,8 @@ function Customer() {
             
         </div>
         </div>
-        <div className="w-full flex gap-[24px]">
-    <div className="flex flex-col h-[125px] w-[267.5px] bg-[#831AD31A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
+    <div className="w-full flex gap-[24px]">
+                <div className="flex flex-col h-[125px] w-[267.5px] bg-[#831AD31A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
                     <div className="flex items-center gap-1.5 ">
                     <div className="flex justify-center items-center rounded-full size-[40px]">
                     <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect  } from 'react';
 import { Auth } from "../App.jsx"
-import {useNavigate } from 'react-router-dom'
+import PropTypes from 'prop-types';
+
 let Activity = ({datatable})=>{
     let [option, setoption] = useState(false)
     let [option1, setoption1] = useState(false)
@@ -11,7 +12,7 @@ let Activity = ({datatable})=>{
     const { isLoading, setLoader } = useContext(Auth)
 console.log(datatable)
     const tableRows = datatable;
-  let navigate = useNavigate();
+  
 
     // useEffect(()=>{
     //   fetch('https://sage-admin-backend.vercel.app/api/customer')
@@ -246,9 +247,7 @@ console.log(datatable)
           {tableRows?.map((row, idx) => (
             <div
               key={idx}
-              className="self-stretch h-[54px] p-3 bg-[#f6f6f6] border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden" onClick={()=>{
-                navigate('/customers/view')
-              }}
+              className="self-stretch h-[54px] p-3 bg-[#f6f6f6] border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="w-5 h-5 relative">
@@ -275,9 +274,6 @@ console.log(datatable)
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#f6f6f6] border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
-              onClick={()=>{
-                navigate('/customers/view')
-              }}
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
@@ -299,9 +295,6 @@ console.log(datatable)
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#f6f6f6] border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
-              onClick={()=>{
-                navigate('/customers/view')
-              }}
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
@@ -328,9 +321,6 @@ console.log(datatable)
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#f6f6f6] border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
-              onClick={()=>{
-                navigate('/customers/view')
-              }}
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
@@ -352,9 +342,6 @@ console.log(datatable)
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#f6f6f6] border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
-              onClick={()=>{
-                navigate('/customers/view')
-              }}
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
@@ -380,9 +367,6 @@ console.log(datatable)
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#f6f6f6] border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
-              onClick={()=>{
-                navigate('/customers/view')
-              }}
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div
@@ -413,9 +397,6 @@ console.log(datatable)
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#f6f6f6] border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
-              onClick={()=>{
-                navigate('/customers/view')
-              }}
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 {/* <div className="px-1 flex justify-center  py-1 w-[4rem]  rounded-lg text-white text-sm font-medium leading-[21px] mr-[1rem] gap-2"></div> */}
@@ -535,4 +516,8 @@ console.log(datatable)
 )
   }
 
+  Activity.propTypes = {
+    datatable: PropTypes.arrayOf(PropTypes.object),
+};
+  
   export default Activity;

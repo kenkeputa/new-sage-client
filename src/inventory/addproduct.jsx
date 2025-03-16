@@ -14,7 +14,7 @@ export default function AddProductForm() {
     quantityInStock: "",
     dealerID: "",
     description: "",
-    isTCPO: false,
+    isTCPO: true,
   })
 
   let navigate = useNavigate();
@@ -207,6 +207,7 @@ export default function AddProductForm() {
   }
 
   return (
+    <div className='w-[85%] h-full px-[2%] overflow-scroll'>
     <div className="max-w-4xl mx-auto p-4 bg-white">
       <div className="flex items-center mb-6">
         <button className="p-2 rounded-full">
@@ -404,7 +405,7 @@ navigate('/inventory')
             </div>
 
             {/* TCPO Checkbox */}
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
               <input
                 type="checkbox"
                 id="isTCPO"
@@ -416,7 +417,7 @@ navigate('/inventory')
               <label htmlFor="isTCPO" className="ml-2 block text-sm text-gray-700">
                 Is TCPO
               </label>
-            </div>
+            </div> */}
           </div>
 
           {/* Product Description */}
@@ -518,6 +519,7 @@ navigate('/inventory')
           </div>
         </div>
       </form>
+    </div>
     </div>
   )
 }
