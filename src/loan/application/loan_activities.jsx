@@ -1,6 +1,6 @@
 
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import PropTypes from 'prop-types';
 
 const Activity = ({datatable}) => {
