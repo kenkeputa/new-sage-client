@@ -194,16 +194,7 @@ function Repayment() {
         </div>
       </div>
 
-      {/* Navigation tabs */}
-      <div className="w-full h-8 flex gap-2 mt-8 border-b border-b-[#E4E4E4]">
-        {nav.map((e, i) => (
-          <div
-            key={i}
-            className="cursor-pointer"
-            style={{ borderBottom: index === i ? "2px solid rgba(114,23,184,1)" : "none" }}
-            onClick={() => setindex(i)}
-          >
-            {e}
+      
         {/* Navigation tabs */}
       <div className="w-full h-8 flex gap-2 mt-8 border-b border-b-[#E4E4E4]">
         {nav.map((e, i) => (
