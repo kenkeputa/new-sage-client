@@ -15,11 +15,11 @@ function Repayment() {
   const { isLoading, setLoader } = useContext(Auth)
   const [task, settask] = useState(0)
   const [tobecomplete, setcomplete] = useState(2)
-  const [main, setmain] = useState([])
+  const [main, setmain] = useState([[],[],[],[]])
 // console.log(main)
   useEffect(() => {
     // Reset main state to avoid duplication
-    setmain([])
+    //setmain([])
 
     // First fetch request
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/loan/app/all`)
@@ -29,7 +29,7 @@ function Repayment() {
         // Use functional update to avoid dependency on main
         setmain((prevMain) => {
           // Store the data as the first element in the main array
-          return [[e]]
+          return [[e.record], prevMain[1], prevMain[2], prevMain[3]]
         })
         settask((prevTask) => prevTask + 1)
       })
@@ -45,7 +45,8 @@ function Repayment() {
         // Use functional update to avoid dependency on main
         setmain((prevMain) => {
           // Add the new data as the second element in the main array
-          return [...prevMain, [e]]
+          return [ prevMain[0], [e.record], prevMain[2], prevMain[3]]
+    
         })
         settask((prevTask) => prevTask + 1)
       })
