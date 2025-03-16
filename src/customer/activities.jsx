@@ -247,7 +247,7 @@ console.log(datatable)
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#f6f6f6] border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden" onClick={()=>{
-                navigate('/customers/view')
+                navigate('/customers/view?id='+btoa(JSON.stringify(row)))
               }}
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
@@ -276,7 +276,7 @@ console.log(datatable)
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#f6f6f6] border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
               onClick={()=>{
-                navigate('/customers/view')
+                navigate('/customers/view?id='+btoa(JSON.stringify(row)))
               }}
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
@@ -300,7 +300,7 @@ console.log(datatable)
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#f6f6f6] border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
               onClick={()=>{
-                navigate('/customers/view')
+                navigate('/customers/view?id='+btoa(JSON.stringify(row)))
               }}
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
@@ -329,7 +329,7 @@ console.log(datatable)
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#f6f6f6] border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
               onClick={()=>{
-                navigate('/customers/view')
+                navigate('/customers/view?id='+btoa(JSON.stringify(row)))
               }}
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
@@ -353,7 +353,7 @@ console.log(datatable)
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#f6f6f6] border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
               onClick={()=>{
-                navigate('/customers/view')
+                navigate('/customers/view?id='+btoa(JSON.stringify(row)))
               }}
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
@@ -381,7 +381,7 @@ console.log(datatable)
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#f6f6f6] border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
               onClick={()=>{
-                navigate('/customers/view')
+                navigate('/customers/view?id='+btoa(JSON.stringify(row)))
               }}
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
@@ -414,7 +414,7 @@ console.log(datatable)
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#f6f6f6] border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
               onClick={()=>{
-                navigate('/customers/view')
+                navigate('/customers/view?id='+btoa(JSON.stringify(row)))
               }}
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">

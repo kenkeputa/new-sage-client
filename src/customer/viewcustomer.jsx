@@ -16,14 +16,42 @@ export default function UserInformation() {
     const { isLoading, setLoader } = useContext(Auth)
     let [task, settask] = useState(0)
     let [tobecomplete, setcomplete] = useState(1);
+    let [userData, setuserData] = useState({
+      name: "Adebayo Tomiwa",
+      id: "CUST037",
+      email: "Stevenbomasa@gmail.com",
+      phone: "08102976512",
+      address: "1, Old Olowora, Berger",
+    })
+  
 
-  const userData = {
-    name: "Adebayo Tomiwa",
-    id: "CUST037",
-    email: "Stevenbomasa@gmail.com",
-    phone: "08102976512",
-    address: "1, Old Olowora, Berger",
-  }
+ useEffect(() => {
+    // Get the URL search params
+    const searchParams = new URLSearchParams(window.location.search)
+    // Get the id parameter
+    const encodedId = searchParams.get("id")
+
+    if (encodedId) {
+      // Decode the base64 encoded id
+      const decodedId = JSON.parse(atob(encodedId))
+      setuserData({
+        name: decodedId.first_name + " " + decodedId.last_name, 
+        id: decodedId.id,
+        email: decodedId.email,
+        phone: decodedId.phone_number,
+        address: decodedId.address,
+      })
+      console.log("Decoded ID:", decodedId)
+    }
+  }, [])
+  // const userData = {
+  //   name: "Adebayo Tomiwa",
+  //   id: "CUST037",
+  //   email: "Stevenbomasa@gmail.com",
+  //   phone: "08102976512",
+  //   address: "1, Old Olowora, Berger",
+  // }
+
 
   const [main, setmain] = useState([]);
   console.log(import.meta.env.VITE_BACKEND_URL, "ggg")
