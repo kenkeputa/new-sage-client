@@ -14,27 +14,7 @@ console.log(datatable)
     const tableRows = datatable;
   
 
-    // useEffect(()=>{
-    //   fetch('https://sage-admin-backend.vercel.app/api/customer')
-    //   .then(e=>{
-    //     return e.json()
-    //   })
-    //   .then(e=>{
-    //     console.log(e[0])
-
-    //     setrow(e.record)
-    //     settask(1)
-
-    //   })
-    // },[])
-    // useEffect(()=>{
-    //   if(task === tobecomplete){
-    //     setLoader(false)
-    //   }else{
-    //     setLoader(true)
-
-    //   }
-    // },[task, tobecomplete])
+  
 
     const filteroptions = [
       { label: "All" },
@@ -240,7 +220,7 @@ console.log(datatable)
                 <div className="w-5 h-5 left-0 top-0 absolute bg-white rounded-md border border-[#e4e4e4]" />
               </div>
               <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight whitespace-nowrap">
-                Customer ID
+                Item Name
               </div>
             </div>
           </div>
@@ -254,7 +234,7 @@ console.log(datatable)
                   <div className="w-5 h-5 left-0 top-0 absolute bg-white rounded-md border border-[#e4e4e4]" />
                 </div>
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.id}
+                  {row.name}
                 </div>
               </div>
             </div>
@@ -266,7 +246,7 @@ console.log(datatable)
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
               <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight whitespace-nowrap">
-                Customer Name
+                Quantity
               </div>
             </div>
           </div>
@@ -277,7 +257,7 @@ console.log(datatable)
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.first_name} {row.last_name}
+                  {row.items[0].quantity}
                 </div>
               </div>
             </div>
@@ -287,7 +267,7 @@ console.log(datatable)
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
               <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight whitespace-nowrap">
-                Email
+                Price
               </div>
             </div>
           </div>
@@ -298,7 +278,7 @@ console.log(datatable)
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.email}
+                  {row.price}
                 </div>
               </div>
             </div>
@@ -313,7 +293,7 @@ console.log(datatable)
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
               <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight whitespace-nowrap">
-                Phone Number
+                Purchase Date
               </div>
             </div>
           </div>
@@ -324,13 +304,13 @@ console.log(datatable)
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.phone_number}
+                  {new Date(row.created_at).toISOString().split('T')[0].split('-').reverse().join('/')}
                 </div>
               </div>
             </div>
           ))}
         </div>
-        <div className="w-[154px] flex-col justify-start items-start inline-flex">
+        {/* <div className="w-[154px] flex-col justify-start items-start inline-flex">
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
               <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight whitespace-nowrap">
@@ -350,7 +330,7 @@ console.log(datatable)
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
         
         {/* Action Column */}
         
@@ -378,7 +358,7 @@ console.log(datatable)
                   
                   }`}
                 >
-                  {row.is_verified === false || row.is_verified === null ? "inactive": "Active" }
+                  {row.shipped }
                 </div>
               </div>
             </div>

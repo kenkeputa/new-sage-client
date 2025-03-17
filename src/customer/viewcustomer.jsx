@@ -17,16 +17,31 @@ export default function UserInformation() {
     let [task, settask] = useState(0)
     let [tobecomplete, setcomplete] = useState(1);
     let [userData, setuserData] = useState({
-      name: "Adebayo Tomiwa",
-      id: "CUST037",
-      email: "Stevenbomasa@gmail.com",
-      phone: "08102976512",
-      address: "1, Old Olowora, Berger",
+      name: "",
+      id: "",
+      email: "",
+      phone: "",
+      address: "",
     })
   
 
- useEffect(() => {
+//  useEffect(() => {
     // Get the URL search params
+    
+    
+  // }, [])
+  // const userData = {
+  //   name: "Adebayo Tomiwa",
+  //   id: "CUST037",
+  //   email: "Stevenbomasa@gmail.com",
+  //   phone: "08102976512",
+  //   address: "1, Old Olowora, Berger",
+  // }
+
+
+  const [main, setmain] = useState([]);
+  console.log(import.meta.env.VITE_BACKEND_URL, "ggg")
+  useEffect(()=>{
     const searchParams = new URLSearchParams(window.location.search)
     // Get the id parameter
     const encodedId = searchParams.get("id")
@@ -42,21 +57,7 @@ export default function UserInformation() {
         address: decodedId.address,
       })
       console.log("Decoded ID:", decodedId)
-    }
-  }, [])
-  // const userData = {
-  //   name: "Adebayo Tomiwa",
-  //   id: "CUST037",
-  //   email: "Stevenbomasa@gmail.com",
-  //   phone: "08102976512",
-  //   address: "1, Old Olowora, Berger",
-  // }
-
-
-  const [main, setmain] = useState([]);
-  console.log(import.meta.env.VITE_BACKEND_URL, "ggg")
-  useEffect(()=>{
-      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/customer`)
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/customer/orderdetails?id=${decodedId.id}`)
       .then(e=>{
         return e.json()
       })
@@ -67,7 +68,9 @@ export default function UserInformation() {
         settask(1)
 
       })
+    }
     },[])
+    
     useEffect(()=>{
       if(task === tobecomplete){
         setLoader(false)
