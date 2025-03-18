@@ -20,6 +20,7 @@ import SettingAddLoan from "./settings/loan/addloan"
 import SettingEditLoan from "./settings/loan/editloan"
 import SettingRole from "./settings/user-role/index"
 import Login from "./auth/index"
+import Refund from "./customer/refundrequest"
 import Loader from "./Loader" 
 import { Routes, Route, Navigate } from "react-router-dom"
 import React, { useState, useEffect } from "react"
@@ -77,6 +78,11 @@ function App() {
               exact
               path="/loan"
               element={!isLogin ? <Navigate to="/auth" /> : <Navigate to="/loan/application" />}
+            />
+            <Route
+              exact
+              path="/customers/refundrequest"
+              element={!isLogin ? <Navigate to="/auth" /> : <Refund />}
             />
             <Route exact path="/loan/repayment" element={!isLogin ? <Navigate to="/auth" /> : <Repayment />} />
             <Route exact path="/loan/application" element={!isLogin ? <Navigate to="/auth" /> : <Application />} />
