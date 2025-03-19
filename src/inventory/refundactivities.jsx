@@ -1,11 +1,11 @@
 import { useState } from 'react';
-
+import {useNavigate} from "react-router-dom"
 let OrderActivity = ()=>{
     let [option, setoption] = useState(false)
     let [option1, setoption1] = useState(false)
     let [option2, setoption2] = useState(false)
     let [menu, setmenu] = useState(null)
-  
+    let navigate = useNavigate();
   
     const tableRows = [
       {
@@ -379,7 +379,9 @@ let OrderActivity = ()=>{
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
-            >
+            onClick={()=>{
+              navigate('/customers/refundrequest')
+            }}>
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
                   {row.requestorder}
@@ -405,7 +407,9 @@ let OrderActivity = ()=>{
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
-            >
+              onClick={()=>{
+                navigate('/customers/refundrequest')
+              }}>
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
                   {row.requestamount}
@@ -432,7 +436,9 @@ let OrderActivity = ()=>{
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
-            >
+              onClick={()=>{
+                navigate('/customers/refundrequest')
+              }}>
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
                   {row.reasonForRefund}
@@ -462,7 +468,9 @@ let OrderActivity = ()=>{
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
-            >
+              onClick={()=>{
+                navigate('/customers/refundrequest')
+              }}>
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div
                   className={`px-2 rounded-md border text-sm font-medium leading-[21px] ${
@@ -501,7 +509,9 @@ let OrderActivity = ()=>{
             <div
               key={idx}
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
-            >
+              onClick={()=>{
+                navigate('/customers/refundrequest')
+              }}>
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="px-1 flex justify-center  py-1 w-[4rem]  rounded-lg text-white text-sm font-medium leading-[21px] mr-[1rem] gap-2"><button className="text-black bg-white py-[4px] h-[29px] w-[49px] px-[8px] rounded-[8px]">View</button></div>
                 
