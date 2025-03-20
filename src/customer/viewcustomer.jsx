@@ -129,11 +129,11 @@ export default function UserInformation() {
         }
         )}
     </div>
-    {index === 0 && main[0]?.length > 0 ? (
+    {index === 0 && main[0]? (
     <OrderDetails datatable={main[0]} />
-    ) : index === 1 && main[0]?.length > 0 ? (
+    ) : index === 1 && main[0] ? (
     <Payment datatable={main[0]} />
-     ) : index === 2 && main[0]?.length > 0 ? (
+     ) : index === 2 && main[0] ? (
     <Supportticket datatable={main[0]} />
     ) : (<div>No data here</div>)}
     </div>
