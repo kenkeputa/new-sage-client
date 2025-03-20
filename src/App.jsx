@@ -20,7 +20,7 @@ import SettingAddLoan from "./settings/loan/addloan"
 import SettingEditLoan from "./settings/loan/editloan"
 import SettingRole from "./settings/user-role/index"
 import Login from "./auth/index"
-import Refund from "./customer/refundrequest"
+import Refund from "./customer/refundview"
 import Fraud from "./fraud/index"
 import Loader from "./Loader" 
 import { Routes, Route, Navigate } from "react-router-dom"
@@ -82,7 +82,7 @@ function App() {
             />
             <Route
               exact
-              path="/customers/refundrequest"
+              path="/customers/refundview"
               element={!isLogin ? <Navigate to="/auth" /> : <Refund />}
             />
             <Route exact path="/loan/repayment" element={!isLogin ? <Navigate to="/auth" /> : <Repayment />} />
