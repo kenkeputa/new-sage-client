@@ -13,8 +13,9 @@ export default function AddProductForm() {
     price: "",
     quantityInStock: "",
     dealerID: "",
+    dealerName: "", // Add this line
     description: "",
-    isTCPO: true,
+    isTCPO: false,
   })
 
   let navigate = useNavigate();
@@ -33,7 +34,7 @@ export default function AddProductForm() {
   const CLOUDINARY_UPLOAD_PRESET = "upload" // Your actual upload preset from Cloudinary
   const CLOUDINARY_CLOUD_NAME = "dxjsljyas" // Your actual cloud name from Cloudinary
   const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`
-
+console.log(formData)
   // Fetch suppliers on component mount
   useEffect(() => {
     const fetchSuppliers = async () => {
@@ -152,7 +153,9 @@ export default function AddProductForm() {
         category: formData.category,
         isTCPO: formData.isTCPO,
         dealerID: formData.dealerID,
-        displayPhotos: imageUrls, // Send array of Cloudinary URLs
+        displayPhotos: imageUrls,
+         dealerName: formData.dealerName,
+         // Send array of Cloudinary URLs
       }
 
       // Send the data to the API
@@ -181,6 +184,7 @@ export default function AddProductForm() {
         price: "",
         quantityInStock: "",
         dealerID: "",
+        dealerName: "",
         description: "",
         isTCPO: false,
       })
@@ -204,6 +208,27 @@ export default function AddProductForm() {
   const handleCancel = () => {
     // Handle cancel action - typically navigate back or clear form
     console.log("Form cancelled")
+  }
+
+
+
+  const handleSupplierChange = (e) => {
+    const selectedIndex = e.target.selectedIndex
+    if (selectedIndex === 0) {
+      // "Select supplier name" option
+      setFormData((prev) => ({
+        ...prev,
+        dealerID: "",
+        dealerName: "",
+      }))
+    } else {
+      const selectedSupplier = suppliers[selectedIndex - 1] // -1 because of the first empty option
+      setFormData((prev) => ({
+        ...prev,
+        dealerID: selectedSupplier.id,
+        dealerName: selectedSupplier.name,
+      }))
+    }
   }
 
   return (
@@ -374,7 +399,7 @@ navigate('/inventory')
                   id="dealerID"
                   name="dealerID"
                   value={formData.dealerID}
-                  onChange={handleInputChange}
+                  onChange={handleSupplierChange}
                   className="w-full px-4 py-3 border-[#E4E4E4] border rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white pr-10 text-gray-500"
                   required
                 >
