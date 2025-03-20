@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card"
 import FraudChart from './fraudchart';
 import { LineChart } from "../components/LineChart";
-import Flagged from "./refundactivities";
+import Flagged from "./flagged_transaction";
 
 import { Auth } from "../App.jsx"
 export let SelectChart = ({ text })=>{
@@ -26,69 +26,71 @@ function Fraud() {
   const [index, setindex] = useState(0)
   const { isLoading, setLoader } = useContext(Auth)
   const [task, settask] = useState(0)
-  const [tobecomplete, setcomplete] = useState(2)
+  const [tobecomplete, setcomplete] = useState(1)
   const [main, setmain] = useState([[],[],[],[]])
 // console.log(main)
-  // useEffect(() => {
-  //   // Reset main state to avoid duplication
-  //   //setmain([])
+  useEffect(() => {
+    // Reset main state to avoid duplication
+    //setmain([])
 
-  //   // First fetch request
-  //   fetch(`${import.meta.env.VITE_BACKEND_URL}/api/loan/app/all`)
-  //     .then((e) => e.json())
-  //     .then((e) => {
-  //       console.log("All loans data:", e)
-  //       // Use functional update to avoid dependency on main
-  //       setmain((prevMain) => {
-  //         // Store the data as the first element in the main array
-  //         return [e.record, prevMain[1], prevMain[2], prevMain[3]]
-  //       })
-  //       settask((prevTask) => prevTask + 1)
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching all loans:", error)
-  //     })
+    // First fetch request
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/fraud/index`)
+      .then((e) => e.json())
+      .then((e) => {
+        console.log("All loans data:", e)
+        // Use functional update to avoid dependency on main
+        setmain((prevMain) => {
+          // Store the data as the first element in the main array
+          return [e.record
+            , prevMain[1], prevMain[2], prevMain[3]
+          ]
+        })
+        settask((prevTask) => prevTask + 1)
+      })
+      .catch((error) => {
+        console.error("Error fetching all loans:", error)
+      })
 
-  //   // Second fetch request
-  //   fetch(`${import.meta.env.VITE_BACKEND_URL}/api/loan/app/employment`)
-  //     .then((e) => e.json())
-  //     .then((e) => {
-  //       console.log("Employment data:", e)
-  //       // Use functional update to avoid dependency on main
-  //       setmain((prevMain) => {
-  //         // Add the new data as the second element in the main array
-  //         prevMain[1] = e.record;
-  //         return prevMain;
+    // Second fetch request
+    // fetch(`${import.meta.env.VITE_BACKEND_URL}/api/loan/app/employment`)
+    //   .then((e) => e.json())
+    //   .then((e) => {
+    //     console.log("Employment data:", e)
+    //     // Use functional update to avoid dependency on main
+    //     setmain((prevMain) => {
+    //       // Add the new data as the second element in the main array
+    //       prevMain[1] = e.record;
+    //       return prevMain;
     
-  //       })
-  //       settask((prevTask) => prevTask + 1)
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching employment data:", error)
-  //     })
+    //     })
+    //     settask((prevTask) => prevTask + 1)
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error fetching employment data:", error)
+    //   })
 
-  //   // Uncomment if you need the third fetch request
-  //   // fetch('https://sage-admin-backend.vercel.app/api/loan/repayment/overdue')
-  //   //     .then(e => e.json())
-  //   //     .then(e => {
-  //   //         console.log('Overdue data:', e);
-  //   //         setmain(prevMain => [...prevMain, [e]]);
-  //   //         settask(prevTask => prevTask + 1);
-  //   //     })
-  //   //     .catch(error => {
-  //   //         console.error('Error fetching overdue data:', error);
-  //   //     });
-  // }, []) // Empty dependency array to run only once
+    // Uncomment if you need the third fetch request
+    // fetch('https://sage-admin-backend.vercel.app/api/loan/repayment/overdue')
+    //     .then(e => e.json())
+    //     .then(e => {
+    //         console.log('Overdue data:', e);
+    //         setmain(prevMain => [...prevMain, [e]]);
+    //         settask(prevTask => prevTask + 1);
+    //     })
+    //     .catch(error => {
+    //         console.error('Error fetching overdue data:', error);
+    //     });
+  }, []) // Empty dependency array to run only once
 
-  // useEffect(() => {
-  //   if (task === tobecomplete) {
-  //     setLoader(false)
-  //   } else {
-  //     setLoader(true)
-  //   }
-  // }, [task, tobecomplete, setLoader])
+  useEffect(() => {
+    if (task === tobecomplete) {
+      setLoader(false)
+    } else {
+      setLoader(true)
+    }
+  }, [task, tobecomplete, setLoader])
 
-  // console.log(main, "Naim")
+  console.log(main, "Naim")
 
 
   return (
@@ -154,8 +156,8 @@ function Fraud() {
             </div>
             <span className="text-[16px] font-[500]"></span>
           </div>
-          <span className="text-[12px] mt-1 font-[600]">Total Active Loans</span>
-          <span className="text-[26px] font-[700]">2,350</span>
+          <span className="text-[12px] mt-1 font-[600]">Total Flagged Transaction</span>
+          <span className="text-[26px] font-[700]">1</span>
         </div>
 
         {/* Card 2 */}
@@ -174,8 +176,8 @@ function Fraud() {
             </div>
             <span className="text-[16px] mt-1 font-[500]"></span>
           </div>
-          <span className="text-[12px] mt-1 font-[600]">Total Amount Repaid</span>
-          <span className="text-[26px] font-[700]">N40,800,000</span>
+          <span className="text-[12px] mt-1 font-[600]">Users flagged</span>
+          <span className="text-[26px] font-[700]">30</span>
         </div>
 
         {/* Card 3 */}
@@ -194,8 +196,8 @@ function Fraud() {
             </div>
             <span className="text-[16px] font-[500]"></span>
           </div>
-          <span className="text-[12px] mt-1 font-[600]">Total Overdue Loans</span>
-          <span className="text-[26px] font-[700]">N10,000</span>
+          <span className="text-[12px] mt-1 font-[600]">Total Amount Lost to Fraud</span>
+          <span className="text-[26px] font-[700]">N2,000</span>
         </div>
 
         {/* Card 4 */}
@@ -214,8 +216,8 @@ function Fraud() {
             </div>
             <span className="text-[16px] font-[500]"></span>
           </div>
-          <span className="text-[12px] font-[600] mt-1">Defaulters Count</span>
-          <span className="text-[26px] font-[700]">90</span>
+          <span className="text-[12px] font-[600] mt-1">Fraud Defaulters Rate</span>
+          <span className="text-[26px] font-[700]">0.1%</span>
         </div>
       </div>
 
@@ -285,16 +287,19 @@ function Fraud() {
       </div>
 
       {/* Content based on selected tab */}
-      {/* {index === 0 && main[1] ? (
-        <AllActivity datatable={main[0]} />
-      ) : index === 1 && main[1] ? (
+      {index === 0 && main[1] ? (
+        <Flagged datatable={main[0]} />
+      ) : ""}
+      
+      
+      {/*}: index === 1 && main[1] ? (
         <Identity datatable={main[0]} />
       ) : index === 2 && main[1] ? (
         <Employment datatable={main[1]} />
       ) : (
         <Loan_Activity datatable={main[0]} />
-      )} */}
-      <Flagged />
+      ) */}
+      {/* <Flagged /> */}
     </div>
   )
 }
