@@ -177,7 +177,7 @@ function Fraud() {
             <span className="text-[16px] mt-1 font-[500]"></span>
           </div>
           <span className="text-[12px] mt-1 font-[600]">Users flagged</span>
-          <span className="text-[26px] font-[700]">30</span>
+          <span className="text-[26px] font-[700]">1</span>
         </div>
 
         {/* Card 3 */}

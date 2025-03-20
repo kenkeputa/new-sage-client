@@ -357,7 +357,7 @@ let FraudActivity = ({datatable})=>{
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div
                   className={`px-2 rounded-md border text-sm font-medium leading-[21px] ${
-                    row?.['Risk Score'] === "Medium" || row.status === "pending" 
+                    row?.['Risk Score'] === "Medium" || row?.['Risk Score'] === "pending" 
                       ? "bg-[#ffdb43]/10 border-[#ffeda1] text-[#ae8c00]"
                       : row?.['Risk Score'] === "high"
                       ? "bg-[#fb3748]/10 border-[#fdafb6] text-[#dd0417]"
