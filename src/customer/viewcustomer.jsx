@@ -39,7 +39,7 @@ export default function UserInformation() {
   // }
 
 
-  const [main, setmain] = useState([]);
+  const [main, setmain] = useState([[],[],[],[]]);
   console.log(import.meta.env.VITE_BACKEND_URL, "ggg")
   useEffect(()=>{
     const searchParams = new URLSearchParams(window.location.search)
@@ -64,7 +64,13 @@ export default function UserInformation() {
       .then(e=>{
         console.log(e,'ob')
 
-        setmain([e.record])
+        setmain((prevMain) => {
+          // Store the data as the first element in the main array
+          return [e.record
+            , prevMain[1], prevMain[2], prevMain[3]
+          ]
+        })
+        settask((prevTask) => prevTask + 1)
         settask(1)
 
       })
