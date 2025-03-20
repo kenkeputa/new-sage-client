@@ -240,7 +240,7 @@ console.log(datatable)
                 <div className="w-5 h-5 left-0 top-0 absolute bg-white rounded-md border border-[#e4e4e4]" />
               </div>
               <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight whitespace-nowrap">
-                Customer ID
+               Payment Method
               </div>
             </div>
           </div>
@@ -254,7 +254,7 @@ console.log(datatable)
                   <div className="w-5 h-5 left-0 top-0 absolute bg-white rounded-md border border-[#e4e4e4]" />
                 </div>
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.id}
+                  {row.transaction_type}
                 </div>
               </div>
             </div>
@@ -262,74 +262,14 @@ console.log(datatable)
         </div>
         
         {/* Category Column */}
-        <div className="grow shrink basis-0 flex-col justify-start items-start inline-flex">
-          <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
-            <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight whitespace-nowrap">
-                Customer Name
-              </div>
-            </div>
-          </div>
-          {tableRows?.map((row, idx) => (
-            <div
-              key={idx}
-              className="self-stretch h-[54px] p-3 bg-[#f6f6f6] border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
-            >
-              <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-                <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.first_name} {row.last_name}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="grow shrink basis-0 flex-col justify-start items-start inline-flex">
-          <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
-            <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight whitespace-nowrap">
-                Email
-              </div>
-            </div>
-          </div>
-          {tableRows?.map((row, idx) => (
-            <div
-              key={idx}
-              className="self-stretch h-[54px] p-3 bg-[#f6f6f6] border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
-            >
-              <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-                <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.email}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        
+        
         
         {/* Status Column */}
         
         
         {/* Date Column */}
-        <div className="w-[154px] flex-col justify-start items-start inline-flex">
-          <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
-            <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight whitespace-nowrap">
-                Phone Number
-              </div>
-            </div>
-          </div>
-          {tableRows?.map((row, idx) => (
-            <div
-              key={idx}
-              className="self-stretch h-[54px] p-3 bg-[#f6f6f6] border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
-            >
-              <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-                <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.phone_number}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        
         <div className="w-[154px] flex-col justify-start items-start inline-flex">
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
@@ -345,7 +285,7 @@ console.log(datatable)
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.registration_date}
+                  {row.created_at}
                 </div>
               </div>
             </div>
@@ -385,75 +325,7 @@ console.log(datatable)
           ))}
         </div>
 
-        <div className="grow shrink basis-0 flex-col justify-start items-start inline-flex">
-          <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
-            <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight ml-[3.5rem]">
-                Actions
-              </div>
-            </div>
-          </div>
-          {tableRows?.map((row, idx) => (
-            <div
-              key={idx}
-              className="self-stretch h-[54px] p-3 bg-[#f6f6f6] border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
-            >
-              <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-                {/* <div className="px-1 flex justify-center  py-1 w-[4rem]  rounded-lg text-white text-sm font-medium leading-[21px] mr-[1rem] gap-2"></div> */}
-                <div data-svg-wrapper className=" relative cursor-pointer w-[50px] ml-[4rem]">
-                <svg onClick={()=>{
-                    console.log(menu)
-                  if(menu === null){
-                    setmenu(idx)
-                  }else if(menu !== idx){
-                    setmenu(idx)
-                  }
-                  else{
-                    setmenu(null)
-                  }
-                }}
-                  width="25"
-                  height="24"
-                  viewBox="0 0 25 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M12.5 13C13.0523 13 13.5 12.5523 13.5 12C13.5 11.4477 13.0523 11 12.5 11C11.9477 11 11.5 11.4477 11.5 12C11.5 12.5523 11.9477 13 12.5 13Z"
-                    stroke="#565656"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M19.5 13C20.0523 13 20.5 12.5523 20.5 12C20.5 11.4477 20.0523 11 19.5 11C18.9477 11 18.5 11.4477 18.5 12C18.5 12.5523 18.9477 13 19.5 13Z"
-                    stroke="#565656"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M5.5 13C6.05228 13 6.5 12.5523 6.5 12C6.5 11.4477 6.05228 11 5.5 11C4.94772 11 4.5 11.4477 4.5 12C4.5 12.5523 4.94772 13 5.5 13Z"
-                    stroke="#565656"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                {/* manage */}
-                <div className="w-[249px] h-[37px] absolute right-[90%] top-[-23%] z-[9999]  bg-white rounded-[4px] overflow-hidden pl-[8.2rem] mr-[5px]" style={{display: menu === idx ? 'block' : 'none'}}>
-                  <div className="w-full h-full px-3 py-2 bg-[#333333]/10 justify-start items-center gap-2 inline-flex">
-                    <div className="text-[#565656] pl-8 text-sm font-medium font-['Mulish'] leading-[21px]">
-                      Manage
-                    </div>
-                  </div>
-                </div>
-              </div>
-                
-              </div>
-            </div>
-          ))}
-        </div>
+
 
       </div>
       {/* prev */}
