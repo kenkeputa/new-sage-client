@@ -357,7 +357,7 @@ let FraudActivity = ({datatable})=>{
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div
                   className={`px-2 rounded-md border text-sm font-medium leading-[21px] ${
-                    row.status === "Medium" || row.status === "Pending" 
+                    row.status === "Medium" || row.status === "pending" 
                       ? "bg-[#ffdb43]/10 border-[#ffeda1] text-[#ae8c00]"
                       : row.status === "High"
                       ? "bg-[#fb3748]/10 border-[#fdafb6] text-[#dd0417]"
@@ -368,7 +368,7 @@ let FraudActivity = ({datatable})=>{
                       : ""
                   }`}
                 >
-                  {row.status}
+                  {row?.['Risk Score']}
                 </div>
               </div>
             </div>
@@ -397,7 +397,7 @@ let FraudActivity = ({datatable})=>{
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div
                   className={`px-2 rounded-md border text-sm font-medium leading-[21px] ${
-                    row.status === "Pending"
+                    row.status === "pending"
                       ? "bg-[#ffdb43]/10 border-[#ffeda1] text-[#ae8c00]"
                       : row.status === "Rejected"
                       ? "bg-[#fb3748]/10 border-[#fdafb6] text-[#dd0417]"
