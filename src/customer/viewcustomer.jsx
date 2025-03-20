@@ -68,6 +68,17 @@ export default function UserInformation() {
         settask(1)
 
       })
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/customer/payment_method?id=${decodedId.id}`)
+      .then(e=>{
+        return e.json()
+      })
+      .then(e=>{
+        console.log(e,'ob')
+
+        setmain([e.record])
+        settask(1)
+
+      })
     }
     },[])
     
