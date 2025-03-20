@@ -15,7 +15,7 @@ export default function UserInformation() {
     let [index,setindex] = useState(0);
     const { isLoading, setLoader } = useContext(Auth)
     let [task, settask] = useState(0)
-    let [tobecomplete, setcomplete] = useState(1);
+    let [tobecomplete, setcomplete] = useState(2);
     let [userData, setuserData] = useState({
       name: "",
       id: "",
@@ -71,7 +71,7 @@ export default function UserInformation() {
           ]
         })
         settask((prevTask) => prevTask + 1)
-        settask(1)
+        
 
       })
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/customer/payment_method?id=${decodedId.id}`)
@@ -81,8 +81,16 @@ export default function UserInformation() {
       .then(e=>{
         console.log(e,'ob')
 
-        setmain([e.record])
-        settask(1)
+        
+          setmain((prevMain) => {
+            // Add the new data as the second element in the main array
+            prevMain[1] = e.record;
+            return prevMain;
+      
+          })
+          settask((prevTask) => prevTask + 1)
+  
+        
 
       })
     }
@@ -146,11 +154,11 @@ export default function UserInformation() {
         }
         )}
     </div>
-    {index === 0 && main[0]? (
+    {index === 0 && main[1]? (
     <OrderDetails datatable={main[0]} />
-    ) : index === 1 && main[0] ? (
+    ) : index === 1 && main[1] ? (
     <Payment datatable={main[0]} />
-     ) : index === 2 && main[0] ? (
+     ) : index === 2 && main[1] ? (
     <Supportticket datatable={main[0]} />
     ) : (<div>No data here</div>)}
     </div>
