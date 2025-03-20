@@ -94,7 +94,7 @@ function Fraud() {
   return (
     <div className="w-[85%] h-full px-[2%] overflow-scroll">
       <div className="mt-[2rem] flex items-center justify-between mb-4">
-        <span className="font-[700] text-[26px] text-[#333333]">Loan Repayment</span>
+        <span className="font-[700] text-[26px] text-[#333333]">Flaud Detection</span>
         <div className="flex gap-2 justify-center items-center h-[24px]">
           <div className="w-[137px] flex justify-center items-center bg-[#FFFFFF] pt-[8px] pl-[12px] relative">
             <div className="w-full h-[37px] rounded-[8px] gap-[8px] items-center flex justify-center cursor-pointer border border-[#E4E4E4]">
@@ -226,8 +226,8 @@ function Fraud() {
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="">
-                    <CardTitle>Applications Over Time</CardTitle>
-                    <p className="text-gray-600 text-lg mb-8">Shows the distribution of fraud types within the system.</p>
+                    <CardTitle>Fraudulent Detection Rate</CardTitle>
+                    <p className="text-gray-600 text-lg mb-8">Tracks the percentage of flagged fraudulent transctions.</p>
                     </div>
                     <div className="relative rounded-lg overflow-hidden border-[#E4E4E4] border">
 
