@@ -262,7 +262,7 @@ let FraudActivity = ({datatable})=>{
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.first_name + " " + row.last_name}
+                  {row.customer_name}
                 </div>
               </div>
             </div>
@@ -321,7 +321,7 @@ let FraudActivity = ({datatable})=>{
             }}>
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row?.['Reason for flagging']}
+                  {row.Reason_for_flagging}
                 </div>
               </div>
             </div>
@@ -374,6 +374,34 @@ let FraudActivity = ({datatable})=>{
             </div>
           ))}
         </div>
+
+        <div className="grow shrink basis-15 flex-col justify-start items-start inline-flex">
+          <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
+            <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
+              
+              <div className="grow shrink basis-6 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
+              
+              <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 19L1.5 12.5H10.5L6 19ZM6 1L1.5 7.5H10.5L6 1Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              <span className='whitespace-nowrap'>Last Transaction Date</span>
+            </div>
+            </div>
+          </div>
+          {tableRows?.map((row, idx) => (
+            <div
+              key={idx}
+              className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
+            >
+              <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
+                <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
+                  {row.last_transaction_date}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
         <div className="w-[154px] flex-col justify-start items-start inline-flex">
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">

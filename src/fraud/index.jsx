@@ -289,6 +289,8 @@ function Fraud() {
       {/* Content based on selected tab */}
       {index === 0 && main[1] ? (
         <Flagged datatable={main[0]} />
+      ) : index === 1 && main[1] ? (
+        <Flagged datatable={main[0]} />
       ) : ""}
       
       
