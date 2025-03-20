@@ -7,6 +7,7 @@ import FraudChart from './fraudchart';
 import { LineChart } from "../components/LineChart";
 import Flagged from "./flagged_transaction";
 import FlaggedUsers from "./flaggedusers";
+import Risklevel from "./risklevel.jsx";
 
 import { Auth } from "../App.jsx"
 export let SelectChart = ({ text })=>{
@@ -27,7 +28,7 @@ function Fraud() {
   const [index, setindex] = useState(0)
   const { isLoading, setLoader } = useContext(Auth)
   const [task, settask] = useState(0)
-  const [tobecomplete, setcomplete] = useState(2)
+  const [tobecomplete, setcomplete] = useState(3)
   const [main, setmain] = useState([[],[],[],[]])
 // console.log(main)
   useEffect(() => {
@@ -71,16 +72,21 @@ function Fraud() {
       })
 
     // Uncomment if you need the third fetch request
-    // fetch('https://sage-admin-backend.vercel.app/api/loan/repayment/overdue')
-    //     .then(e => e.json())
-    //     .then(e => {
-    //         console.log('Overdue data:', e);
-    //         setmain(prevMain => [...prevMain, [e]]);
-    //         settask(prevTask => prevTask + 1);
-    //     })
-    //     .catch(error => {
-    //         console.error('Error fetching overdue data:', error);
-    //     });
+    fetch('https://sage-admin-backend.vercel.app/api/fraud/risk')
+        .then(e => e.json())
+        .then(e => {
+            console.log('Overdue data:', e);
+            setmain((prevMain) => {
+              // Add the new data as the second element in the main array
+              prevMain[2] = e.record;
+              return prevMain;
+        
+            })
+            settask(prevTask => prevTask + 1);
+        })
+        .catch(error => {
+            console.error('Error fetching overdue data:', error);
+        });
   }, []) // Empty dependency array to run only once
 
   useEffect(() => {
@@ -288,11 +294,13 @@ function Fraud() {
       </div>
 
       {/* Content based on selected tab */}
-      {index === 0 && main[1] ? (
+      {index === 0 && main[2] ? (
         <Flagged datatable={main[0]} />
-      ) : index === 1 && main[1] ? (
+      ) : index === 1 && main[2] ? (
         <FlaggedUsers datatable={main[1]} />
-      ) : ""}
+      ) : index === 2 && main[2] ? (
+        <Risklevel datatable={main[2]} />
+      ):""}
       
       
       {/*}: index === 1 && main[1] ? (
