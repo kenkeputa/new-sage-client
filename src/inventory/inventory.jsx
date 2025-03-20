@@ -5,15 +5,15 @@ import ProductActivity from './productactivities.jsx'
 import RefundActivity from './refundactivities.jsx'
 import OrderActivity from './orderactivities.jsx'
 import { Auth } from "../App.jsx"
-function Customer() {
+function Inventory() {
     let navigate = useNavigate();
     let [nav, setnav] = useState(['Inventory', 'Order Management', 'Refund Requests']);
     let [index,setindex] = useState(0);
     const { isLoading, setLoader } = useContext(Auth)
     let [task, settask] = useState(0)
     let [tobecomplete, setcomplete] = useState(2)
-    let [main, setmain] = useState([])
-
+    let [main, setmain] = useState([[],[],[],[]])
+    let [invent, setinvent] = useState({})
 
     useEffect(()=>{
         fetch(`${import.meta.env.VITE_BACKEND_URL}/api/inventory/product`)
@@ -22,12 +22,12 @@ function Customer() {
         })
         .then(e=>{
           console.log(e[0])
-  
+          setinvent(e)
           setmain((prevMain) => {
             // Store the data as the first element in the main array
-            return [[e]]
+            return [e.record, prevMain[1], prevMain[2], prevMain[3]]
           })
-          settask(1)
+          settask((prevTask) => prevTask + 1)
   
         })
         fetch(`${import.meta.env.VITE_BACKEND_URL}/api/inventory/order`)
@@ -39,9 +39,11 @@ function Customer() {
   
           setmain((prevMain) => {
             // Add the new data as the second element in the main array
-            return [...prevMain, [e]]
+            prevMain[1] = e.record;
+            return prevMain;
+      
           })
-          settask(2)
+          settask((prevTask) => prevTask + 1)
   
         })
       
@@ -88,25 +90,25 @@ function Customer() {
     <div className="flex flex-col h-[80px] w-[267.5px] bg-[#831AD31A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
                     
                     <span className="text-[12px] mt-1 font-[600]">Total Inventory</span>
-                    <span className="text-[26px] font-[700]">{main[0]?.[0]?.inventory}</span>
+                    <span className="text-[26px] font-[700]">{invent?.inventory}</span>
                     
                 </div>
                 <div className="flex flex-col h-[80px] w-[267.5px] bg-[#B5E45E1A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
                     
                     <span className="text-[12px] mt-1 font-[600]">In Stock</span>
-                    <span className="text-[26px] font-[700]">{main[0]?.[0]?.in_stocks}</span>
+                    <span className="text-[26px] font-[700]">{invent?.in_stocks}</span>
                     
                 </div>
                 <div className="flex flex-col h-[80px] w-[267.5px] bg-[#FFDB431A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
                     
                     <span className="text-[12px] mt-1 font-[600]">Low Stock</span>
-                    <span className="text-[26px] font-[700]">{main[0]?.[0]?.low_stock}</span>
+                    <span className="text-[26px] font-[700]">{invent?.low_stock}</span>
                     
                 </div>
                 <div className="flex flex-col h-[80px] w-[267.5px] bg-[#FB37481A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
                     
                     <span className="text-[12px] font-[600] mt-1">Out Of Stock</span>
-                    <span className="text-[26px] font-[700]">{main[0]?.[0]?.out_of_stock}</span>
+                    <span className="text-[26px] font-[700]">{invent?.out_of_stock}</span>
                     
                 
                 
@@ -121,13 +123,14 @@ function Customer() {
         }
         )}
     </div>
-    { index === 0 ?
-    <ProductActivity datatable={main[0]?.[0]?.record} /> 
-    : index === 1? <OrderActivity datatable={main[1]?.[0]?.record}/> 
+    { index === 0 && main[1] ? 
+    <ProductActivity datatable={main[0]} /> 
+    : index === 1 && main[1]?
+     <OrderActivity datatable={main[1]}/> 
     :  <RefundActivity />}
     
     </div>);
 }
 
-export default Customer;
+export default Inventory;
 

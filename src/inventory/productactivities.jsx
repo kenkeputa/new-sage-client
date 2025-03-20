@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import PropTypes from 'prop-types';
 let Activity = ({datatable})=>{
     let [option, setoption] = useState(false)
     let [option1, setoption1] = useState(false)
@@ -538,5 +538,8 @@ let Activity = ({datatable})=>{
   </div>
 )
   }
+  Activity.propTypes = {
+    datatable: PropTypes.arrayOf(PropTypes.object),
+};
 
   export default Activity;

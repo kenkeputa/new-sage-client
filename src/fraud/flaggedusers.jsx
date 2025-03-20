@@ -210,18 +210,18 @@ let FraudActivity = ({datatable})=>{
   <div className="self-stretch justify-start items-start inline-flex">
         
         {/* Description Column */}
-        <div className="w-[97px] flex-col justify-start items-start inline-flex">
+        <div className="w-[154px] flex-col justify-start items-start inline-flex">
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
-            <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
+            <div className="grow shrink basis-6 h-[30px] justify-start items-center gap-3 flex">
               {/* <div className="w-5 h-5 relative">
                 <div className="w-5 h-5 left-0 top-0 absolute bg-white rounded-md border border-[#e4e4e4]" />
               </div> */}
-                <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
+                <div className="grow shrink basis-12 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
               
               <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M6 19L1.5 12.5H10.5L6 19ZM6 1L1.5 7.5H10.5L6 1Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
               </svg>
-              <span className='whitespace-nowrap'>Transaction id</span>
+              <span className='whitespace-nowrap'>Customer ID</span>
             </div>
               
             </div>
@@ -240,13 +240,13 @@ let FraudActivity = ({datatable})=>{
             </div>
           ))}
         </div>
-        
-        {/* Category Column */}
+
+
         <div className="grow shrink basis-15 flex-col justify-start items-start inline-flex">
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
               
-              <div className="grow shrink basis-6 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
+              <div className="grow shrink basis-4 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
               
               <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M6 19L1.5 12.5H10.5L6 19ZM6 1L1.5 7.5H10.5L6 1Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
@@ -262,38 +262,19 @@ let FraudActivity = ({datatable})=>{
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.customer_name}
+                {row.first_name + " " + row.last_name}
                 </div>
               </div>
             </div>
           ))}
         </div>
-        <div className="grow shrink basis-0 flex-col justify-start items-start inline-flex">
-          <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
-            <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-              
-              <div className="grow shrink basis-6 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
-              
-              <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 19L1.5 12.5H10.5L6 19ZM6 1L1.5 7.5H10.5L6 1Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
-              </svg>
-              <span className='whitespace-nowrap'>Amount</span>
-            </div>
-            </div>
-          </div>
-          {tableRows?.map((row, idx) => (
-            <div
-              key={idx}
-              className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
-            >
-              <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-                <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.amount}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+
+        
+
+        
+        {/* Category Column */}
+
+       
         
         {/* Status Column */}
         
@@ -321,7 +302,7 @@ let FraudActivity = ({datatable})=>{
             }}>
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.Reason_for_flagging}
+                  {row.reason_for_flagging}
                 </div>
               </div>
             </div>
@@ -338,7 +319,7 @@ let FraudActivity = ({datatable})=>{
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
               
-              <div className="grow shrink basis-6 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
+              <div className="grow shrink basis-0 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
               
               <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M6 19L1.5 12.5H10.5L6 19ZM6 1L1.5 7.5H10.5L6 1Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
@@ -357,13 +338,13 @@ let FraudActivity = ({datatable})=>{
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div
                   className={`px-2 rounded-md border text-sm font-medium leading-[21px] ${
-                    row.status === "Medium" || row.status === "Pending" 
+                    row.risk_score === "medium" || row.risk_score === "pending" 
                       ? "bg-[#ffdb43]/10 border-[#ffeda1] text-[#ae8c00]"
-                      : row.status === "High"
+                      : row.risk_score === "high"
                       ? "bg-[#fb3748]/10 border-[#fdafb6] text-[#dd0417]"
-                      : row.status === "green"
+                      : row.risk_score === "resolved"
                       ? "bg-[#b5e45e]/10 border-[#e1f4bf] text-[#5f8717]"
-                      : row.status === "In Stock"
+                      : row.risk_score === "In Stock"
                       ? "bg-[#1fc16b]/10 border-[#adf2cd] text-[#16884b]"
                       : ""
                   }`}
@@ -394,8 +375,11 @@ let FraudActivity = ({datatable})=>{
               className="self-stretch h-[54px] p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden"
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
-                <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.last_transaction_date}
+                <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px] whitespace-nowrap">
+                  {new Date(row.last_transaction_date)
+    .toLocaleString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true })
+    .replace(',', ' -')
+    .toUpperCase()}
                 </div>
               </div>
             </div>
@@ -406,7 +390,7 @@ let FraudActivity = ({datatable})=>{
           <div className="self-stretch h-11 p-3 bg-[#e4e4e4]/50 border-b border-[#e4e4e4] justify-start items-center gap-3 inline-flex overflow-hidden">
             <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
               
-              <div className="grow shrink basis-6 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
+              <div className="grow shrink basis-2 text-[#333333] text-xs font-semibold font-['Mulish'] leading-normal tracking-tight  flex gap-2 pl-1.5">
               
               <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M6 19L1.5 12.5H10.5L6 19ZM6 1L1.5 7.5H10.5L6 1Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
@@ -425,11 +409,11 @@ let FraudActivity = ({datatable})=>{
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div
                   className={`px-2 rounded-md border text-sm font-medium leading-[21px] ${
-                    row.status === "Pending"
+                    row.status === "pending"
                       ? "bg-[#ffdb43]/10 border-[#ffeda1] text-[#ae8c00]"
-                      : row.status === "Rejected"
+                      : row.status === "high"
                       ? "bg-[#fb3748]/10 border-[#fdafb6] text-[#dd0417]"
-                      : row.status === "green"
+                      : row.status === "resolved"
                       ? "bg-[#b5e45e]/10 border-[#e1f4bf] text-[#5f8717]"
                       : row.status === "In Stock"
                       ? "bg-[#1fc16b]/10 border-[#adf2cd] text-[#16884b]"

@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card"
 import FraudChart from './fraudchart';
 import { LineChart } from "../components/LineChart";
 import Flagged from "./flagged_transaction";
+import FlaggedUsers from "./flaggedusers";
 
 import { Auth } from "../App.jsx"
 export let SelectChart = ({ text })=>{
@@ -26,7 +27,7 @@ function Fraud() {
   const [index, setindex] = useState(0)
   const { isLoading, setLoader } = useContext(Auth)
   const [task, settask] = useState(0)
-  const [tobecomplete, setcomplete] = useState(1)
+  const [tobecomplete, setcomplete] = useState(2)
   const [main, setmain] = useState([[],[],[],[]])
 // console.log(main)
   useEffect(() => {
@@ -52,22 +53,22 @@ function Fraud() {
       })
 
     // Second fetch request
-    // fetch(`${import.meta.env.VITE_BACKEND_URL}/api/loan/app/employment`)
-    //   .then((e) => e.json())
-    //   .then((e) => {
-    //     console.log("Employment data:", e)
-    //     // Use functional update to avoid dependency on main
-    //     setmain((prevMain) => {
-    //       // Add the new data as the second element in the main array
-    //       prevMain[1] = e.record;
-    //       return prevMain;
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/fraud/flaggeduser`)
+      .then((e) => e.json())
+      .then((e) => {
+        console.log("Employment data:", e)
+        // Use functional update to avoid dependency on main
+        setmain((prevMain) => {
+          // Add the new data as the second element in the main array
+          prevMain[1] = e.record;
+          return prevMain;
     
-    //     })
-    //     settask((prevTask) => prevTask + 1)
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error fetching employment data:", error)
-    //   })
+        })
+        settask((prevTask) => prevTask + 1)
+      })
+      .catch((error) => {
+        console.error("Error fetching employment data:", error)
+      })
 
     // Uncomment if you need the third fetch request
     // fetch('https://sage-admin-backend.vercel.app/api/loan/repayment/overdue')
@@ -290,7 +291,7 @@ function Fraud() {
       {index === 0 && main[1] ? (
         <Flagged datatable={main[0]} />
       ) : index === 1 && main[1] ? (
-        <Flagged datatable={main[0]} />
+        <FlaggedUsers datatable={main[1]} />
       ) : ""}
       
       
