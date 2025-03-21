@@ -59,7 +59,7 @@ const SalesByCategory = () => {
         </div>
         <div className="relative">
           <button
-            className="flex items-center gap-2 px-3 py-1.5 border rounded-md text-gray-700"
+            className="flex items-center gap-2 px-3 py-1.5 bg-[#FFFFFF] border border-[#E4E4E4] rounded-md text-gray-700"
             onClick={() => {
               /* Toggle dropdown logic */
             }}

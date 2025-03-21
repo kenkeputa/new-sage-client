@@ -248,20 +248,20 @@ function Report() {
           <>
           
             <Salereport />
-            <Card className="w-[60%] border-[#E4E4E4] bg-[#F6F6F6] " style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
+            <Card className="w-[60%] border-[#E4E4E4] bg-[#F6F6F6]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <div className="">
+                  <div className="w-[312px]">
                     <CardTitle>Fraudulent Detection Rate</CardTitle>
                     <p className="text-gray-600 text-lg mb-8">Tracks the percentage of flagged fraudulent transctions.</p>
                     </div>
-                    <div className="relative rounded-lg overflow-hidden border-[#E4E4E4] border">
+                    <div className="relative w-fit rounded-lg overflow-hidden border-[#E4E4E4] border">
 
 <select
           id="dealerID"
           name="dealerID"
         
-          className="w-full px-4 py-2  rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none text-[14px] bg-white pr-10 text-gray-500 mr-4"
+          className="w-[118px] px-2 py-2  rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none text-[14px] bg-white pr-10 text-gray-500"
           required
         >
           <option value="">This week</option>
@@ -271,7 +271,7 @@ function Report() {
             </option>
         
         </select>
-        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4">
+        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
           <svg
             style={{ transform: "rotate(-90deg)", transition: "0.3s all" }}
             xmlns="http://www.w3.org/2000/svg"
@@ -298,20 +298,20 @@ function Report() {
           </>: index === 1 ?
           <>
           <PaymentChart />
-          <Card className="w-[60%] border-[#E4E4E4] bg-[#F6F6F6] " style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
+          <Card className="w-[60%] border-[#E4E4E4] bg-[#F6F6F6]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="">
                     <CardTitle>Fraudulent Detection Rate</CardTitle>
                     <p className="text-gray-600 text-lg mb-8">Tracks the percentage of flagged fraudulent transctions.</p>
                     </div>
-                    <div className="relative rounded-lg overflow-hidden border-[#E4E4E4] border">
+                    <div className="relative w-fit rounded-lg overflow-hidden border-[#E4E4E4] border">
 
 <select
           id="dealerID"
           name="dealerID"
         
-          className="w-full px-4 py-3  rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white pr-10 text-gray-500 mr-4"
+          className="w-[118px] px-2 py-2  rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none text-[14px] bg-white pr-10 text-gray-500"
           required
         >
           <option value="">This week</option>
@@ -321,7 +321,7 @@ function Report() {
             </option>
         
         </select>
-        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4">
+        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
           <svg
             style={{ transform: "rotate(-90deg)", transition: "0.3s all" }}
             xmlns="http://www.w3.org/2000/svg"
@@ -347,20 +347,20 @@ function Report() {
           </> : index ===2 ?
           <>
            <PaymentChart />
-          <Card className="w-[60%] border-[#E4E4E4] bg-[#F6F6F6] " style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
+          <Card className="w-[60%] border-[#E4E4E4] bg-[#F6F6F6]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="">
                     <CardTitle>Fraudulent Detection Rate</CardTitle>
                     <p className="text-gray-600 text-lg mb-8">Tracks the percentage of flagged fraudulent transctions.</p>
                     </div>
-                    <div className="relative rounded-lg overflow-hidden border-[#E4E4E4] border">
+                    <div className="relative w-fit rounded-lg overflow-hidden border-[#E4E4E4] border">
 
 <select
           id="dealerID"
           name="dealerID"
         
-          className="w-full px-4 py-3  rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white pr-10 text-gray-500 mr-4"
+          className="w-[118px] px-2 py-2  rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none text-[14px] bg-white pr-10 text-gray-500"
           required
         >
           <option value="">This week</option>
@@ -370,7 +370,7 @@ function Report() {
             </option>
         
         </select>
-        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4">
+        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
           <svg
             style={{ transform: "rotate(-90deg)", transition: "0.3s all" }}
             xmlns="http://www.w3.org/2000/svg"
@@ -395,20 +395,20 @@ function Report() {
             </Card>
           </>  : index === 4 ?
           <>
-          <Card className="w-[60%] border-[#E4E4E4] bg-[#F6F6F6] " style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
+          <Card className="w-[60%] border-[#E4E4E4] bg-[#F6F6F6]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="">
                     <CardTitle>Fraudulent Detection Rate</CardTitle>
                     <p className="text-gray-600 text-lg mb-8">Tracks the percentage of flagged fraudulent transctions.</p>
                     </div>
-                    <div className="relative rounded-lg overflow-hidden border-[#E4E4E4] border">
+                    <div className="relative w-fit rounded-lg overflow-hidden border-[#E4E4E4] border">
 
 <select
           id="dealerID"
           name="dealerID"
         
-          className="w-full px-4 py-3  rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white pr-10 text-gray-500 mr-4"
+          className="w-[118px] px-2 py-2  rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none text-[14px] bg-white pr-10 text-gray-500"
           required
         >
           <option value="">This week</option>
@@ -418,7 +418,7 @@ function Report() {
             </option>
         
         </select>
-        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4">
+        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
           <svg
             style={{ transform: "rotate(-90deg)", transition: "0.3s all" }}
             xmlns="http://www.w3.org/2000/svg"
@@ -519,6 +519,7 @@ function Report() {
             
                 </div>
         {/* Navigation tabs */}
+        {index === 0?
       <div className="w-full h-8 flex gap-2 mt-8 border-b border-b-[#E4E4E4]">
         {nav1.map((e, i) => (
           <div
@@ -530,7 +531,41 @@ function Report() {
             {e}
           </div>
         ))}
+      </div> : index === 1 ?
+      <div className="w-full h-max ">
+      <div className="w-full h-[287px] mt-8 py-[2rem] px-[2%]  bg-[#F6F6F6] rounded-[12px] border border-[#E4E4E4] flex flex-col justify-center items-center" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
+        <div className="w-full flex flex-col">
+        <h1 className="font-[700] text-[18px]">Key Performance Indicators (KPIs)</h1>
+        <p className="text-[16px] text-[#565656]">Essential KPIs Tracked</p>
+        </div>
+        <div className='flex gap-[6px] mt-[28px] w-full items-center'>
+
+        <div className="w-[330px] h-max rounded-[8px] border border-[#ECECEC] bg-[#D3FFE8] pl-[20px] py-[14px]">
+         
+            <p className="text-[#16884B] mb-[6px] font-[700]">80%</p>
+            <p className="text-[#333333] mb-[4px] text-[16px] font-[700]">Transaction Success Rate</p>
+            <p className="text-[#565656] text-[14px]">Percentage of successful payments vs. failed</p>
+         
+        </div>
+        <div className="w-[330px] h-max rounded-[8px] border border-[#ECECEC] bg-[#FFF8DE] pl-[20px] py-[14px]">
+         
+            <p className="text-[#AE8C00] mb-[6px] font-[700]">10%</p>
+            <p className="text-[#333333] mb-[4px] text-[16px] font-[700]">Cart Abandonment Rate</p>
+            <p className="text-[#565656] text-[14px]">Percentage of users who add items but don’t checkout</p>
+         
+        </div>
+        <div className="w-[330px] h-max rounded-[8px] border border-[#ECECEC] bg-[#EBFFC8] pl-[20px] py-[14px]">
+         
+            <p className="text-[#16884B] mb-[6px] font-[700]">10%</p>
+            <p className="text-[#333333] mb-[4px] text-[16px] font-[700]">Cart Abandonment Rate</p>
+            <p className="text-[#565656] text-[14px]">Percentage of users who add items but don’t checkout</p>
+         
+        </div>
+        </div>
+
       </div>
+    </div> :
+      ""}
 
       {/* Content based on selected tab */}
       {/* {index === 0 && main[2] ? (
