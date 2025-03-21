@@ -1,5 +1,6 @@
 import { ArrowLeft } from "lucide-react"
 import { useState, useContext, useEffect  } from 'react';
+import SalesByCategory from "./salereport"
 
 function Report(){
     let [userData, setuserData] = useState({
@@ -13,7 +14,7 @@ function Report(){
 
 
 
-    return (<div className='w-[85%] h-full px-[2%] overflow-scroll'>
+    /* return (<div className='w-[85%] h-full px-[2%] overflow-scroll'>
     <div className='h-max w-[100%] mt-4 flex flex-col items-center '>
                     <div className='flex w-[70%] justify-between items-center'>
                         <div className='w-full flex '>
@@ -214,6 +215,8 @@ I would appreciate it if you could replace the item/refund the purchase/offer a 
     </div>
     </div>
     
-    </div>)
+    </div> ) */
+   
+    return (<SalesByCategory />)
 }
 export default Report;
