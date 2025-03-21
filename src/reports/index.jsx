@@ -301,7 +301,7 @@ function Report() {
           <Card className="w-[60%] border-[#E4E4E4] bg-[#F6F6F6]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <div className="">
+                  <div className="w-[312px]">
                     <CardTitle>Fraudulent Detection Rate</CardTitle>
                     <p className="text-gray-600 text-lg mb-8">Tracks the percentage of flagged fraudulent transctions.</p>
                     </div>
@@ -350,7 +350,7 @@ function Report() {
           <Card className="w-[60%] border-[#E4E4E4] bg-[#F6F6F6]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <div className="">
+                  <div className="w-[312px]">
                     <CardTitle>Fraudulent Detection Rate</CardTitle>
                     <p className="text-gray-600 text-lg mb-8">Tracks the percentage of flagged fraudulent transctions.</p>
                     </div>
@@ -398,7 +398,7 @@ function Report() {
           <Card className="w-[60%] border-[#E4E4E4] bg-[#F6F6F6]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <div className="">
+                  <div className="w-[312px]">
                     <CardTitle>Fraudulent Detection Rate</CardTitle>
                     <p className="text-gray-600 text-lg mb-8">Tracks the percentage of flagged fraudulent transctions.</p>
                     </div>
