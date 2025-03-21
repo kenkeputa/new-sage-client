@@ -23,39 +23,39 @@ export default function App() {
           {timeframe}
           <ChevronDown className="h-5 w-5" />
         </button> */}
-              <div className="relative rounded-lg overflow-hidden border-[#E4E4E4] border">
+              <div className="relative w-fit rounded-lg overflow-hidden border-[#E4E4E4] border">
 
-        <select
-                  id="dealerID"
-                  name="dealerID"
-                
-                  className="w-full px-4 py-3  rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white pr-10 text-gray-500 mr-4"
-                  required
-                >
-                  <option value="">This week</option>
-                
-                    <option  value="This week">
-                      This week
-                    </option>
-                
-                </select>
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4">
-                  <svg
-                    style={{ transform: "rotate(-90deg)", transition: "0.3s all" }}
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="19"
-                    height="19"
-                    className="size-5 text-[#8C8C8C]"
-                    fill="currentColor"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
-                    />
-                  </svg>
-                </div>
-            </div>
+<select
+          id="dealerID"
+          name="dealerID"
+        
+          className="w-[118px] px-2 py-2  rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none text-[14px] bg-white pr-10 text-gray-500"
+          required
+        >
+          <option value="">This week</option>
+        
+            <option  value="This week">
+              This week
+            </option>
+        
+        </select>
+        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
+          <svg
+            style={{ transform: "rotate(-90deg)", transition: "0.3s all" }}
+            xmlns="http://www.w3.org/2000/svg"
+            width="19"
+            height="19"
+            className="size-5 text-[#8C8C8C]"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fillRule="evenodd"
+              d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+            />
+          </svg>
+        </div>
+    </div>
       </div>
       <p className="text-gray-600 text-lg mb-8">Shows the distribution of fraud types within the system.</p>
 
