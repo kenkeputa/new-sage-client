@@ -245,7 +245,7 @@ function Report() {
           </div>
         ))}
       </div>
-      <div className="flex justify-center gap-5.5 mt-10 w-full">
+      <div className="flex justify-center  gap-5.5 mt-10 w-full">
            {index === 0?
            
           <>
@@ -254,9 +254,9 @@ function Report() {
             <Card className="w-[60%] border-[#E4E4E4] bg-[#F6F6F6]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <div className="w-[312px]">
-                    <CardTitle>Fraudulent Detection Rate</CardTitle>
-                    <p className="text-gray-600 text-lg mb-8">Tracks the percentage of flagged fraudulent transctions.</p>
+                  <div className="w-[312px] ">
+                    <CardTitle>Revenue Trend</CardTitle>
+                    <p className="text-[14px] text-lg mb-8">Tracks daily, weekly, and monthly revenue growth</p>
                     </div>
                     <div className="relative w-fit rounded-lg overflow-hidden border-[#E4E4E4] border">
 
@@ -305,8 +305,8 @@ function Report() {
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="w-[312px]">
-                    <CardTitle>Fraudulent Detection Rate</CardTitle>
-                    <p className="text-gray-600 text-lg mb-8">Tracks the percentage of flagged fraudulent transctions.</p>
+                    <CardTitle>Financial Insight</CardTitle>
+                    
                     </div>
                     <div className="relative w-fit rounded-lg overflow-hidden border-[#E4E4E4] border">
 
@@ -354,8 +354,8 @@ function Report() {
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="w-[312px]">
-                    <CardTitle>Fraudulent Detection Rate</CardTitle>
-                    <p className="text-gray-600 text-lg mb-8">Tracks the percentage of flagged fraudulent transctions.</p>
+                    <CardTitle>Financial Insight</CardTitle>
+                   
                     </div>
                     <div className="relative w-fit rounded-lg overflow-hidden border-[#E4E4E4] border">
 
@@ -402,8 +402,8 @@ function Report() {
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="w-[312px]">
-                    <CardTitle>Fraudulent Detection Rate</CardTitle>
-                    <p className="text-gray-600 text-lg mb-8">Tracks the percentage of flagged fraudulent transctions.</p>
+                    <CardTitle>Cart Abandonment Trends</CardTitle>
+                    <p className="text-[16px] text-lg mb-8">Tracks fluctuations in drop-off rate</p>
                     </div>
                     <div className="relative w-fit rounded-lg overflow-hidden border-[#E4E4E4] border">
 
