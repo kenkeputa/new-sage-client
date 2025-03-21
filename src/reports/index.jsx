@@ -261,7 +261,7 @@ function Report() {
           id="dealerID"
           name="dealerID"
         
-          className="w-full px-4 py-2  rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white pr-10 text-gray-500 mr-4"
+          className="w-full px-4 py-2  rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none text-[14px] bg-white pr-10 text-gray-500 mr-4"
           required
         >
           <option value="">This week</option>
