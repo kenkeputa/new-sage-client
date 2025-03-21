@@ -159,7 +159,7 @@ export default function UserInformation() {
     ) : index === 1 && main[1] ? (
     <Payment datatable={main[1]} />
      ) : index === 2 && main[1] ? (
-    <Supportticket datatable={main[0]} />
+    <Supportticket datatable={main[1]} />
     ) : (<div>No data here</div>)}
     </div>
   )
