@@ -254,7 +254,7 @@ console.log(datatable)
                   <div className="w-5 h-5 left-0 top-0 absolute bg-white rounded-md border border-[#e4e4e4]" />
                 </div>
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.transaction_type}
+                  {row.description}
                 </div>
               </div>
             </div>
