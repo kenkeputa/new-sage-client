@@ -106,7 +106,7 @@ const SalesByCategory = () => {
         {/* Legend */}
         <div className="mt-6 md:mt-0 md:ml-8 space-y-3 w-full max-w-xs">
           {salesData.map((item) => (
-            <div key={item.name} className="flex items-center justify-between">
+            <div key={item.name} className="flex items-center justify-between mt-8">
               <div className="flex items-center">
                 <div className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }}></div>
                 <span className="ml-2 text-gray-700">{item.name}</span>

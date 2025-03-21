@@ -8,6 +8,7 @@ import { LineChart } from "../components/LineChart";
 // import Flagged from "./flagged_transaction";
 import TransactionChart from "./transactionsuccess.jsx";
 import Salereport from "./salereport.jsx";
+import PaymentChart from "./paymentchart.jsx";
 
 import { Auth } from "../App.jsx"
 export let SelectChart = ({ text })=>{
@@ -24,8 +25,8 @@ export let SelectChart = ({ text })=>{
   }
 function Report() {
   const navigate = useNavigate()
-  const [nav, setnav] = useState(["Flagged Transaction", "Flagged Users", "Risk Levels & Alerts"])
-  const [nav1, setnav1] = useState(["Flagged Transaction", "Flagged Users", "Risk Levels & Alerts"])
+  const [nav, setnav] = useState(["Sages Reports", "Payment & Transactions Reports", "Inventory Reports", "User Engagement", "Key Performance indicators"])
+  const [nav1, setnav1] = useState(["Top-Selling Products"])
   const [index, setindex] = useState(0)
   const [index1, setindex1] = useState(0)
   const { isLoading, setLoader } = useContext(Auth)
@@ -242,9 +243,207 @@ function Report() {
         ))}
       </div>
       <div className="flex justify-center gap-5.5 mt-10 w-full">
-            
+           {index === 0?
+           
+          <>
+          
             <Salereport />
-            <TransactionChart />
+            <Card className="w-[60%] border-[#E4E4E4] bg-[#F6F6F6] " style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div className="">
+                    <CardTitle>Fraudulent Detection Rate</CardTitle>
+                    <p className="text-gray-600 text-lg mb-8">Tracks the percentage of flagged fraudulent transctions.</p>
+                    </div>
+                    <div className="relative rounded-lg overflow-hidden border-[#E4E4E4] border">
+
+<select
+          id="dealerID"
+          name="dealerID"
+        
+          className="w-full px-4 py-2  rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white pr-10 text-gray-500 mr-4"
+          required
+        >
+          <option value="">This week</option>
+        
+            <option  value="This week">
+              This week
+            </option>
+        
+        </select>
+        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4">
+          <svg
+            style={{ transform: "rotate(-90deg)", transition: "0.3s all" }}
+            xmlns="http://www.w3.org/2000/svg"
+            width="19"
+            height="19"
+            className="size-5 text-[#8C8C8C]"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fillRule="evenodd"
+              d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+            />
+          </svg>
+        </div>
+    </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <LineChart />
+              </CardContent>
+            </Card>
+            
+          </>: index === 1 ?
+          <>
+          <PaymentChart />
+          <Card className="w-[60%] border-[#E4E4E4] bg-[#F6F6F6] " style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div className="">
+                    <CardTitle>Fraudulent Detection Rate</CardTitle>
+                    <p className="text-gray-600 text-lg mb-8">Tracks the percentage of flagged fraudulent transctions.</p>
+                    </div>
+                    <div className="relative rounded-lg overflow-hidden border-[#E4E4E4] border">
+
+<select
+          id="dealerID"
+          name="dealerID"
+        
+          className="w-full px-4 py-3  rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white pr-10 text-gray-500 mr-4"
+          required
+        >
+          <option value="">This week</option>
+        
+            <option  value="This week">
+              This week
+            </option>
+        
+        </select>
+        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4">
+          <svg
+            style={{ transform: "rotate(-90deg)", transition: "0.3s all" }}
+            xmlns="http://www.w3.org/2000/svg"
+            width="19"
+            height="19"
+            className="size-5 text-[#8C8C8C]"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fillRule="evenodd"
+              d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+            />
+          </svg>
+        </div>
+    </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <LineChart />
+              </CardContent>
+            </Card>
+          </> : index ===2 ?
+          <>
+           <PaymentChart />
+          <Card className="w-[60%] border-[#E4E4E4] bg-[#F6F6F6] " style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div className="">
+                    <CardTitle>Fraudulent Detection Rate</CardTitle>
+                    <p className="text-gray-600 text-lg mb-8">Tracks the percentage of flagged fraudulent transctions.</p>
+                    </div>
+                    <div className="relative rounded-lg overflow-hidden border-[#E4E4E4] border">
+
+<select
+          id="dealerID"
+          name="dealerID"
+        
+          className="w-full px-4 py-3  rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white pr-10 text-gray-500 mr-4"
+          required
+        >
+          <option value="">This week</option>
+        
+            <option  value="This week">
+              This week
+            </option>
+        
+        </select>
+        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4">
+          <svg
+            style={{ transform: "rotate(-90deg)", transition: "0.3s all" }}
+            xmlns="http://www.w3.org/2000/svg"
+            width="19"
+            height="19"
+            className="size-5 text-[#8C8C8C]"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fillRule="evenodd"
+              d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+            />
+          </svg>
+        </div>
+    </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <LineChart />
+              </CardContent>
+            </Card>
+          </>  : index === 4 ?
+          <>
+          <Card className="w-[60%] border-[#E4E4E4] bg-[#F6F6F6] " style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div className="">
+                    <CardTitle>Fraudulent Detection Rate</CardTitle>
+                    <p className="text-gray-600 text-lg mb-8">Tracks the percentage of flagged fraudulent transctions.</p>
+                    </div>
+                    <div className="relative rounded-lg overflow-hidden border-[#E4E4E4] border">
+
+<select
+          id="dealerID"
+          name="dealerID"
+        
+          className="w-full px-4 py-3  rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white pr-10 text-gray-500 mr-4"
+          required
+        >
+          <option value="">This week</option>
+        
+            <option  value="This week">
+              This week
+            </option>
+        
+        </select>
+        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4">
+          <svg
+            style={{ transform: "rotate(-90deg)", transition: "0.3s all" }}
+            xmlns="http://www.w3.org/2000/svg"
+            width="19"
+            height="19"
+            className="size-5 text-[#8C8C8C]"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fillRule="evenodd"
+              d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+            />
+          </svg>
+        </div>
+    </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <LineChart />
+              </CardContent>
+            </Card>
+          <TransactionChart />
+          </> :<></>
+        } 
             {/* <Card className="w-[60%] border-[#E4E4E4] bg-[#F6F6F6] " style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
               <CardHeader>
                 <div className="flex items-center justify-between">
