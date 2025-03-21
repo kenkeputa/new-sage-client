@@ -51,7 +51,7 @@ const SalesByCategory = () => {
   }
 
   return (
-    <div className="max-w-xl mx-auto bg-gray-50 rounded-xl shadow-sm p-6">
+    <div className="w-[45%] mx-auto bg-gray-50 rounded-xl shadow-sm p-6">
       <div className="flex justify-between items-start mb-2">
         <div>
           <h2 className="text-xl font-semibold text-gray-800">Sales by Product Category</h2>

@@ -1,222 +1,333 @@
-import { ArrowLeft } from "lucide-react"
-import { useState, useContext, useEffect  } from 'react';
-import SalesByCategory from "./salereport"
 
-function Report(){
-    let [userData, setuserData] = useState({
-        name: "",
-        id: "",
-        email: "",
-        phone: "",
-        address: "",
+
+import { useState, useContext, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card"
+// import FraudChart from './fraudchart';
+import { LineChart } from "../components/LineChart";
+// import Flagged from "./flagged_transaction";
+import TransactionChart from "./transactionsuccess.jsx";
+import Salereport from "./salereport.jsx";
+
+import { Auth } from "../App.jsx"
+export let SelectChart = ({ text })=>{
+  //  let text = props.text;
+      
+  return (<div className="w-[137px] h-[37px] flex justify-center items-center  relative">
+      <div  className='w-full bg-[#FFFFFF] h-full rounded-[8px] gap-[8px] mt-2 items-center  flex justify-center cursor-pointer border border-[#E4E4E4]'>
+          <span className="text-[14px]  ml-3 leading-[21px]">{text}</span>
+          <svg style={{transform
+  :"rotate(-90deg)",transition:'0.3s all'}} xmlns="http://www.w3.org/2000/svg" width="19" className="mr-3 size-5" height="19" fill="currentColor" viewBox="0 0 16 16"> <path fillRule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/> </svg>
+      </div>
+  
+  </div>)
+  }
+function Report() {
+  const navigate = useNavigate()
+  const [nav, setnav] = useState(["Flagged Transaction", "Flagged Users", "Risk Levels & Alerts"])
+  const [nav1, setnav1] = useState(["Flagged Transaction", "Flagged Users", "Risk Levels & Alerts"])
+  const [index, setindex] = useState(0)
+  const [index1, setindex1] = useState(0)
+  const { isLoading, setLoader } = useContext(Auth)
+  const [task, settask] = useState(0)
+  const [tobecomplete, setcomplete] = useState(3)
+  const [main, setmain] = useState([[],[],[],[]])
+// console.log(main)
+  useEffect(() => {
+    // Reset main state to avoid duplication
+    //setmain([])
+
+    // First fetch request
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/fraud/index`)
+      .then((e) => e.json())
+      .then((e) => {
+        console.log("All loans data:", e)
+        // Use functional update to avoid dependency on main
+        setmain((prevMain) => {
+          // Store the data as the first element in the main array
+          return [e.record
+            , prevMain[1], prevMain[2], prevMain[3]
+          ]
+        })
+        settask((prevTask) => prevTask + 1)
       })
+      .catch((error) => {
+        console.error("Error fetching all loans:", error)
+      })
+
+    // Second fetch request
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/fraud/flaggeduser`)
+      .then((e) => e.json())
+      .then((e) => {
+        console.log("Employment data:", e)
+        // Use functional update to avoid dependency on main
+        setmain((prevMain) => {
+          // Add the new data as the second element in the main array
+          prevMain[1] = e.record;
+          return prevMain;
     
+        })
+        settask((prevTask) => prevTask + 1)
+      })
+      .catch((error) => {
+        console.error("Error fetching employment data:", error)
+      })
+
+    // Uncomment if you need the third fetch request
+    fetch('https://sage-admin-backend.vercel.app/api/fraud/risk')
+        .then(e => e.json())
+        .then(e => {
+            console.log('Overdue data:', e);
+            setmain((prevMain) => {
+              // Add the new data as the second element in the main array
+              prevMain[2] = e.record;
+              return prevMain;
+        
+            })
+            settask(prevTask => prevTask + 1);
+        })
+        .catch(error => {
+            console.error('Error fetching overdue data:', error);
+        });
+  }, []) // Empty dependency array to run only once
+
+  useEffect(() => {
+    if (task === tobecomplete) {
+      setLoader(false)
+    } else {
+      setLoader(true)
+    }
+  }, [task, tobecomplete, setLoader])
+
+  console.log(main, "Naim")
 
 
+  return (
+    <div className="w-[85%] h-full px-[2%] overflow-scroll">
+      <div className="mt-[2rem] flex items-center justify-between mb-4">
+        <span className="font-[700] text-[26px] text-[#333333]">Flaud Detection</span>
+        <div className="flex gap-2 justify-center items-center h-[24px]">
+          <div className="w-[137px] flex justify-center items-center bg-[#FFFFFF] pt-[8px] pl-[12px] relative">
+            <div className="w-full h-[37px] rounded-[8px] gap-[8px] items-center flex justify-center cursor-pointer border border-[#E4E4E4]">
+              <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M6.66602 14.6667L9.99935 18M9.99935 18L13.3327 14.6667M9.99935 18V10.5M3.23469 13C2.26159 11.9379 1.66602 10.5117 1.66602 8.94363C1.66602 5.66106 4.27606 3 7.49571 3C10.2437 3 12.6862 4.87672 13.3022 7.48571C15.2472 6.76397 17.3977 7.78639 18.1057 9.76936C18.7077 11.4559 18.0723 13.2941 16.6723 14.25"
+                  stroke="#565656"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <span className="text-[13px] leading-[21px]">Export</span>
+              <svg
+                style={{ transform: "rotate(-90deg)", transition: "0.3s all" }}
+                xmlns="http://www.w3.org/2000/svg"
+                width="19"
+                className="mr-1 size-5"
+                height="19"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+                />
+              </svg>
+            </div>
+            
+          </div>
+          <button className='bg-[rgba(114,23,184,1)] text-white flex justify-center items-center gap-1 rounded-[8px] h-[37px] py-[16px] px-[12px] mt-2 cursor-pointer' onClick={()=> {
+                navigate('/inventory/add')
+            }}>
+                <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.99935 1.66675V13.3334M1.16602 7.50008H12.8327" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg> 
+<span className='text-[16px]'>Add New User</span>
+</button>
+        </div>
+      </div>
 
-    /* return (<div className='w-[85%] h-full px-[2%] overflow-scroll'>
-    <div className='h-max w-[100%] mt-4 flex flex-col items-center '>
-                    <div className='flex w-[70%] justify-between items-center'>
-                        <div className='w-full flex '>
-                            <svg onClick={()=>{
-                                navigate('/customers')
-                            }} className='mr-7 cursor-pointer' width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.66667 13H18.3333M7.66667 13L13 18.3333M7.66667 13L13 7.66667M6.33333 25H19.6667C22.6122 25 25 22.6122 25 19.6667V6.33333C25 3.38781 22.6122 1 19.6667 1H6.33333C3.38781 1 1 3.38781 1 6.33333V19.6667C1 22.6122 3.38781 25 6.33333 25Z" stroke="#565656" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <span className="text-xl"><b>Refund Request</b></span>
-                        </div>
-                        <span className='w-[10%]'>1 of 3</span>
+      {/* Stats cards */}
+      <div className="w-full flex gap-[24px]">
+        {/* Card 1 */}
+        <div
+          className="flex flex-col h-[125px] w-[267.5px] bg-[#831AD31A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]"
+          style={{ boxShadow: "0px 16px 30px 0px #585C5F29" }}
+        >
+          <div className="flex items-center gap-1.5 ">
+            <div className="flex justify-center items-center rounded-full size-[40px]">
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M0 8.66667V7.58333C0 4.59658 2.42992 2.16667 5.41667 2.16667H6.5V1.08333C6.5 0.485333 6.98533 0 7.58333 0C8.18133 0 8.66667 0.485333 8.66667 1.08333V2.16667H17.3333V1.08333C17.3333 0.485333 17.8176 0 18.4167 0C19.0158 0 19.5 0.485333 19.5 1.08333V2.16667H20.5833C23.5701 2.16667 26 4.59658 26 7.58333V8.66667H0ZM20.9408 15.8459C21.3547 15.4429 21.7761 14.9641 22.0805 14.4441C22.4553 13.8049 21.9559 13 21.2149 13H17.784C17.043 13 16.5447 13.8049 16.9184 14.4441C17.2228 14.9641 17.6443 15.4429 18.0581 15.8459C15.3552 16.6898 12.9989 19.7253 12.9989 22.7652C12.9989 24.5516 14.4538 26 16.2489 26H22.7489C24.544 26 25.9989 24.5516 25.9989 22.7652C25.9989 19.7253 23.6448 16.6898 20.9408 15.8459ZM10.8333 22.7652C10.8333 19.8434 12.4648 16.8892 14.8417 15.1114C14.5015 14.2458 14.5676 13.2524 15.0421 12.4258C15.6054 11.4433 16.6552 10.8333 17.784 10.8333H0V20.5833C0 23.5701 2.42992 26 5.41667 26H11.9394C11.2548 25.0954 10.8333 23.9828 10.8333 22.7652Z"
+                  fill="#7217B8"
+                />
+              </svg>
+            </div>
+            <span className="text-[16px] font-[500]"></span>
+          </div>
+          <span className="text-[12px] mt-1 font-[600]">Total Flagged Transaction</span>
+          <span className="text-[26px] font-[700]">1</span>
+        </div>
+
+        {/* Card 2 */}
+        <div
+          className="flex flex-col h-[120px] w-[267.5px] bg-[#B5E45E1A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]"
+          style={{ boxShadow: "0px 16px 30px 0px #585C5F29" }}
+        >
+          <div className="flex items-center gap-1.5 ">
+            <div className="flex justify-center items-center bg-[#E1F4BF80] rounded-full size-[40px]">
+              <svg width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M24.2844 14.4338C22.1686 10.7561 19.1351 8.75818 15.7232 8.0813C16.7929 7.36384 18.0929 6.10827 19.3747 3.86553C19.7164 3.26852 19.537 2.50915 18.9649 2.12685C18.8719 2.06401 16.6292 0.597656 13.0013 0.597656C9.37337 0.597656 7.13194 2.06401 7.03768 2.12685C6.46423 2.50915 6.28617 3.26852 6.62788 3.86553C7.90964 6.10827 9.20972 7.36514 10.2794 8.0813C6.86617 8.75818 3.83265 10.7548 1.71821 14.4338C0.102606 17.2434 -0.394907 20.3437 0.316013 23.1638C1.43411 27.5943 5.10916 29.4011 13 29.4011C20.8908 29.4011 24.5672 27.5943 25.684 23.1651C26.3949 20.345 25.8987 17.2447 24.2844 14.4338Z"
+                  fill="#87BF20"
+                />
+              </svg>
+            </div>
+            <span className="text-[16px] mt-1 font-[500]"></span>
+          </div>
+          <span className="text-[12px] mt-1 font-[600]">Users flagged</span>
+          <span className="text-[26px] font-[700]">1</span>
+        </div>
+
+        {/* Card 3 */}
+        <div
+          className="flex flex-col h-[120px] w-[267.5px] bg-[#FFDB431A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]"
+          style={{ boxShadow: "0px 16px 30px 0px #585C5F29" }}
+        >
+          <div className="flex items-center gap-1.5 ">
+            <div className="flex justify-center items-center bg-[#FFEDA180] rounded-full size-[40px]">
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M16.0142 20.9289C17.0748 21.3969 18.2448 21.6623 19.4765 21.6656C19.483 22.6915 19.1407 23.6947 18.4582 24.4877C17.6295 25.4497 16.428 26 15.1605 26H4.33805C3.07055 26 1.86913 25.4475 1.04146 24.4855C0.225712 23.5387 -0.136121 22.2928 0.0480458 21.0654C0.487879 18.1415 2.09013 15.4343 4.8158 13.0011C2.08905 10.5668 0.486796 7.85958 0.0469624 4.93567C-0.137204 3.70825 0.225712 2.46242 1.04038 1.51558C1.86913 0.5525 3.07055 0 4.33805 0H15.1605C16.428 0 17.6295 0.550333 18.4582 1.51233C19.1407 2.30425 19.483 3.3085 19.4765 4.33442C14.7088 4.34742 10.8337 8.229 10.8337 13C10.8337 13.7107 10.929 14.3975 11.0915 15.0594L10.4285 14.5308C10.0331 14.2166 9.47521 14.2166 9.0798 14.5286L8.31713 15.1342C6.63038 16.4678 4.39655 18.6138 3.32838 21.2615C3.19296 21.5963 3.23413 21.9743 3.43455 22.2733C3.63605 22.5713 3.97296 22.75 4.33263 22.75H15.166C15.5267 22.75 15.8636 22.5723 16.064 22.2733C16.2655 21.9754 16.3056 21.5952 16.1702 21.2615C16.1247 21.1478 16.0651 21.0416 16.0153 20.93L16.0142 20.9289ZM26.0004 13C26.0004 16.5848 23.0851 19.5 19.5004 19.5C15.9156 19.5 13.0004 16.5848 13.0004 13C13.0004 9.41525 15.9156 6.5 19.5004 6.5C23.0851 6.5 26.0004 9.41525 26.0004 13ZM21.8913 13.8591L20.5837 12.5515V10.2917C20.5837 9.69367 20.0984 9.20833 19.5004 9.20833C18.9024 9.20833 18.417 9.69367 18.417 10.2917V13C18.417 13.2871 18.5308 13.5633 18.7345 13.7659L20.3595 15.3909C20.5707 15.6022 20.848 15.7083 21.1254 15.7083C21.4027 15.7083 21.68 15.6022 21.8913 15.3909C22.3149 14.9673 22.3149 14.2827 21.8913 13.8591ZM6.11688 20.5823H13.3774C12.3764 19.0342 10.8868 17.667 9.75038 16.7613C8.61613 17.6583 7.11571 19.0309 6.11688 20.5823Z"
+                  fill="#D3AA00"
+                />
+              </svg>
+            </div>
+            <span className="text-[16px] font-[500]"></span>
+          </div>
+          <span className="text-[12px] mt-1 font-[600]">Total Amount Lost to Fraud</span>
+          <span className="text-[26px] font-[700]">N2,000</span>
+        </div>
+
+        {/* Card 4 */}
+        <div
+          className="flex flex-col h-[120px] w-[267.5px] bg-[#FB37481A] rounded-[0.5rem] border-[1px] border-[#E4E4E4] px-[16px] py-[6px]"
+          style={{ boxShadow: "0px 16px 30px 0px #585C5F29" }}
+        >
+          <div className="flex items-center gap-1.5 ">
+            <div className="flex justify-center items-center bg-[#FDAFB680] rounded-full size-[40px]">
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M16.25 1.625C16.25 0.728 16.978 0 17.875 0C18.772 0 19.5 0.728 19.5 1.625C19.5 2.522 18.772 3.25 17.875 3.25C16.978 3.25 16.25 2.522 16.25 1.625ZM17.4417 9.425C17.7342 9.64383 18.0754 9.75 18.4156 9.75C18.9096 9.75 19.3971 9.52575 19.7167 9.1L24.5917 2.6C25.1301 1.88175 24.9838 0.863417 24.2667 0.325C23.5495 -0.212333 22.5312 -0.06825 21.9917 0.65L17.1167 7.15C16.5783 7.86825 16.7245 8.88658 17.4417 9.425ZM24.375 6.5C23.478 6.5 22.75 7.228 22.75 8.125C22.75 9.022 23.478 9.75 24.375 9.75C25.272 9.75 26 9.022 26 8.125C26 7.228 25.272 6.5 24.375 6.5ZM24.9167 16.25V21.9375C24.9167 24.2916 21.9559 26 17.875 26C15.6249 26 13.7193 25.4789 12.4583 24.6177C11.1973 25.4789 9.29175 26 7.04167 26C2.96075 26 0 24.2916 0 21.9375V5.41667C0 2.9055 2.96075 1.08333 7.04167 1.08333C11.1226 1.08333 14.0833 2.9055 14.0833 5.41667V12.5428C15.1591 12.1442 16.4461 11.9167 17.875 11.9167C21.9559 11.9167 24.9167 13.7388 24.9167 16.25ZM3.28142 5.41667C3.55875 5.7785 4.87067 6.5 7.04167 6.5C9.21267 6.5 10.5246 5.7785 10.8019 5.41667C10.5246 5.05483 9.21267 4.33333 7.04167 4.33333C4.87067 4.33333 3.55875 5.05483 3.28142 5.41667ZM10.8333 19.9572C9.75758 20.3558 8.47058 20.5833 7.04167 20.5833C5.61275 20.5833 4.32575 20.3558 3.25 19.9572V21.7923C3.53817 22.0892 4.79483 22.75 7.04167 22.75C9.2885 22.75 10.5452 22.0903 10.8333 21.7923V19.9572ZM10.8333 14.5405C9.75758 14.9392 8.47058 15.1667 7.04167 15.1667C5.61275 15.1667 4.32575 14.9392 3.25 14.5405V16.25C3.38108 16.5078 4.72008 17.3333 7.04167 17.3333C9.334 17.3333 10.6632 16.5306 10.8333 16.1948V14.5405ZM10.8333 9.12383C9.75758 9.5225 8.47058 9.75 7.04167 9.75C5.61275 9.75 4.32575 9.5225 3.25 9.12383V10.8333C3.38108 11.0912 4.72008 11.9167 7.04167 11.9167C9.334 11.9167 10.6632 11.1139 10.8333 10.7781V9.12383ZM14.1148 16.25C14.3921 16.6118 15.704 17.3333 17.875 17.3333C20.046 17.3333 21.3579 16.6118 21.6353 16.25C21.3579 15.8882 20.046 15.1667 17.875 15.1667C15.704 15.1667 14.3921 15.8882 14.1148 16.25ZM21.6667 19.9572C20.5909 20.3558 19.3039 20.5833 17.875 20.5833C16.4461 20.5833 15.1591 20.3558 14.0833 19.9572V21.7923C14.3715 22.0892 15.6282 22.75 17.875 22.75C20.1218 22.75 21.3785 22.0903 21.6667 21.7923V19.9572Z"
+                  fill="#FA1024"
+                />
+              </svg>
+            </div>
+            <span className="text-[16px] font-[500]"></span>
+          </div>
+          <span className="text-[12px] font-[600] mt-1">Fraud Defaulters Rate</span>
+          <span className="text-[26px] font-[700]">0.1%</span>
+        </div>
+      </div>
+      <div className="w-full h-8 flex gap-2 mt-8 border-b border-b-[#E4E4E4]">
+        {nav.map((e, i) => (
+          <div
+            key={i}
+            className="cursor-pointer"
+            style={{ borderBottom: index === i ? "2px solid rgba(114,23,184,1)" : "none" }}
+            onClick={() => setindex(i)}
+          >
+            {e}
+          </div>
+        ))}
+      </div>
+      <div className="flex justify-center gap-5.5 mt-10 w-full">
+            
+            <Salereport />
+            <TransactionChart />
+            {/* <Card className="w-[60%] border-[#E4E4E4] bg-[#F6F6F6] " style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div className="">
+                    <CardTitle>Fraudulent Detection Rate</CardTitle>
+                    <p className="text-gray-600 text-lg mb-8">Tracks the percentage of flagged fraudulent transctions.</p>
                     </div>
-    <div className="w-[70%] h-max border border-gray-200  overflow-hidden font-sans mt-4">
-      <header className="flex items-center px-5 py-4 bg-gray-100 border-b border-gray-200">
+                    <div className="relative rounded-lg overflow-hidden border-[#E4E4E4] border">
+
+<select
+          id="dealerID"
+          name="dealerID"
         
-        <h1 className="ml-3 text-lg font-semibold text-gray-800">User Information</h1>
-      </header>
-
-      <div className="bg-white w-[78%] h-max">
+          className="w-full px-4 py-3  rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white pr-10 text-gray-500 mr-4"
+          required
+        >
+          <option value="">This week</option>
         
-
-        <div className="flex px-5 py-4">
-          <div className="w-2/5 text-sm text-gray-500">Customer Name</div>
-          <div className="w-3/5 text-sm text-gray-800 font-medium text-right">{userData.id}</div>
-        </div>
-
-        <div className="flex px-5 py-4">
-          <div className="w-2/5 text-sm text-gray-500">Email</div>
-          <div className="w-3/5 text-sm text-gray-800 font-medium text-right">{userData.email}</div>
-        </div>
-
-        <div className="flex px-5 py-4">
-          <div className="w-2/5 text-sm text-gray-500">Phone Number</div>
-          <div className="w-3/5 text-sm text-gray-800 font-medium text-right">{userData.phone}</div>
-        </div>
-
-        <div className="flex px-5 py-4">
-          <div className="w-2/5 text-sm text-gray-500">Address</div>
-          <div className="w-3/5 text-sm text-gray-800 font-medium text-right">{userData.address}</div>
+            <option  value="This week">
+              This week
+            </option>
+        
+        </select>
+        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4">
+          <svg
+            style={{ transform: "rotate(-90deg)", transition: "0.3s all" }}
+            xmlns="http://www.w3.org/2000/svg"
+            width="19"
+            height="19"
+            className="size-5 text-[#8C8C8C]"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fillRule="evenodd"
+              d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+            />
+          </svg>
         </div>
     </div>
-    </div>
-    <div className="w-[70%] h-max border border-gray-200  overflow-hidden font-sans mt-4">
-      <header className="flex items-center px-5 py-4 bg-gray-100 border-b border-gray-200">
-        
-        <h1 className="ml-3 text-lg font-semibold text-gray-800">Order List</h1>
-      </header>
-
-      <div className="bg-white w-[78%] h-max">
-        <div className="flex px-5 py-4">
-          <div className="w-2/5 text-sm text-gray-500">Products purchased</div>
-          <div className="w-3/5 text-sm text-gray-800 font-medium text-right">{userData.name}</div>
-        </div>
-
-        <div className="flex px-5 py-4">
-          <div className="w-2/5 text-sm text-gray-500">Date</div>
-          <div className="w-3/5 text-sm text-gray-800 font-medium text-right">{userData.id}</div>
-        </div>
-
-        <div className="flex px-5 py-4">
-          <div className="w-2/5 text-sm text-gray-500">Amount Paid</div>
-          <div className="w-3/5 text-sm text-gray-800 font-medium text-right">{userData.email}</div>
-        </div>
-
-        <div className="flex px-5 py-4">
-          <div className="w-2/5 text-sm text-gray-500">Payment Method</div>
-          <div className="w-3/5 text-sm text-gray-800 font-medium text-right">{userData.phone}</div>
-        </div>
-
-    </div>
-    </div>
-    <div className="w-[70%] h-max border border-gray-200  overflow-hidden font-sans mt-4">
-      <header className="flex items-center px-5 py-4 bg-gray-100 border-b border-gray-200">
-        
-        <h1 className="ml-3 text-lg font-semibold text-gray-800">Product Details</h1>
-      </header>
-
-      <div className="bg-white w-[78%] h-max">
-        <div className="flex px-5 py-4">
-          <div className="w-2/5 text-sm text-gray-500">Items Purchased</div>
-          <div className="w-3/5 text-sm text-gray-800 font-medium text-right">{userData.name}</div>
-        </div>
-
-        <div className="flex px-5 py-4">
-          <div className="w-2/5 text-sm text-gray-500">Quantity</div>
-          <div className="w-3/5 text-sm text-gray-800 font-medium text-right">{userData.id}</div>
-        </div>
-
-
-        
-    </div>
-    </div>
-    <div className="w-[70%] h-max border border-gray-200  overflow-hidden font-sans mt-4">
-      <header className="flex items-center px-5 py-4 bg-gray-100 border-b border-gray-200">
-        
-        <h1 className="ml-3 text-lg font-semibold text-gray-800">Refund Reason</h1>
-      </header>
-
-      <div className="bg-white w-[98%] h-max">
-        <div className="flex px-5 py-4">
-          <div className="w-[100%] text-sm text-gray-500">I recently purchased an Apple Iphone 15 Promax from your app on 15th of January,2025 with Order Number SU10019. Unfortunately, I have encountered an issue with the product, and I would like to request a resolution.
-
-I would appreciate it if you could replace the item/refund the purchase/offer a solution as soon as possible. Please let me know the next steps to resolve this matter.</div>
-          
-        </div>
-
-
-
-        
-    </div>
-    </div>
-    <div className="w-[70%] h-max border border-gray-200 rounded-lg overflow-hidden font-sans mt-4">
-      <header className="flex items-center px-5 py-4 bg-gray-100 border-b border-gray-200">
-        
-        <h1 className="ml-3 text-lg font-semibold text-gray-800">Supporting Document</h1>
-      </header>
-
-      <div className="bg-white w-[98%] h-max">
-        <div className="flex flex-col gap-2 px-5 py-4">
-          <div className="w-[100%] text-sm bg-[#F6F6F6] flex items-center rounded-[12px] p-[10px]">
+                </div>
+              </CardHeader>
+              <CardContent>
+                <LineChart />
+              </CardContent>
+            </Card> */}
             
-<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M18.0759 1.55469L22.2489 5.90469V22.4467H6.66016V22.5007H22.3022V5.95944L18.0759 1.55469Z" fill="#909090"/>
-<path d="M18.0227 1.5H6.60547V22.446H22.2475V5.90475L18.0227 1.5Z" fill="#F4F4F4"/>
-<path d="M6.49172 2.625H1.69922V7.74525H16.7742V2.625H6.49172Z" fill="#7A7B7C"/>
-<path d="M16.8546 7.65916H1.79688V2.53516H16.8546V7.65916Z" fill="#DD2025"/>
-<path d="M6.78884 3.40001H5.80859V7.00001H6.57959V5.78576L6.74984 5.79551C6.91533 5.79323 7.07929 5.76358 7.23509 5.70776C7.37206 5.66126 7.49794 5.58695 7.60484 5.48951C7.71447 5.39759 7.8006 5.28087 7.85609 5.14901C7.93203 4.93055 7.95891 4.69804 7.93484 4.46801C7.93057 4.30365 7.90175 4.14085 7.84934 3.98501C7.80212 3.87237 7.7319 3.77083 7.64317 3.68688C7.55445 3.60293 7.44918 3.53844 7.33409 3.49751C7.23488 3.46077 7.13206 3.43462 7.02734 3.41951C6.94824 3.40663 6.86824 3.40011 6.78809 3.40001M6.64634 5.12051H6.57959V4.01051H6.72434C6.78823 4.00591 6.85233 4.01571 6.91192 4.03921C6.9715 4.06271 7.02505 4.09929 7.06859 4.14626C7.15883 4.26702 7.20704 4.41401 7.20584 4.56476C7.20584 4.74926 7.20584 4.91651 7.03934 5.03426C6.91942 5.10032 6.78287 5.13078 6.64634 5.12051ZM9.39959 3.39026C9.31634 3.39026 9.23534 3.39626 9.17834 3.39851L8.99984 3.40301H8.41484V7.00301H9.10334C9.36643 7.00978 9.62831 6.9652 9.87434 6.87176C10.0724 6.79353 10.2478 6.66693 10.3843 6.50351C10.5182 6.33938 10.6137 6.14747 10.6641 5.94176C10.7232 5.70921 10.752 5.46996 10.7496 5.23001C10.7643 4.94663 10.7423 4.66254 10.6843 4.38476C10.6288 4.18053 10.5261 3.99221 10.3843 3.83501C10.2732 3.70789 10.1365 3.60567 9.98309 3.53501C9.85171 3.47411 9.71346 3.42929 9.57134 3.40151C9.51483 3.39225 9.45761 3.38798 9.40034 3.38876M9.26384 6.34151H9.18884V4.04351H9.19859C9.35322 4.02563 9.50968 4.05354 9.64859 4.12376C9.75034 4.20501 9.83325 4.30736 9.89159 4.42376C9.95456 4.54626 9.99086 4.68072 9.99809 4.81826C10.0048 4.98326 9.99809 5.11826 9.99809 5.23001C10.0009 5.35873 9.99259 5.48746 9.97334 5.61476C9.94975 5.74531 9.90704 5.87167 9.84659 5.98976C9.77831 6.09989 9.68504 6.19239 9.57434 6.25976C9.48188 6.31977 9.37225 6.3477 9.26234 6.33926M13.0723 3.40301H11.2498V7.00301H12.0208V5.57501H12.9958V4.90601H12.0208V4.07201H13.0708V3.40301" fill="#464648"/>
-<path d="M16.3365 15.1921C16.3365 15.1921 18.7275 14.7586 18.7275 15.5754C18.7275 16.3921 17.2462 16.0599 16.3365 15.1921ZM14.5687 15.2544C14.1888 15.3381 13.8186 15.461 13.464 15.6211L13.764 14.9461C14.064 14.2711 14.3752 13.3509 14.3752 13.3509C14.7323 13.954 15.1489 14.5198 15.6187 15.0399C15.265 15.0926 14.9145 15.1647 14.5687 15.2559V15.2544ZM13.6222 10.3794C13.6222 9.66761 13.8525 9.47336 14.0317 9.47336C14.211 9.47336 14.4127 9.55961 14.4195 10.1776C14.361 10.799 14.2309 11.4116 14.0317 12.0031C13.758 11.5068 13.6167 10.9484 13.6215 10.3816L13.6222 10.3794ZM10.1355 18.2664C9.40199 17.8276 11.6737 16.4769 12.0855 16.4334C12.0832 16.4341 10.9035 18.7254 10.1355 18.2664ZM19.4257 15.6721C19.4182 15.5971 19.3507 14.7669 17.8732 14.8021C17.2574 14.7913 16.6418 14.8347 16.0335 14.9319C15.4439 14.3384 14.9364 13.6687 14.5245 12.9406C14.7838 12.1901 14.941 11.4081 14.9917 10.6156C14.97 9.71561 14.7547 9.19961 14.0647 9.20711C13.3747 9.21461 13.2742 9.81836 13.365 10.7169C13.4538 11.3207 13.6215 11.9102 13.8637 12.4704C13.8637 12.4704 13.545 13.4626 13.1235 14.4496C12.702 15.4366 12.414 15.9541 12.414 15.9541C11.6809 16.1925 10.9909 16.547 10.3702 17.0041C9.75225 17.5794 9.501 18.0211 9.8265 18.4629C10.107 18.8439 11.0887 18.9301 11.9662 17.7804C12.4317 17.1859 12.8576 16.5616 13.2412 15.9114C13.2412 15.9114 14.5792 15.5446 14.9955 15.4441C15.4117 15.3436 15.915 15.2641 15.915 15.2641C15.915 15.2641 17.1367 16.4934 18.315 16.4499C19.4932 16.4064 19.4362 15.7456 19.4287 15.6736" fill="#DD2025"/>
-<path d="M17.9648 1.55859V5.96334H22.1896L17.9648 1.55859Z" fill="#909090"/>
-<path d="M18.0234 1.5V5.90475H22.2482L18.0234 1.5Z" fill="#F4F4F4"/>
-<path d="M6.73025 3.34337H5.75V6.94337H6.524V5.72987L6.695 5.73962C6.86048 5.73734 7.02445 5.70769 7.18025 5.65187C7.31722 5.60537 7.4431 5.53106 7.55 5.43362C7.6588 5.34145 7.74415 5.22474 7.799 5.09312C7.87493 4.87466 7.90182 4.64215 7.87775 4.41212C7.87347 4.24776 7.84466 4.08496 7.79225 3.92912C7.74502 3.81648 7.6748 3.71494 7.58608 3.63099C7.49735 3.54704 7.39208 3.48255 7.277 3.44162C7.17733 3.40452 7.074 3.37812 6.96875 3.36287C6.88965 3.34999 6.80964 3.34347 6.7295 3.34337M6.58775 5.06387H6.521V3.95387H6.6665C6.73039 3.94926 6.79449 3.95907 6.85407 3.98257C6.91366 4.00607 6.9672 4.04265 7.01075 4.08962C7.10099 4.21038 7.1492 4.35737 7.148 4.50812C7.148 4.69262 7.148 4.85987 6.9815 4.97762C6.86158 5.04368 6.72502 5.07339 6.5885 5.06312M9.341 3.33362C9.25775 3.33362 9.17675 3.33962 9.11975 3.34187L8.9435 3.34637H8.3585V6.94637H9.047C9.31009 6.95314 9.57197 6.90856 9.818 6.81512C10.0161 6.73689 10.1914 6.61029 10.328 6.44687C10.4618 6.28274 10.5574 6.09083 10.6077 5.88512C10.6669 5.65257 10.6956 5.41332 10.6932 5.17337C10.7079 4.88999 10.686 4.60589 10.628 4.32812C10.5725 4.12389 10.4697 3.93557 10.328 3.77837C10.2168 3.65125 10.0801 3.54903 9.92675 3.47837C9.79537 3.41747 9.65712 3.37265 9.515 3.34487C9.45848 3.33561 9.40126 3.33134 9.344 3.33212M9.2075 6.28487H9.1325V3.98687H9.14225C9.29687 3.96899 9.45334 3.9969 9.59225 4.06712C9.694 4.14837 9.7769 4.25072 9.83525 4.36712C9.89822 4.48962 9.93451 4.62408 9.94175 4.76162C9.9485 4.92662 9.94175 5.06162 9.94175 5.17337C9.94452 5.30209 9.93624 5.43082 9.917 5.55812C9.8934 5.68867 9.8507 5.81503 9.79025 5.93312C9.72196 6.04325 9.6287 6.13575 9.518 6.20312C9.42553 6.26312 9.3159 6.29106 9.206 6.28262M13.0138 3.34637H11.1912V6.94637H11.9622V5.51837H12.9372V4.84937H11.9622V4.01537H13.0122V3.34637" fill="white"/>
-</svg>
-
-            <div className="flex flex-col w-[90%] ml-4">
-                <span>Transfer Receipt.pdf</span>
-                <span>300 KB</span>
-            </div>
-            
-<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8 12L3 7L4.4 5.55L7 8.15V0H9V8.15L11.6 5.55L13 7L8 12ZM2 16C1.45 16 0.979333 15.8043 0.588 15.413C0.196666 15.0217 0.000666667 14.5507 0 14V11H2V14H14V11H16V14C16 14.55 15.8043 15.021 15.413 15.413C15.0217 15.805 14.5507 16.0007 14 16H2Z" fill="#8C8C8C"/>
-</svg>
+                </div>
+        {/* Navigation tabs */}
+      <div className="w-full h-8 flex gap-2 mt-8 border-b border-b-[#E4E4E4]">
+        {nav1.map((e, i) => (
+          <div
+            key={i}
+            className="cursor-pointer"
+            style={{ borderBottom: index1 === i ? "2px solid rgba(114,23,184,1)" : "none" }}
+            onClick={() => setindex1(i)}
+          >
+            {e}
           </div>
-          <div className="w-[100%] text-sm bg-[#F6F6F6] flex items-center rounded-[12px] p-[10px]">
-            
-<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M18.0759 1.55469L22.2489 5.90469V22.4467H6.66016V22.5007H22.3022V5.95944L18.0759 1.55469Z" fill="#909090"/>
-<path d="M18.0227 1.5H6.60547V22.446H22.2475V5.90475L18.0227 1.5Z" fill="#F4F4F4"/>
-<path d="M6.49172 2.625H1.69922V7.74525H16.7742V2.625H6.49172Z" fill="#7A7B7C"/>
-<path d="M16.8546 7.65916H1.79688V2.53516H16.8546V7.65916Z" fill="#DD2025"/>
-<path d="M6.78884 3.40001H5.80859V7.00001H6.57959V5.78576L6.74984 5.79551C6.91533 5.79323 7.07929 5.76358 7.23509 5.70776C7.37206 5.66126 7.49794 5.58695 7.60484 5.48951C7.71447 5.39759 7.8006 5.28087 7.85609 5.14901C7.93203 4.93055 7.95891 4.69804 7.93484 4.46801C7.93057 4.30365 7.90175 4.14085 7.84934 3.98501C7.80212 3.87237 7.7319 3.77083 7.64317 3.68688C7.55445 3.60293 7.44918 3.53844 7.33409 3.49751C7.23488 3.46077 7.13206 3.43462 7.02734 3.41951C6.94824 3.40663 6.86824 3.40011 6.78809 3.40001M6.64634 5.12051H6.57959V4.01051H6.72434C6.78823 4.00591 6.85233 4.01571 6.91192 4.03921C6.9715 4.06271 7.02505 4.09929 7.06859 4.14626C7.15883 4.26702 7.20704 4.41401 7.20584 4.56476C7.20584 4.74926 7.20584 4.91651 7.03934 5.03426C6.91942 5.10032 6.78287 5.13078 6.64634 5.12051ZM9.39959 3.39026C9.31634 3.39026 9.23534 3.39626 9.17834 3.39851L8.99984 3.40301H8.41484V7.00301H9.10334C9.36643 7.00978 9.62831 6.9652 9.87434 6.87176C10.0724 6.79353 10.2478 6.66693 10.3843 6.50351C10.5182 6.33938 10.6137 6.14747 10.6641 5.94176C10.7232 5.70921 10.752 5.46996 10.7496 5.23001C10.7643 4.94663 10.7423 4.66254 10.6843 4.38476C10.6288 4.18053 10.5261 3.99221 10.3843 3.83501C10.2732 3.70789 10.1365 3.60567 9.98309 3.53501C9.85171 3.47411 9.71346 3.42929 9.57134 3.40151C9.51483 3.39225 9.45761 3.38798 9.40034 3.38876M9.26384 6.34151H9.18884V4.04351H9.19859C9.35322 4.02563 9.50968 4.05354 9.64859 4.12376C9.75034 4.20501 9.83325 4.30736 9.89159 4.42376C9.95456 4.54626 9.99086 4.68072 9.99809 4.81826C10.0048 4.98326 9.99809 5.11826 9.99809 5.23001C10.0009 5.35873 9.99259 5.48746 9.97334 5.61476C9.94975 5.74531 9.90704 5.87167 9.84659 5.98976C9.77831 6.09989 9.68504 6.19239 9.57434 6.25976C9.48188 6.31977 9.37225 6.3477 9.26234 6.33926M13.0723 3.40301H11.2498V7.00301H12.0208V5.57501H12.9958V4.90601H12.0208V4.07201H13.0708V3.40301" fill="#464648"/>
-<path d="M16.3365 15.1921C16.3365 15.1921 18.7275 14.7586 18.7275 15.5754C18.7275 16.3921 17.2462 16.0599 16.3365 15.1921ZM14.5687 15.2544C14.1888 15.3381 13.8186 15.461 13.464 15.6211L13.764 14.9461C14.064 14.2711 14.3752 13.3509 14.3752 13.3509C14.7323 13.954 15.1489 14.5198 15.6187 15.0399C15.265 15.0926 14.9145 15.1647 14.5687 15.2559V15.2544ZM13.6222 10.3794C13.6222 9.66761 13.8525 9.47336 14.0317 9.47336C14.211 9.47336 14.4127 9.55961 14.4195 10.1776C14.361 10.799 14.2309 11.4116 14.0317 12.0031C13.758 11.5068 13.6167 10.9484 13.6215 10.3816L13.6222 10.3794ZM10.1355 18.2664C9.40199 17.8276 11.6737 16.4769 12.0855 16.4334C12.0832 16.4341 10.9035 18.7254 10.1355 18.2664ZM19.4257 15.6721C19.4182 15.5971 19.3507 14.7669 17.8732 14.8021C17.2574 14.7913 16.6418 14.8347 16.0335 14.9319C15.4439 14.3384 14.9364 13.6687 14.5245 12.9406C14.7838 12.1901 14.941 11.4081 14.9917 10.6156C14.97 9.71561 14.7547 9.19961 14.0647 9.20711C13.3747 9.21461 13.2742 9.81836 13.365 10.7169C13.4538 11.3207 13.6215 11.9102 13.8637 12.4704C13.8637 12.4704 13.545 13.4626 13.1235 14.4496C12.702 15.4366 12.414 15.9541 12.414 15.9541C11.6809 16.1925 10.9909 16.547 10.3702 17.0041C9.75225 17.5794 9.501 18.0211 9.8265 18.4629C10.107 18.8439 11.0887 18.9301 11.9662 17.7804C12.4317 17.1859 12.8576 16.5616 13.2412 15.9114C13.2412 15.9114 14.5792 15.5446 14.9955 15.4441C15.4117 15.3436 15.915 15.2641 15.915 15.2641C15.915 15.2641 17.1367 16.4934 18.315 16.4499C19.4932 16.4064 19.4362 15.7456 19.4287 15.6736" fill="#DD2025"/>
-<path d="M17.9648 1.55859V5.96334H22.1896L17.9648 1.55859Z" fill="#909090"/>
-<path d="M18.0234 1.5V5.90475H22.2482L18.0234 1.5Z" fill="#F4F4F4"/>
-<path d="M6.73025 3.34337H5.75V6.94337H6.524V5.72987L6.695 5.73962C6.86048 5.73734 7.02445 5.70769 7.18025 5.65187C7.31722 5.60537 7.4431 5.53106 7.55 5.43362C7.6588 5.34145 7.74415 5.22474 7.799 5.09312C7.87493 4.87466 7.90182 4.64215 7.87775 4.41212C7.87347 4.24776 7.84466 4.08496 7.79225 3.92912C7.74502 3.81648 7.6748 3.71494 7.58608 3.63099C7.49735 3.54704 7.39208 3.48255 7.277 3.44162C7.17733 3.40452 7.074 3.37812 6.96875 3.36287C6.88965 3.34999 6.80964 3.34347 6.7295 3.34337M6.58775 5.06387H6.521V3.95387H6.6665C6.73039 3.94926 6.79449 3.95907 6.85407 3.98257C6.91366 4.00607 6.9672 4.04265 7.01075 4.08962C7.10099 4.21038 7.1492 4.35737 7.148 4.50812C7.148 4.69262 7.148 4.85987 6.9815 4.97762C6.86158 5.04368 6.72502 5.07339 6.5885 5.06312M9.341 3.33362C9.25775 3.33362 9.17675 3.33962 9.11975 3.34187L8.9435 3.34637H8.3585V6.94637H9.047C9.31009 6.95314 9.57197 6.90856 9.818 6.81512C10.0161 6.73689 10.1914 6.61029 10.328 6.44687C10.4618 6.28274 10.5574 6.09083 10.6077 5.88512C10.6669 5.65257 10.6956 5.41332 10.6932 5.17337C10.7079 4.88999 10.686 4.60589 10.628 4.32812C10.5725 4.12389 10.4697 3.93557 10.328 3.77837C10.2168 3.65125 10.0801 3.54903 9.92675 3.47837C9.79537 3.41747 9.65712 3.37265 9.515 3.34487C9.45848 3.33561 9.40126 3.33134 9.344 3.33212M9.2075 6.28487H9.1325V3.98687H9.14225C9.29687 3.96899 9.45334 3.9969 9.59225 4.06712C9.694 4.14837 9.7769 4.25072 9.83525 4.36712C9.89822 4.48962 9.93451 4.62408 9.94175 4.76162C9.9485 4.92662 9.94175 5.06162 9.94175 5.17337C9.94452 5.30209 9.93624 5.43082 9.917 5.55812C9.8934 5.68867 9.8507 5.81503 9.79025 5.93312C9.72196 6.04325 9.6287 6.13575 9.518 6.20312C9.42553 6.26312 9.3159 6.29106 9.206 6.28262M13.0138 3.34637H11.1912V6.94637H11.9622V5.51837H12.9372V4.84937H11.9622V4.01537H13.0122V3.34637" fill="white"/>
-</svg>
+        ))}
+      </div>
 
-            <div className="flex flex-col w-[90%] ml-4">
-                <span>Transfer Receipt.pdf</span>
-                <span>300 KB</span>
-            </div>
-            
-<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8 12L3 7L4.4 5.55L7 8.15V0H9V8.15L11.6 5.55L13 7L8 12ZM2 16C1.45 16 0.979333 15.8043 0.588 15.413C0.196666 15.0217 0.000666667 14.5507 0 14V11H2V14H14V11H16V14C16 14.55 15.8043 15.021 15.413 15.413C15.0217 15.805 14.5507 16.0007 14 16H2Z" fill="#8C8C8C"/>
-</svg>
-          </div>
-          
-        </div>
-
-
-
-        
+      {/* Content based on selected tab */}
+      {/* {index === 0 && main[2] ? (
+        <Flagged datatable={main[0]} />
+      ) : index === 1 && main[2] ? (
+        <FlaggedUsers datatable={main[1]} />
+      ) : index === 2 && main[2] ? (
+        <Risklevel datatable={main[2]} />
+      ):""} */}
+      
+      
+      {/*}: index === 1 && main[1] ? (
+        <Identity datatable={main[0]} />
+      ) : index === 2 && main[1] ? (
+        <Employment datatable={main[1]} />
+      ) : (
+        <Loan_Activity datatable={main[0]} />
+      ) */}
+      {/* <Flagged /> */}
     </div>
-    </div>
-
-    <div className="w-[70%] h-max border border-gray-200 overflow-hidden font-sans mt-4">
-      <header className="flex items-center px-5 py-4 bg-gray-100 border-b border-gray-200">
-        
-        <h1 className="ml-3 text-lg font-semibold text-gray-800">Admin Note</h1>
-      </header>
-
-      <div className="bg-white w-[100%] h-max overflow-hidden">
-        <div className="flex flex-col h-max">
-          <textarea className="w-[100%] h-[10rem] text-sm text-gray-500 px-[3rem] py-[1.5rem]" placeholder="Add a comment"></textarea>
-          <div className="w-full h-[50px] flex gap-1.5 items-center border border-[#E4E4E4] pl-2.5">
-            
-            <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5.60249 20.3007C4.30949 20.3007 3.09849 19.7457 2.22449 18.8607C0.529492 17.1447 0.0574925 14.1497 2.43349 11.7447L12.1815 1.87474C13.1695 0.874735 14.4265 0.487735 15.6295 0.814735C16.8125 1.13474 17.7805 2.11574 18.0975 3.31274C18.4195 4.53274 18.0385 5.80574 17.0515 6.80574L7.72849 16.2457C7.19649 16.7847 6.59449 17.1037 5.99049 17.1677C5.39149 17.2317 4.82049 17.0377 4.42049 16.6327C3.69649 15.8967 3.59249 14.5157 4.79849 13.2957L11.3465 6.66574C11.6155 6.39374 12.0515 6.39374 12.3205 6.66574C12.5895 6.93774 12.5895 7.37974 12.3205 7.65174L5.77149 14.2827C5.20549 14.8547 5.15349 15.4017 5.39449 15.6467C5.50049 15.7527 5.66049 15.8017 5.84549 15.7807C6.12849 15.7517 6.45149 15.5647 6.75449 15.2597L16.0775 5.82074C16.7175 5.17274 16.9625 4.41074 16.7675 3.67574C16.6702 3.31622 16.4816 2.98798 16.22 2.72287C15.9584 2.45777 15.6327 2.26481 15.2745 2.16274C14.5485 1.96574 13.7945 2.21474 13.1545 2.86274L3.40649 12.7327C1.59049 14.5717 2.02549 16.6887 3.19749 17.8757C4.37049 19.0627 6.45949 19.5047 8.27649 17.6637L18.0245 7.79374C18.0881 7.72909 18.1639 7.67775 18.2475 7.6427C18.3311 7.60766 18.4208 7.58961 18.5115 7.58961C18.6022 7.58961 18.6919 7.60766 18.7755 7.6427C18.8591 7.67775 18.9349 7.72909 18.9985 7.79374C19.1279 7.9254 19.2004 8.10262 19.2004 8.28724C19.2004 8.47185 19.1279 8.64907 18.9985 8.78074L9.25049 18.6507C8.10149 19.8127 6.81449 20.3007 5.60249 20.3007Z" fill="#6C737F"/>
-            </svg>
-
-          <input className="outline-0" placeholder='Type message...'/>
-          </div>
-        </div>
-
-
-
-        
-    </div>
-    </div>
-    </div>
-    
-    </div> ) */
-   
-    return (<SalesByCategory />)
+  )
 }
-export default Report;
+
+export default Report
+
