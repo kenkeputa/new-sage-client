@@ -442,7 +442,33 @@ function Report() {
               </CardContent>
             </Card>
           <TransactionChart />
-          </> :<></>
+          </> :
+          <div className="w-full h-max ">
+            <div className="w-full h-[287px] mt-8 py-[2rem] pl-[2rem] bg-[#F6F6F6] rounded-[12px] border border-[#E4E4E4]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
+              <div className="flex flex-col">
+              <h1 className="font-[700] text-[18px]">User Engagement </h1>
+              <p className="text-[16px] text-[#565656]">Tracks how users interact with the platform.</p>
+              </div>
+              <div className='flex gap-[12px] mt-[28px] w-max items-center'>
+
+              <div className="w-[337px] h-[105px] rounded-[8px] border border-[#ECECEC] bg-[#D3FFE8] pl-[20px] py-[14px]">
+               
+                  <p className="text-[#16884B] mb-[6px] font-[700]">800</p>
+                  <p className="text-[#333333] mb-[4px] text-[16px] font-[700]">Daily Active Users</p>
+                  <p className="text-[#565656] text-[14px]">Number of users making transactions daily</p>
+               
+              </div>
+              <div className="w-[337px] h-[105px] rounded-[8px] border border-[#ECECEC] bg-[#FFF8DE] pl-[20px] py-[14px]">
+               
+                  <p className="text-[#AE8C00] mb-[6px] font-[700]">10%</p>
+                  <p className="text-[#333333] mb-[4px] text-[16px] font-[700]">Repeat Customers</p>
+                  <p className="text-[#565656] text-[14px]">Customers returning for purchases</p>
+               
+              </div>
+              </div>
+
+            </div>
+          </div>
         } 
             {/* <Card className="w-[60%] border-[#E4E4E4] bg-[#F6F6F6] " style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
               <CardHeader>
