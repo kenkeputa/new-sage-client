@@ -33,22 +33,24 @@ function Report() {
   const [index1, setindex1] = useState(0)
   const { isLoading, setLoader } = useContext(Auth)
   const [task, settask] = useState(0)
-  const [tobecomplete, setcomplete] = useState(3)
+  const [tobecomplete, setcomplete] = useState(1)
   const [main, setmain] = useState([[],[],[],[]])
+  const [mainstat, setmainstat] = useState({})
 // console.log(main)
   useEffect(() => {
     // Reset main state to avoid duplication
     //setmain([])
 
     // First fetch request
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/fraud/index`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/report/index`) 
       .then((e) => e.json())
       .then((e) => {
         console.log("All loans data:", e)
+        setmainstat({"revenue": e.revenue, "sales": e.sales, "order": e.order, "users": e.users})
         // Use functional update to avoid dependency on main
         setmain((prevMain) => {
           // Store the data as the first element in the main array
-          return [e.record
+          return [e.product
             , prevMain[1], prevMain[2], prevMain[3]
           ]
         })
@@ -59,39 +61,39 @@ function Report() {
       })
 
     // Second fetch request
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/fraud/flaggeduser`)
-      .then((e) => e.json())
-      .then((e) => {
-        console.log("Employment data:", e)
-        // Use functional update to avoid dependency on main
-        setmain((prevMain) => {
-          // Add the new data as the second element in the main array
-          prevMain[1] = e.record;
-          return prevMain;
+    // fetch(`${import.meta.env.VITE_BACKEND_URL}/api/fraud/flaggeduser`)
+    //   .then((e) => e.json())
+    //   .then((e) => {
+    //     console.log("Employment data:", e)
+    //     // Use functional update to avoid dependency on main
+    //     setmain((prevMain) => {
+    //       // Add the new data as the second element in the main array
+    //       prevMain[1] = e.record;
+    //       return prevMain;
     
-        })
-        settask((prevTask) => prevTask + 1)
-      })
-      .catch((error) => {
-        console.error("Error fetching employment data:", error)
-      })
+    //     })
+    //     settask((prevTask) => prevTask + 1)
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error fetching employment data:", error)
+    //   })
 
     // Uncomment if you need the third fetch request
-    fetch('https://sage-admin-backend.vercel.app/api/fraud/risk')
-        .then(e => e.json())
-        .then(e => {
-            console.log('Overdue data:', e);
-            setmain((prevMain) => {
-              // Add the new data as the second element in the main array
-              prevMain[2] = e.record;
-              return prevMain;
+    // fetch('https://sage-admin-backend.vercel.app/api/fraud/risk')
+    //     .then(e => e.json())
+    //     .then(e => {
+    //         console.log('Overdue data:', e);
+    //         setmain((prevMain) => {
+    //           // Add the new data as the second element in the main array
+    //           prevMain[2] = e.record;
+    //           return prevMain;
         
-            })
-            settask(prevTask => prevTask + 1);
-        })
-        .catch(error => {
-            console.error('Error fetching overdue data:', error);
-        });
+    //         })
+    //         settask(prevTask => prevTask + 1);
+    //     })
+    //     .catch(error => {
+    //         console.error('Error fetching overdue data:', error);
+    //     });
   }, []) // Empty dependency array to run only once
 
   useEffect(() => {
@@ -170,7 +172,7 @@ function Report() {
             <span className="text-[16px] mt-1 font-[500]"></span>
           </div>
           <span className="text-[12px] mt-1 font-[600]">Total Revenue</span>
-          <span className="text-[26px] font-[700]">N20,654,000</span>
+          <span className="text-[26px] font-[700]">{mainstat.revenue}</span>
         </div>
 
         <div
@@ -187,7 +189,7 @@ function Report() {
             <span className="text-[16px] font-[500]"></span>
           </div>
           <span className="text-[12px] mt-1 font-[600]">Total Sales</span>
-          <span className="text-[26px] font-[700]">N10,654,000</span>
+          <span className="text-[26px] font-[700]">{mainstat.sales}</span>
         </div>
 
         {/* Card 3 */}
@@ -205,7 +207,7 @@ function Report() {
             <span className="text-[16px] font-[500]"></span>
           </div>
           <span className="text-[12px] mt-1 font-[600]">Active Users</span>
-          <span className="text-[26px] font-[700]">3000</span>
+          <span className="text-[26px] font-[700]">{mainstat.users}</span>
         </div>
 
         {/* Card 4 */}
@@ -230,7 +232,7 @@ function Report() {
             <span className="text-[16px] font-[500]"></span>
           </div>
           <span className="text-[12px] font-[600] mt-1">Total Orders</span>
-          <span className="text-[26px] font-[700]">5,000</span>
+          <span className="text-[26px] font-[700]">{mainstat.order}</span>
         </div>
       </div>
       <div className="w-full h-8 flex gap-2 mt-8 border-b border-b-[#E4E4E4]">
