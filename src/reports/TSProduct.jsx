@@ -10,68 +10,70 @@ let Activity = ({datatable})=>{
     console.log(datatable)
   
     // const tableRows = datatable
-    const tableRows = [
-        {
-          name: "Apple iPhone 12 Pro",
-          display_photos: [
-            "https://res.cloudinary.com/dxjsljyas/image/upload/v1741969779/gbn9an7qkzgormczdnii.jpg",
-            "",
-            "",
-            ""
-          ],
-          category: "Phone",
-          sales: "150",
-          revenue_generated: "₦1,756,520",
-        },
-        {
-          name: "Nike Airforce 3",
-          display_photos: [
-            "https://res.cloudinary.com/dxjsljyas/image/upload/v1741969779/gbn9an7qkzgormczdnii.jpg",
-            "",
-            "",
-            ""
-          ],
-          category: "Fashion",
-          sales: "120",
-          revenue_generated: "₦240,000",
-        },
-        {
-         name: "Abx Multipurpose Grinder",
-          display_photos: [
-            "https://res.cloudinary.com/dxjsljyas/image/upload/v1741969779/gbn9an7qkzgormczdnii.jpg",
-            "",
-            "",
-            ""
-          ],
-          category: "Home Appliances",
-          sales: "100",
-          revenue_generated: "₦960,540",
-        },
-        {
-          name: "Redme 360 Jt",
-          display_photos: [
-            "https://res.cloudinary.com/dxjsljyas/image/upload/v1741969779/gbn9an7qkzgormczdnii.jpg",
-            "",
-            "",
-            ""
-          ],
-          category: "Phone",
-          sales: "80",
-          revenue_generated: "₦145,000",
-        },
-        {
-         name: "2 piece hand bracelet",
-          display_photos: [
-            "https://res.cloudinary.com/dxjsljyas/image/upload/v1741969779/gbn9an7qkzgormczdnii.jpg",
-            "",
-            "",
-            ""
-          ],
-          category: "Jewelry",
-          sales: "50",
-          revenue_generated: "₦70,000",
-        },
-      ]
+    const tableRows = datatable
+    
+    // [
+    //     {
+    //       name: "Apple iPhone 12 Pro",
+    //       display_photos: [
+    //         "https://res.cloudinary.com/dxjsljyas/image/upload/v1741969779/gbn9an7qkzgormczdnii.jpg",
+    //         "",
+    //         "",
+    //         ""
+    //       ],
+    //       category: "Phone",
+    //       sales: "150",
+    //       revenue_generated: "₦1,756,520",
+    //     },
+    //     {
+    //       name: "Nike Airforce 3",
+    //       display_photos: [
+    //         "https://res.cloudinary.com/dxjsljyas/image/upload/v1741969779/gbn9an7qkzgormczdnii.jpg",
+    //         "",
+    //         "",
+    //         ""
+    //       ],
+    //       category: "Fashion",
+    //       sales: "120",
+    //       revenue_generated: "₦240,000",
+    //     },
+    //     {
+    //      name: "Abx Multipurpose Grinder",
+    //       display_photos: [
+    //         "https://res.cloudinary.com/dxjsljyas/image/upload/v1741969779/gbn9an7qkzgormczdnii.jpg",
+    //         "",
+    //         "",
+    //         ""
+    //       ],
+    //       category: "Home Appliances",
+    //       sales: "100",
+    //       revenue_generated: "₦960,540",
+    //     },
+    //     {
+    //       name: "Redme 360 Jt",
+    //       display_photos: [
+    //         "https://res.cloudinary.com/dxjsljyas/image/upload/v1741969779/gbn9an7qkzgormczdnii.jpg",
+    //         "",
+    //         "",
+    //         ""
+    //       ],
+    //       category: "Phone",
+    //       sales: "80",
+    //       revenue_generated: "₦145,000",
+    //     },
+    //     {
+    //      name: "2 piece hand bracelet",
+    //       display_photos: [
+    //         "https://res.cloudinary.com/dxjsljyas/image/upload/v1741969779/gbn9an7qkzgormczdnii.jpg",
+    //         "",
+    //         "",
+    //         ""
+    //       ],
+    //       category: "Jewelry",
+    //       sales: "50",
+    //       revenue_generated: "₦70,000",
+    //     },
+    //   ]
     
     const filteroptions = [
       { label: "All" },
@@ -360,7 +362,7 @@ let Activity = ({datatable})=>{
                   <img src={row.display_photos === null ? " " : row.display_photos[0] } />
                 </div>
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.name}
+                  {row.product_name}
                 </div>
               </div>
             </div>
@@ -463,7 +465,7 @@ let Activity = ({datatable})=>{
             >
               <div className="grow shrink basis-0 h-[30px] justify-start items-center gap-3 flex">
                 <div className="grow shrink basis-0 text-[#565656] text-sm font-medium font-['Mulish'] leading-[21px]">
-                  {row.revenue_generated}
+                  {row.revenue_generated.toFixed(2)}
                 </div>
               </div>
             </div>

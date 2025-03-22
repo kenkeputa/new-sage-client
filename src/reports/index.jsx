@@ -46,7 +46,7 @@ function Report() {
       .then((e) => e.json())
       .then((e) => {
         console.log("All loans data:", e)
-        setmainstat({"revenue": e.revenue, "sales": e.sales, "order": e.order, "users": e.users})
+        setmainstat({"revenue": e.revenue.toFixed(2), "sales": e.sales.toFixed(2), "order": e.order, "users": e.users})
         // Use functional update to avoid dependency on main
         setmain((prevMain) => {
           // Store the data as the first element in the main array
@@ -94,6 +94,7 @@ function Report() {
     //     .catch(error => {
     //         console.error('Error fetching overdue data:', error);
     //     });
+ 
   }, []) // Empty dependency array to run only once
 
   useEffect(() => {
@@ -172,7 +173,7 @@ function Report() {
             <span className="text-[16px] mt-1 font-[500]"></span>
           </div>
           <span className="text-[12px] mt-1 font-[600]">Total Revenue</span>
-          <span className="text-[26px] font-[700]">{mainstat.revenue}</span>
+          <span className="text-[26px] font-[700]">{mainstat?.revenue}</span>
         </div>
 
         <div
@@ -189,7 +190,7 @@ function Report() {
             <span className="text-[16px] font-[500]"></span>
           </div>
           <span className="text-[12px] mt-1 font-[600]">Total Sales</span>
-          <span className="text-[26px] font-[700]">{mainstat.sales}</span>
+          <span className="text-[26px] font-[700]">{mainstat?.sales}</span>
         </div>
 
         {/* Card 3 */}
@@ -207,7 +208,7 @@ function Report() {
             <span className="text-[16px] font-[500]"></span>
           </div>
           <span className="text-[12px] mt-1 font-[600]">Active Users</span>
-          <span className="text-[26px] font-[700]">{mainstat.users}</span>
+          <span className="text-[26px] font-[700]">{mainstat?.users}</span>
         </div>
 
         {/* Card 4 */}
@@ -232,7 +233,7 @@ function Report() {
             <span className="text-[16px] font-[500]"></span>
           </div>
           <span className="text-[12px] font-[600] mt-1">Total Orders</span>
-          <span className="text-[26px] font-[700]">{mainstat.order}</span>
+          <span className="text-[26px] font-[700]">{mainstat?.order}</span>
         </div>
       </div>
       <div className="w-full h-8 flex gap-2 mt-8 border-b border-b-[#E4E4E4]">
@@ -573,7 +574,7 @@ function Report() {
       ""}
 
       {/* Content based on selected tab */}
-      {index === 0  ? (
+      {index === 0 && main[0] ? (
         <TSProduct />
       ) 
       :""}
