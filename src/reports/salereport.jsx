@@ -9,12 +9,13 @@ const SalesByCategory = ({Data}) => {
   // Sales data
   const salesData = Data;
 
-  [{ name: "Electronics", value: 50, color: "#FF928A" },
-    { name: "Fashion", value: 30, color: "#537FF1" },
-    { name: "Home Appliances", value: 15, color: "#8979FF" },
-    { name: "Shoes", value: 5, color: "#FA1024" },
-    { name: "Accessories", value: 5, color: "#7217B8" },
-    { name: "Jewelries", value: 5, color: "#FFAE4C" },]
+  // [{ name: "Electronics", value: 50, color: "#FF928A" },
+  //   { name: "Fashion", value: 30, color: "#537FF1" },
+  //   { name: "Home Appliances", value: 15, color: "#8979FF" },
+  //   { name: "Shoes", value: 5, color: "#FA1024" },
+  //   { name: "Accessories", value: 5, color: "#7217B8" },
+  //   { name: "Jewelries", value: 5, color: "#FFAE4C" },]
+  
   let color = ['#FF928A', '#537FF1', '#8979FF', '#FA1024', '#7217B8','#FFAE4C'];
 
   const CustomTooltip = ({ active, payload }) => {
