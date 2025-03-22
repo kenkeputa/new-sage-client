@@ -2,19 +2,20 @@
 
 import { useState } from "react"
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts"
-
-const SalesByCategory = () => {
+import PropTypes from 'prop-types';
+const SalesByCategory = ({Data}) => {
   const [timeframe, setTimeframe] = useState("This Month")
 
   // Sales data
-  const salesData = [
-    { name: "Electronics", value: 50, color: "#FF928A" },
+  const salesData = Data;
+
+  [{ name: "Electronics", value: 50, color: "#FF928A" },
     { name: "Fashion", value: 30, color: "#537FF1" },
     { name: "Home Appliances", value: 15, color: "#8979FF" },
     { name: "Shoes", value: 5, color: "#FA1024" },
     { name: "Accessories", value: 5, color: "#7217B8" },
-    { name: "Jewelries", value: 5, color: "#FFAE4C" },
-  ]
+    { name: "Jewelries", value: 5, color: "#FFAE4C" },]
+  let color = ['#FF928A', '#537FF1', '#8979FF', '#FA1024', '#7217B8','#FFAE4C'];
 
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
@@ -94,8 +95,8 @@ const SalesByCategory = () => {
                 labelLine={false}
                 label={renderCustomizedLabel}
               >
-                {salesData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.color} />
+                {color.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry} />
                 ))}
               </Pie>
               <Tooltip content={<CustomTooltip />} />
@@ -105,10 +106,12 @@ const SalesByCategory = () => {
 
         {/* Legend */}
         <div className="mt-6 md:mt-0 md:ml-8 space-y-3 w-full max-w-xs">
-          {salesData.map((item) => (
+          {salesData.map((item,index) => (
             <div key={item.name} className="flex items-center justify-between mt-8">
               <div className="flex items-center">
-                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }}></div>
+
+                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: color[index] }}></div>
+
                 <span className="ml-2 text-gray-700">{item.name}</span>
               </div>
               <span className="font-medium text-gray-800">{item.value}%</span>
@@ -120,5 +123,8 @@ const SalesByCategory = () => {
   )
 }
 
+SalesByCategory.propTypes = {
+    Data: PropTypes.arrayOf(PropTypes.object),
+};
 export default SalesByCategory
 

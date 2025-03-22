@@ -36,6 +36,7 @@ function Report() {
   const [tobecomplete, setcomplete] = useState(1)
   const [main, setmain] = useState([[],[],[],[]])
   const [mainstat, setmainstat] = useState({})
+  const [salescat, setsalescat] = useState([[]])
 // console.log(main)
   useEffect(() => {
     // Reset main state to avoid duplication
@@ -173,7 +174,7 @@ function Report() {
             <span className="text-[16px] mt-1 font-[500]"></span>
           </div>
           <span className="text-[12px] mt-1 font-[600]">Total Revenue</span>
-          <span className="text-[26px] font-[700]">{mainstat?.revenue}</span>
+          <span className="text-[26px] font-[700]">N{mainstat?.revenue}</span>
         </div>
 
         <div
@@ -190,7 +191,7 @@ function Report() {
             <span className="text-[16px] font-[500]"></span>
           </div>
           <span className="text-[12px] mt-1 font-[600]">Total Sales</span>
-          <span className="text-[26px] font-[700]">{mainstat?.sales}</span>
+          <span className="text-[26px] font-[700]">N{mainstat?.sales}</span>
         </div>
 
         {/* Card 3 */}
@@ -249,11 +250,10 @@ function Report() {
         ))}
       </div>
       <div className="flex justify-center  gap-5.5 mt-10 w-full">
-           {index === 0?
+           {index === 0 && salescat[0] ?
            
           <>
-          
-            <Salereport />
+            <Salereport Data={salescat[0]} />
             <Card className="w-[60%] border-[#E4E4E4] bg-[#F6F6F6]" style={{boxShadow: "0px 16px 30px 0px #585C5F29"}}>
               <CardHeader>
                 <div className="flex items-center justify-between">
@@ -575,7 +575,7 @@ function Report() {
 
       {/* Content based on selected tab */}
       {index === 0 && main[0] ? (
-        <TSProduct />
+        <TSProduct datatable={main[0]}/>
       ) 
       :""}
       
