@@ -48,6 +48,12 @@ function Report() {
       .then((e) => {
         console.log("All loans data:", e)
         setmainstat({"revenue": e.revenue.toFixed(2), "sales": e.sales.toFixed(2), "order": e.order, "users": e.users})
+        setsalescat((prevMain) => {
+          // Store the data as the first element in the main array
+          return [e.salescategory
+            
+          ]
+        })
         // Use functional update to avoid dependency on main
         setmain((prevMain) => {
           // Store the data as the first element in the main array
