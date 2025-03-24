@@ -12,7 +12,7 @@ function User_MDM() {
     return ( <div className='w-[85%] h-full px-[2%] overflow-scroll'>
         
         <div className="mt-[2rem] flex items-center justify-between mb-4">
-                    <span className="font-[700] text-[26px] text-[#333333]">Loan Repayment</span>
+                    <span className="font-[700] text-[26px] text-[#333333]">User management</span>
         
         <div className='flex gap-2 justify-center items-center h-[24px]'>
         <div  className="w-[137px] flex justify-center items-center bg-[#FFFFFF] pt-[8px] pl-[12px] relative">
