@@ -18,6 +18,16 @@ export default function AddProductForm() {
     isTCPO: false,
   })
 
+  useEffect(()=>{
+    const searchParams = new URLSearchParams(window.location.search)
+    // Get the id parameter
+    const encodedId = searchParams.get("id")
+
+    if (encodedId) {
+
+    }
+  },[])
+
   let navigate = useNavigate();
 
   const [productImages, setProductImages] = useState([null, null, null, null])
@@ -36,6 +46,9 @@ export default function AddProductForm() {
   const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`
 console.log(formData)
   // Fetch suppliers on component mount
+
+
+
   useEffect(() => {
     const fetchSuppliers = async () => {
       try {

@@ -7,6 +7,7 @@ import Customer from "./customer/customer"
 import ViewCustomer from "./customer/viewcustomer"
 import Inventory from "./inventory/inventory"
 import AddProduct from "./inventory/addproduct"
+import EditProduct from "./inventory/editproduct"
 import Addcustomer from "./customer/addcustomer"
 import Communication from "./communication/index"
 import Repayment from "./loan/repayment/index"
@@ -65,6 +66,7 @@ function App() {
             <Route exact path="/customers/view" element={!isLogin ? <Navigate to="/auth" /> : <ViewCustomer />} />
             <Route exact path="/inventory" element={!isLogin ? <Navigate to="/auth" /> : <Inventory />} />
             <Route exact path="/inventory/add" element={!isLogin ? <Navigate to="/auth" /> : <AddProduct />} />
+            <Route exact path="/inventory/edit" element={!isLogin ? <Navigate to="/auth" /> : <EditProduct />} />
             <Route exact path="/customers/new" element={!isLogin ? <Navigate to="/auth" /> : <Addcustomer />} />
             <Route
               exact
