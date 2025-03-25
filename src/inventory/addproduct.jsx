@@ -150,6 +150,7 @@ console.log(formData)
         description: formData.description,
         quantityInStock: formData.quantityInStock,
         price: formData.price,
+        brandName: formData.brandName,
         category: formData.category,
         isTCPO: formData.isTCPO,
         dealerID: formData.dealerID,

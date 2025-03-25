@@ -3,7 +3,7 @@ import {Auth} from "../App.jsx";
 
 function Header(){
 
-    let {isLogin, setLogin} =  useContext(Auth);
+    let {isLogin, setLogin, setclosenotify} =  useContext(Auth);
     return (<div className='h-[68px] bg-[#F6F6F6] w-full border-b-[1px] border-b-[#C1C1C1] flex items-center'>
             <div className="w-[264px] h-[90%] flex items-center gap-[10px] ml-6">
                 <div className="bg-[#B974EE] rounded-full w-[40px] h-[40px]"></div>
@@ -18,7 +18,9 @@ function Header(){
                             <path d="M21.0004 21.0004L16.6504 16.6504M11 7C13.2091 7 15 8.79086 15 11M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="#9D9D9D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                         </div>
-                    <div className="p-[3.2px] flex justify-center items-center">
+                    <div className="p-[3.2px] flex justify-center items-center cursor-pointer" onClick={()=>{
+                        setclosenotify(true)
+                    }}>
                         <div>
 
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

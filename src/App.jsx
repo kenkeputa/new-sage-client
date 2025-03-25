@@ -25,6 +25,7 @@ import Refund from "./customer/refundview"
 import Report from "./reports/index"
 import Fraud from "./fraud/index"
 import Loader from "./Loader" 
+import Notification from "./notification" 
 import { Routes, Route, Navigate } from "react-router-dom"
 import React, { useState, useEffect } from "react"
 export const Auth = React.createContext()
@@ -32,6 +33,7 @@ export const Auth = React.createContext()
 function App() {
   const [isLogin, setLogin] = useState(true)
   const [isLoading, setLoader] = useState(false)
+  const [closenotify, setclosenotify] = useState(false)
 
   // Check localStorage when the component mounts
   useEffect(() => {
@@ -50,7 +52,7 @@ function App() {
 
   return (
     <div className="h-[100vh] w-full">
-      <Auth.Provider value={{ isLogin, setLogin, isLoading, setLoader  }}>
+      <Auth.Provider value={{ isLogin, setLogin, isLoading, setLoader, setclosenotify, closenotify  }}>
         <Header />
         <div className="w-full h-[100vh] flex">
           {isLogin ? <Sidebar /> : ""}
@@ -108,6 +110,9 @@ function App() {
         <Loader />: ""
         
       }
+      {closenotify ? 
+      <Notification />
+      : ""}
       </Auth.Provider>
     </div>
   )

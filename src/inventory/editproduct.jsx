@@ -10,6 +10,7 @@ export default function AddProductForm() {
     productSKU: "",
     category: "",
     brandName: "",
+    publicID: "",
     price: "",
     quantityInStock: "",
     dealerID: "",
@@ -18,16 +19,7 @@ export default function AddProductForm() {
     isTCPO: false,
   })
 
-  useEffect(()=>{
-    const searchParams = new URLSearchParams(window.location.search)
-    // Get the id parameter
-    const encodedId = searchParams.get("id")
-
-    if (encodedId) {
-
-    }
-  },[])
-
+ 
   let navigate = useNavigate();
 
   const [productImages, setProductImages] = useState([null, null, null, null])
@@ -39,6 +31,30 @@ export default function AddProductForm() {
   const [success, setSuccess] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [uploadingImages, setUploadingImages] = useState(false)
+  useEffect(()=>{
+    const searchParams = new URLSearchParams(window.location.search)
+    // Get the id parameter
+    const encodedId = searchParams.get("id")
+    console.log(encodedId)
+    if (encodedId) {
+      const decodedId = JSON.parse(atob(encodedId))
+      setFormData({
+        name: decodedId?.name,
+        productSKU: '', 
+        publicID: decodedId.public_id,
+        category: decodedId.category,
+        brandName: decodedId.brand_name,
+        price: decodedId.price,
+        quantityInStock: decodedId.quantity_in_stock,
+        dealerID: decodedId.dealer_id,
+        dealerName: decodedId.dealer_name, // Add this line
+        description: decodedId.dealer_id,
+        isTCPO: decodedId.is_tcpo,
+      })
+      setImagePreviewUrls(decodedId.display_photos)
+      setProductImages(decodedId.display_photos)
+    }
+  },[])
 
   // Cloudinary configuration
   const CLOUDINARY_UPLOAD_PRESET = "upload" // Your actual upload preset from Cloudinary
@@ -132,7 +148,7 @@ console.log(formData)
       })
 
       const urls = await Promise.all(uploadPromises)
-      setCloudinaryUrls(urls)
+      setCloudinaryUrls(urls.filter(Boolean))
       return urls.filter(Boolean) // Remove null values
     } catch (error) {
       console.error("Error uploading images:", error)
@@ -151,15 +167,17 @@ console.log(formData)
 
     try {
       // First upload images to Cloudinary
-      const imageUrls = await uploadAllImagesToCloudinary()
-
-      if (!imageUrls || imageUrls.length === 0) {
-        throw new Error("At least one image is required")
-      }
-
+      const imageUrls = await uploadAllImagesToCloudinary();
+      const images = imageUrls.length === 0? imagePreviewUrls : imageUrls;
+      console.log(imageUrls,"imageurl")
+      // if (!imageUrls || imageUrls.length === 0) {
+      //   throw new Error("At least one image is required")
+      // }
+    
       // Create data object to send to backend
       const productData = {
         name: formData.name,
+        brandName: formData.brandName,
         description: formData.description,
         quantityInStock: formData.quantityInStock,
         price: formData.price,
@@ -168,11 +186,13 @@ console.log(formData)
         dealerID: formData.dealerID,
         displayPhotos: imageUrls,
          dealerName: formData.dealerName,
+         publicID: formData.publicID
          // Send array of Cloudinary URLs
       }
 
+      console.log(productData, 444)
       // Send the data to the API
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/product/add`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/inventory/edit`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -552,7 +572,7 @@ navigate('/inventory')
               disabled={isSubmitting || uploadingImages}
             >
               {(isSubmitting || uploadingImages) && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-              {uploadingImages ? "Uploading Images..." : isSubmitting ? "Adding Product..." : "Add Product"}
+              {uploadingImages ? "Uploading Images..." : isSubmitting ? "Editing Product..." : "Edit Product"}
             </button>
           </div>
         </div>
