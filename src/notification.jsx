@@ -1,114 +1,116 @@
-import {useState, useContext, } from 'react'
-import { Auth } from "./App.jsx"
-function Notification(){
-const { setclosenotify, closenotify } = useContext(Auth)
-const [notifications, setNotifications] = useState([
-    {
-      id: "1",
-      type: "Loan Application",
-      message: "Steven Abomisa just applied for a loan",
-      timestamp: "15 mins ago",
-      timeAgo: "15 mins ago",
-      read: false,
-    },
-    {
-      id: "2",
-      type: "New Customer",
-      message: "Tomiwa Richards just registered",
-      timestamp: "15 mins ago",
-      timeAgo: "15 mins ago",
-      read: false,
-    },
-    {
-      id: "3",
-      type: "New Order",
-      message: "CUST468 placed an order",
-      timestamp: "1 hour ago",
-      timeAgo: "1 hour ago",
-      read: false,
-    },
-    {
-      id: "4",
-      type: "Due Payment",
-      message: "Payment is due for CUST354",
-      timestamp: "24 Dec 2024 12:30 PM",
-      timeAgo: "24 Dec 2024",
-      read: false,
-    },
-    {
-      id: "5",
-      type: "New Customer",
-      message: "Tomiwa Richards just registered",
-      timestamp: "16 Dec 2024 02:30 AM",
-      timeAgo: "16 Dec 2024",
-      read: true,
-    },
-    {
-      id: "6",
-      type: "New Customer",
-      message: "Tomiwa Richards just registered",
-      timestamp: "14 Dec 2024 04:15 PM",
-      timeAgo: "14 Dec 2024",
-      read: true,
-    },
-    {
-      id: "7",
-      type: "New Customer",
-      message: "Tomiwa Richards just registered",
-      timestamp: "10 Dec 2024 11:45 AM",
-      timeAgo: "10 Dec 2024",
-      read: true,
-    },
-    {
-      id: "8",
-      type: "New Customer",
-      message: "Tomiwa Richards just registered",
-      timestamp: "29 Nov 2024 06:33 PM",
-      timeAgo: "29 Nov 2024",
-      read: true,
-    },
-    {
-      id: "9",
-      type: "New Customer",
-      message: "Tomiwa Richards just registered",
-      timestamp: "29 Nov 2024 06:33 PM",
-      timeAgo: "29 Nov 2024",
-      read: true,
-    },
-    {
-      id: "10",
-      type: "New Customer",
-      message: "Tomiwa Richards just registered",
-      timestamp: "29 Nov 2024 06:33 PM",
-      timeAgo: "29 Nov 2024",
-      read: true,
-    },
-    {
-      id: "11",
-      type: "New Customer",
-      message: "Tomiwa Richards just registered",
-      timestamp: "29 Nov 2024 06:33 PM",
-      timeAgo: "29 Nov 2024",
-      read: true,
-    },
-    {
-      id: "12",
-      type: "New Customer",
-      message: "Tomiwa Richards just registered",
-      timestamp: "29 Nov 2024 06:33 PM",
-      timeAgo: "29 Nov 2024",
-      read: true,
-    },
-  ])
+import { useState, useEffect, useContext } from 'react';
+import { Auth } from "./App.jsx";
 
-  const [dropdownOpen, setDropdownOpen] = useState(false)
+function Notification() {
+  const { setclosenotify, closenotify } = useContext(Auth);
+  const [notifications, setNotifications] = useState([]);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("https://sage-admin-backend.vercel.app/notification")
+      .then(response => response.json())
+      .then(data => {
+        const formatTime = (timestamp) => {
+          const now = new Date();
+          const time = new Date(timestamp);
+          const diffMs = now - time;
+          const diffSecs = Math.floor(diffMs / 1000);
+          const diffMins = Math.floor(diffSecs / 60);
+          const diffHours = Math.floor(diffMins / 60);
+          const diffDays = Math.floor(diffHours / 24);
+          const diffWeeks = Math.floor(diffDays / 7);
+          const diffMonths = Math.floor(diffDays / 30);
+          const diffYears = Math.floor(diffDays / 365);
+      
+          if (diffSecs < 60) return "Just now";
+          if (diffMins < 60) return `${diffMins} min${diffMins > 1 ? 's' : ''} ago`;
+          if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+          if (diffDays < 7) return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+          if (diffWeeks < 4) return `${diffWeeks} week${diffWeeks > 1 ? 's' : ''} ago`;
+          if (diffMonths < 12) return `${diffMonths} month${diffMonths > 1 ? 's' : ''} ago`;
+          if (diffYears >= 1) return `${diffYears} year${diffYears > 1 ? 's' : ''} ago`;
+      
+          return time.toLocaleDateString('en-GB', {
+              day: '2-digit', 
+              month: 'short', 
+              year: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit',
+              hour12: true
+          });
+      };
+      
+        console.log(data);
+        const newUsers = data.newUsers?.map(user => ({
+          id: user.id,
+          type: "New Customer",
+          message: `${user.first_name} ${user.last_name} just registered`,
+          timestamp: formatTime(user.registration_date || new Date().toISOString()),
+          time: user.registration_date,
+          timeAgo: formatTime(user.registration_date || new Date().toISOString()),
+          read: false,
+        }))  || [];
+
+        const newLoans = data.newLoans?.map(loan => ({
+          id: `loan-${loan.id}`,
+          type: "Loan Application",
+          message: `User ID ${loan.user_id} applied for a loan of ₦${loan.amount}`,
+          timestamp: formatTime(loan.next_payment),
+          timeAgo: formatTime(loan.next_payment),
+          time: loan.next_payment,
+          read: false,
+        }))  || [];
+
+        // const sortedNotifications = [...newUsers, ...newLoans].sort((a, b) => {
+        //   const order = { "Just now": 0, "mins ago": 1, "hours ago": 2, "days ago": 3 };
+        //   const aCategory = a.timeAgo.includes("mins") ? 1 : a.timeAgo.includes("hours") ? 2 : a.timeAgo.includes("ago") ? 3 : 4;
+        //   const bCategory = b.timeAgo.includes("mins") ? 1 : b.timeAgo.includes("hours") ? 2 : b.timeAgo.includes("ago") ? 3 : 4;
+          
+        //   return aCategory - bCategory || new Date(b.timestamp) - new Date(a.timestamp);
+        // });
+
+        const sortedNotifications = [...newUsers, ...newLoans].sort((a, b) => 
+          new Date(b.time) - new Date(a.time)
+        );
+
+        setNotifications(sortedNotifications);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error("Error fetching notifications:", error)
+        setLoading(false);
+      });
+  }, []);
+
 
   const markAllAsRead = () => {
-    setNotifications(notifications.map((notification) => ({ ...notification, read: true })))
-  }
+    // Mark all notifications as read locally
+    const updatedNotifications = notifications.map(notification => ({ ...notification, read: true }));
+    setNotifications(updatedNotifications);
+  
+    // Fetch from /markread
+    fetch("https://sage-admin-backend.vercel.app/markread")
+      .then(response => response.json()) // Even if response isn't useful, we still process it
+      .then(() => {
+        // Send updated notifications to /add-prev-notification
+        fetch("https://sage-admin-backend.vercel.app/add-prev-notification", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({prevNotification: updatedNotifications}),
+        })
+          .then(res => res.json())
+          .then(() => console.log("Updated notifications sent successfully"))
+          .catch(error => console.error("Error sending notifications:", error));
+      })
+      .catch(error => console.error("Error fetching markread:", error));
+  };
+  
 
-
-return (<div className="w-full h-[1163px]  flex  fixed top-0 left-0 bg-[#3333334D] backdrop-blur-[16px]">
+  return (
+    <div className="w-full h-[1163px]  flex  fixed top-0 left-0 bg-[#3333334D] backdrop-blur-[16px]">
    
         <div className="bg-[#F6F6F6] rounded-lg shadow-lg w-full max-w-md ml-auto h-full">
             <div className="flex items-center justify-between p-4">
@@ -183,8 +185,19 @@ return (<div className="w-full h-[1163px]  flex  fixed top-0 left-0 bg-[#3333334
                 </button>
             </div>
 
-            <div className="max-h-[70vh] overflow-y-auto">
-                {notifications.map((notification) => (
+            <div className="max-h-[70vh] overflow-y-scroll">
+                {loading ? (
+                  <div className='w-full h-[7rem] flex justify-center items-center'>
+
+            <svg width="38" height="40" className="animate-spin" viewBox="0 0 38 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M35.9661 12.4081C37.1237 11.8576 37.6269 10.4639 36.9461 9.37788C34.9619 6.21221 32.1209 3.65147 28.7319 2.00681C24.6437 0.0228955 20.0019 -0.509725 15.5706 0.496656C11.1393 1.50304 7.1829 3.98842 4.35274 7.54355C1.52257 11.0987 -0.012575 15.5116 7.7529e-05 20.0557C0.0127301 24.5998 1.57243 29.0041 4.42235 32.5434C7.27226 36.0827 11.2425 38.546 15.6793 39.5277C20.1161 40.5094 24.7549 39.9509 28.8319 37.9443C32.2117 36.2808 35.0384 33.7043 37.005 30.5276C37.6797 29.4378 37.1687 28.0469 36.0081 27.5029C34.8475 26.9589 33.4795 27.4717 32.767 28.5372C31.2747 30.7689 29.2151 32.5823 26.7822 33.7798C23.6514 35.3207 20.0891 35.7496 16.682 34.9957C13.2749 34.2419 10.2261 32.3502 8.03761 29.6323C5.8491 26.9144 4.65137 23.5323 4.64166 20.0428C4.63194 16.5533 5.81081 13.1645 7.98415 10.4344C10.1575 7.70438 13.1957 5.79581 16.5986 5.02299C20.0014 4.25017 23.566 4.65918 26.7054 6.18267C29.1449 7.36653 31.2146 9.16852 32.7193 11.3918C33.4377 12.4533 34.8086 12.9585 35.9661 12.4081Z" fill="#7217B8"/>
+            </svg>
+            </div>
+
+          ) : notifications.length === 0 ? (
+            <p className="text-center text-gray-500">There are no notifications</p>
+          ) : (
+          notifications.map((notification) => (
                 <div
                     key={notification.id}
                     className={`flex items-start p-4 border-b border-b-[#E4E4E4] ${!notification.read ? "bg-[#DCBAF633]" : "bg-[#F6F6F6]"}`}
@@ -215,11 +228,13 @@ return (<div className="w-full h-[1163px]  flex  fixed top-0 left-0 bg-[#3333334
                     )}
                     </div>
                 </div>
-                ))}
+                )) 
+                )}
             </div>
         </div>
 
 </div>
-)
+  );
 }
-export default Notification
+
+export default Notification;
