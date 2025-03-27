@@ -1,6 +1,34 @@
-import React from 'react'
+import {useState, useEffect} from 'react'
 
 function Communication() {
+    const [users, setUsers] = useState([])
+    useEffect(() => {
+        const fetchUsers = async () => {
+          try {
+            const response = await fetch('https://sage-admin-backend.vercel.app/ticket_users')
+            
+            if (!response.ok) {
+              throw new Error('Failed to fetch users')
+            }
+            
+            const data = await response.json()
+            setUsers(data.users)
+            
+            // Set the first user as selected by default
+            
+              //setSelectedUser(data.users[0])
+            
+          } catch (err) {
+            console.error('Error fetching users:', err)
+          }
+        }
+    
+        fetchUsers()
+      }, [])
+
+
+
+
     return (<div className='w-[85%] h-full  overflow-scroll flex'>
                 <div className="w-[30%]  h-full border-r border-r-[#F2F4F7] ">
                     <div className='w-full h-fit px-[5%] border-b border-b-[#E4E4E4]'>
@@ -30,10 +58,11 @@ function Communication() {
                         </div>
                     </div>
                     <div className='w-full h-fit flex flex-col'>
+                    {users?.map((e)=>(
                         <div className='w-full h-[76px] flex justify-evenly py-4 cursor-pointer'>
-                            <div className='size-[38.209999084472656px] bg-[#FDAFB6] rounded-full flex justify-center items-center'>MV</div>
+                            <div className='size-[38.209999084472656px] bg-[#FDAFB6] rounded-full flex justify-center items-center'>{e?.name.split(' ').map(part => part.charAt(0)).join('').toUpperCase().substring(0, 2)}</div>
                             <div className='w-[202px] h-[54px] flex flex-col'>
-                                <h2>Miron Vitold</h2>
+                                <h2>{e?.name}</h2>
                                 <div className='w-max h-max flex gap-2.5'>
                                     <div className='flex items-center gap-0.5'>
                                         
@@ -66,7 +95,9 @@ function Communication() {
                                 2
                             </div> 
                         </div>
-                        <div className='w-full h-[76px] flex justify-evenly py-4 cursor-pointer'>
+                       ))}
+                       
+                        {/* <div className='w-full h-[76px] flex justify-evenly py-4 cursor-pointer'>
                             <div className='size-[38.209999084472656px] bg-[#FFEDA1] rounded-full flex justify-center items-center'>AT</div>
                             <div className='w-[202px] h-[54px] flex flex-col'>
                                 <h2>Ayomide Timothy</h2>
@@ -173,7 +204,7 @@ function Communication() {
                             <div className='bg-[#DD0417] size-[24px] rounded-full flex justify-center items-center text-white'>
                                 2
                             </div> 
-                        </div>
+                        </div> */}
 
                     </div>
                 </div>
