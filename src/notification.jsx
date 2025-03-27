@@ -69,8 +69,8 @@ function Notification() {
           
         //   return aCategory - bCategory || new Date(b.timestamp) - new Date(a.timestamp);
         // });
-
-        const sortedNotifications = [...newUsers, ...newLoans].sort((a, b) => 
+        const prev = data.previousActivities
+        const sortedNotifications = [...newUsers, ...newLoans, ...prev].sort((a, b) => 
           new Date(b.time) - new Date(a.time)
         );
 
