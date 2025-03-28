@@ -5,7 +5,7 @@ import { Auth } from "../App.jsx"
 
 function Communication() {
   const [users, setUsers] = useState([])
-  const [selectedUser, setselectUser] = useState({name: "", email:"", updated_at:""})
+  const [selectedUser, setselectUser] = useState({ name: "", email: "", updated_at: "" })
 
   const [message, setmessage] = useState([])
   const [reply, setreply] = useState(false)
@@ -16,6 +16,7 @@ function Communication() {
     currentMessage: "",
   })
   const [selectedTicket, setSelectedTicket] = useState(null)
+  const [messageInput, setMessageInput] = useState("")
 
   useEffect(() => {
     setLoader(true)
@@ -106,11 +107,42 @@ function Communication() {
     if (!timestamp) return "08:00AM"
 
     const date = new Date(timestamp)
-    return date.toLocaleTimeString("en-US", {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    }).replace(" ", "")
+    return date
+      .toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      })
+      .replace(" ", "")
+  }
+
+  const sendMessage = async () => {
+    if (!messageInput.trim() || !selectedTicket) return
+
+    try {
+      setLoader(true)
+      const ticketId = selectedTicket.id || 7 // Use selected ticket ID or default to 7
+      const response = await fetch(
+        `https://sage-admin-backend.vercel.app/send_message?ticket_id=${ticketId}&message=${encodeURIComponent(messageInput)}`,
+      )
+
+      if (!response.ok) {
+        throw new Error("Failed to send message")
+      }
+
+      // Refresh ticket chat to show the new message
+      if (selectedUser.email) {
+        await fetchTicketChat(selectedUser.email)
+      }
+
+      // Clear the input field
+      setMessageInput("")
+      setreply(false)
+    } catch (err) {
+      console.error("Error sending message:", err)
+    } finally {
+      setLoader(false)
+    }
   }
 
   return (
@@ -387,7 +419,7 @@ function Communication() {
                 </svg>
               </div>
               <div className="w-full h-[70%] px-12 flex ">
-                <textarea className="h-full w-full" placeholder="Typing..." value=""></textarea>
+                <textarea className="h-full w-full" placeholder="Typing..." onChange={(e) => setMessageInput(e.target.value)} value={messageInput}></textarea>
               </div>
               <div className="w-full h-[10%] flex  items-center px-4 border-t border-t-[#F2F4F7]">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -407,10 +439,11 @@ function Communication() {
                     Cancel
                   </button>
                   <button
+                  onClick={sendMessage}
                     type="submit"
                     className="px-6 py-2.5 bg-[#7217B8] text-white rounded-md hover:bg-[#6215a0] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-70 flex items-center justify-center"
                   >
-                    Send
+                  {isLoading ? "Sending..." : "Send"}
                   </button>
                 </div>
                 <div></div>

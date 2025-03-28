@@ -243,7 +243,7 @@ function Report() {
           <span className="text-[26px] font-[700]">{mainstat?.order}</span>
         </div>
       </div>
-      <div className="w-full h-8 flex gap-2 mt-8 border-b border-b-[#E4E4E4]">
+      <div className="w-full h-8 flex gap-8 mt-8 border-b border-b-[#E4E4E4]">
         {nav.map((e, i) => (
           <div
             key={i}
