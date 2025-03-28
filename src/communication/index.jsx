@@ -55,8 +55,8 @@ function Communication() {
       if (data.tickets && data.tickets.length > 0) {
         // Get the first ticket for display
         const firstTicket = data.tickets
-        setSelectedTicket(firstTicket[0])
-
+        // setSelectedTicket(firstTicket[0])
+        setSelectedTicket(firstTicket[0]);
         setTicketData({
           subject: firstTicket[0].subject,
           messages: data.tickets,
@@ -121,7 +121,7 @@ function Communication() {
 
     try {
       setLoader(true)
-      const ticketId = selectedTicket.id || 7 // Use selected ticket ID or default to 7
+      const ticketId = selectedTicket.ticket_id // Use selected ticket ID or default to 7
       const response = await fetch(
         `https://sage-admin-backend.vercel.app/send_message?ticket_id=${ticketId}&message=${encodeURIComponent(messageInput)}`,
       )
@@ -203,7 +203,7 @@ function Communication() {
               key={index}
               className="w-full h-[76px] flex justify-evenly py-4 cursor-pointer"
               onClick={() => {
-            
+              
                 fetchTicketChat(e?.email || "")
                 setselectUser({name: e?.name, email: e?.email, updated_at: e?.updated_at})
             }}
