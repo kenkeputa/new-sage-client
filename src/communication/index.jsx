@@ -41,10 +41,11 @@ function Communication() {
     fetchUsers()
   }, [])
 
-  const fetchTicketChat = async (email) => {
+  const fetchTicketChat = async (email, id) => {
     try {
       setLoader(true)
-      const response = await fetch(`https://sage-admin-backend.vercel.app/ticket_chat?email=${email}`)
+      // const response = await fetch(`https://sage-admin-backend.vercel.app/ticket_chat?email=${email}`)
+      const response = await fetch(`https://sage-admin-backend.vercel.app/ticket_c?userId=${id}`)
 
       if (!response.ok) {
         throw new Error("Failed to fetch ticket chat")
@@ -204,7 +205,7 @@ function Communication() {
               className="w-full h-[76px] flex justify-evenly py-4 cursor-pointer"
               onClick={() => {
               
-                fetchTicketChat(e?.email || "")
+                fetchTicketChat(e?.email || "", e?.id)
                 setselectUser({name: e?.name, email: e?.email, updated_at: e?.updated_at})
             }}
             >
