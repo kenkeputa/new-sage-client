@@ -132,8 +132,8 @@ function Communication() {
       }
 
       // Refresh ticket chat to show the new message
-      if (selectedUser.email) {
-        await fetchTicketChat(selectedUser.email)
+      if (selectedUser.email || selectedUser.id) {
+        await fetchTicketChat(selectedUser.email, selectedUser.id,)
       }
 
       // Clear the input field
