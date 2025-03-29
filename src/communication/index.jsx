@@ -5,7 +5,7 @@ import { Auth } from "../App.jsx"
 
 function Communication() {
   const [users, setUsers] = useState([])
-  const [selectedUser, setselectUser] = useState({ name: "", email: "", updated_at: "" })
+  const [selectedUser, setselectUser] = useState({ name: "", id: "", email: "", updated_at: "" })
 
   const [message, setmessage] = useState([])
   const [reply, setreply] = useState(false)
@@ -206,7 +206,7 @@ function Communication() {
               onClick={() => {
               
                 fetchTicketChat(e?.email || "", e?.id)
-                setselectUser({name: e?.name, email: e?.email, updated_at: e?.updated_at})
+                ({name: e?.name, id: e?.id, email: e?.email, updated_at: e?.updated_at})
             }}
             >
               <div className="size-[38.209999084472656px] bg-[#FDAFB6] rounded-full flex justify-center items-center">
