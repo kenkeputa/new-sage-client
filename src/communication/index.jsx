@@ -206,7 +206,7 @@ function Communication() {
               onClick={() => {
               
                 fetchTicketChat(e?.email || "", e?.id)
-                ({name: e?.name, id: e?.id, email: e?.email, updated_at: e?.updated_at})
+                setselectUser({name: e?.name, id: e?.id, email: e?.email, updated_at: e?.updated_at})
             }}
             >
               <div className="size-[38.209999084472656px] bg-[#FDAFB6] rounded-full flex justify-center items-center">
